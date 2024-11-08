@@ -2,7 +2,7 @@
     background-color: #004970;
 }
 .search_box {
-    background-color: #01077C;
+    background-color: var(--background-color);
 }
 .search_box > .tabs > div {
     padding: 0.5rem;
