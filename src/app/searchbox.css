@@ -1,0 +1,12 @@
+.highlighted {
+    background-color: #004970;
+}
+.search_box {
+    background-color: #01077C;
+}
+.search_box > .tabs > div {
+    padding: 0.5rem;
+}
+.tabs > div {
+    border: #004970 1px solid;
+}
