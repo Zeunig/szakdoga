@@ -15,13 +15,14 @@ import {
   } from '@heroicons/react/24/outline'
 import { SearchBox } from "./searchbox";
 
+
 export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   
     return ( <header className="bg-stone-950">
         <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="../../../../../" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 alt=""
@@ -53,10 +54,10 @@ export function Header() {
             </a>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:gap-x-9 lg:justify-end">
-            <a href="./login" className="text-sm/6 font-semibold text-white-900">
+            <a href="/pages/auth/login " target='blank' className="text-sm/6 font-semibold text-white-900">
               Bejelentkezés
             </a>
-            <a href="./submit" className="text-sm/6 font-semibold text-white-900">Regisztráció</a>
+            <a href="/pages/auth/register" className="text-sm/6 font-semibold text-white-900">Regisztráció</a>
           </div>
         </nav>
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
@@ -105,7 +106,7 @@ export function Header() {
                 </div>
                 <div className="py-6">
                   <a
-                    href="./login"
+                    href="#"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white-900 hover:bg-black-50"
                   >
                     Bejelentkezés
@@ -119,6 +120,7 @@ export function Header() {
     );
   }
   
+
   export default function Home() {
   
     return (

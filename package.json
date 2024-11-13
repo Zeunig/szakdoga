@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev -p 1337",
-    "build": "next build -p 1337",
-    "start": "next start -p 1337",
-    "lint": "next lint -p 1337"
+    "dev": "next dev -p 1111",
+    "build": "next build -p 1111",
+    "start": "next start -p 1111",
+    "lint": "next lint -p 1111"
   },
   "keywords": [],
   "author": "",
