@@ -20,7 +20,6 @@ function ComboBox(props) {
       : props.options.filter((option) => {
           return option.name.toLowerCase().includes(query.toLowerCase())
         })
-     console.log(props.isLong);
         return (
             <div className={"mx-auto h-2/4 p-3 " + (props.isLong ? "w-full" : "w-52")}>
             <Combobox value={selected} onChange={(value) => setSelected(value)} onClose={() => setQuery('')}>
