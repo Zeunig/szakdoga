@@ -1,37 +1,39 @@
 {
-  "name": "szakdoga",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "next dev -p 1111",
-    "build": "next build -p 1111",
-    "start": "next start -p 1111",
-    "lint": "next lint -p 1111"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "@headlessui/react": "^2.2.0",
-    "@heroicons/react": "^2.1.5",
-    "bcrypt": "^5.1.1",
+    "@heroicons/react": "^2.2.0",
+    "@radix-ui/react-accordion": "^1.2.1",
+    "@radix-ui/react-dialog": "^1.1.2",
+    "@radix-ui/react-hover-card": "^1.1.2",
+    "@radix-ui/react-popover": "^1.1.2",
+    "@radix-ui/react-slot": "^1.1.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "dotenv": "^16.4.5",
-    "headlessui": "^0.0.0",
-    "heroicons": "^2.1.5",
-    "mysql2": "^3.11.4",
-    "next": "^15.0.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "serverless-mysql": "^1.5.5"
+    "cmdk": "^1.0.4",
+    "lucide-react": "^0.468.0",
+    "next": "15.0.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-resizable-panels": "^2.1.7",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^1.1.1"
   },
   "devDependencies": {
-    "@types/node": "22.9.0",
-    "@types/react": "18.3.12",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.14",
-    "typescript": "5.6.3"
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }

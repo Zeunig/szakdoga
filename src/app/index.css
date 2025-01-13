@@ -1,0 +1,10 @@
+.mainimage { 
+    background-image: url("/main_background.jpeg");
+    background-size: cover;
+    position: absolute;
+    top: 0; left: 0; height: 100%; width: 100%;
+}
+
+.main-text-shadow {
+    text-shadow: #000000 3px 4px 15px;
+}
