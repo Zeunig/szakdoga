@@ -1,0 +1,69 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model car {
+  id                 Int                  @id @default(autoincrement())
+  creation_date      DateTime?            @db.DateTime(0)
+  seller_id          Int
+  featured           Int?                 @db.TinyInt
+  brand              String               @db.VarChar(120)
+  model              String               @db.VarChar(255)
+  price              Int
+  discounted_price   Int?
+  km                 Int
+  year               Int?
+  weight             Int?
+  horsepower         Int?
+  cc                 Int?
+  fuel_type          String?              @db.VarChar(255)
+  wheel              String?              @db.VarChar(255)
+  gearbox            String?              @db.VarChar(255)
+  passengers         Int?
+  door_nmbr          Int?
+  color              String?              @db.VarChar(255)
+  features           Int?
+  user               user                 @relation(fields: [seller_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_car_user")
+  car_image_relation car_image_relation[]
+  favorites          favorites[]
+
+  @@index([seller_id], map: "FK_car_user")
+}
+
+model car_image_relation {
+  id        Int     @id
+  car_id    Int?
+  image_url String? @db.VarChar(255)
+  car       car?    @relation(fields: [car_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_car_image_relation_car")
+
+  @@index([car_id], map: "FK_car_image_relation_car")
+}
+
+model favorites {
+  id      Int   @id
+  car_id  Int?
+  user_id Int?
+  car     car?  @relation(fields: [car_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_favorites_car")
+  user    user? @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_favorites_user")
+
+  @@index([car_id], map: "FK_favorites_car")
+  @@index([user_id], map: "FK_favorites_user")
+}
+
+model user {
+  id           Int         @id @default(autoincrement())
+  name         String      @db.VarChar(255)
+  phone_number String?     @db.VarChar(255)
+  email        String      @db.VarChar(255)
+  password     String      @db.VarChar(255)
+  avatar_url   String?     @db.VarChar(600)
+  join_date    DateTime?   @db.Date
+  car          car[]
+  favorites    favorites[]
+}
