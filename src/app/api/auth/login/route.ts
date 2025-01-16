@@ -1,9 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 const bcrypt = require('bcrypt');
-
-
-
+const jose = require('jose')
+const { createSecretKey } = require('crypto');
+const secretKey = createSecretKey(process.env.JWT_SECRET, 'utf-8');
+const alg = 'HS256'
 export async function POST(req: Request) {
     // validating the request
     try {
@@ -35,7 +36,21 @@ export async function POST(req: Request) {
     }
     var a = await bcrypt.compare(password, db_result.password);
     if (a) {
+        const token = await new jose.SignJWT(
+            {
+                "id": db_result.id,
+            }
+        ).setProtectedHeader({ alg })
+        .setIssuedAt()
+        .setIssuer('urn:zeunig:issuer')
+        .setAudience('urn:zeunig:audience')
+        .setExpirationTime('2h')
+        .sign(secretKey);
         let resp = NextResponse.json({"success":true}, {"status": 200});
+        resp.cookies.set("auth",token, {
+            httpOnly: true,
+            secure: true
+        });
         // TODO: sessions
         return resp;
     }else {
