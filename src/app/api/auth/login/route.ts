@@ -51,7 +51,7 @@ export async function POST(req: Request) {
             httpOnly: true,
             secure: true
         });
-        // TODO: sessions
+        // TODO: refresh tokens
         return resp;
     }else {
         let resp = NextResponse.json({"success":false, "message": `Invalid e-mail or password`}, {"status": 400});
