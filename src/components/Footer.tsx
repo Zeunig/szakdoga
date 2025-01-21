@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 export function Footer(){
     return(
@@ -7,8 +8,8 @@ export function Footer(){
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
               <a href="/" className="flex items-center">
-                  <img src="/logo.png" className="h-8 me-3" alt="KPAK Logo" />
-                  <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Körpörgő Autó Kereskedés</span>
+              <Image height={32} width={32} className="mr-3" src={"/logo.png"} alt="kpak logo"/>
+                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Körpörgő Autó Kereskedés</span>
               </a>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
