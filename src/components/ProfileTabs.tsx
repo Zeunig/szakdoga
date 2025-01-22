@@ -4,15 +4,17 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {Tabs,TabsContent,TabsList,TabsTrigger,} from "@/components/ui/tabs"
 
-export default function AuthTabs() {
+export default function ProfileTabs() {
     return (
         <div className="h-80 grid justify-items-center mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8                         bg-red-400">
             
             <Tabs defaultValue="login" className="w-[400px]">
 
-                <TabsList className="grid grid-cols-2">
-                    <TabsTrigger value="login">Bejelentkezés</TabsTrigger>
-                    <TabsTrigger value="register">Regisztráció</TabsTrigger>
+                <TabsList className="grid grid-cols-4">
+                    <TabsTrigger value="profile">Progil</TabsTrigger>
+                    <TabsTrigger value="settings">Regisztráció</TabsTrigger>
+                    <TabsTrigger value="cars">Bejelentkezés</TabsTrigger>
+                    <TabsTrigger value="TBD">Disabled</TabsTrigger>
                 </TabsList>
 
 
@@ -59,14 +61,18 @@ export default function AuthTabs() {
 
                         </CardHeader>
 
-                        <CardContent className="space-y-2">
+                        <CardContent className="space-y-5">
                             <div className="space-y-1">
-                                <Label htmlFor="email">E-mail</Label>
-                                <Input id="email" type="email" />
+                                <Label htmlFor="current">Current password</Label>
+                                <Input id="current" type="password" />
                             </div>
                             <div className="space-y-1">
-                                <Label htmlFor="password">Jelszó</Label>
-                                <Input id="password" type="password"/>
+                                <Label htmlFor="new">New password</Label>
+                                <Input id="new" type="password" />
+                            </div>
+                            <div className="space-y-1">
+                                <Label htmlFor="new">New password</Label>
+                                <Input id="new" type="password" />
                             </div>
                         </CardContent>
 
