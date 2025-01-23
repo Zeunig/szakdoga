@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 
 export const config = {
     matcher: [
-        "/((?!_next).*?(?!jpeg))"
+        "/((?!_next|assets).*?)"
     ]
 };
 

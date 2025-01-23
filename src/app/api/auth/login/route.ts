@@ -38,13 +38,14 @@ export async function POST(req: Request) {
     if (a) {
         const token = await new jose.SignJWT(
             {
+                "name": db_result.name,
                 "id": db_result.id,
             }
         ).setProtectedHeader({ alg })
         .setIssuedAt()
         .setIssuer('urn:zeunig:issuer')
         .setAudience('urn:zeunig:audience')
-        .setExpirationTime('2h')
+        .setExpirationTime('1m')
         .sign(secretKey);
         let resp = NextResponse.json({"success":true}, {"status": 200});
         resp.cookies.set("auth",token, {
