@@ -1,5 +1,5 @@
 
-import { Combobox } from "@/components/Combobox";
+import { Combobox } from "@/components/BrandCB";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";

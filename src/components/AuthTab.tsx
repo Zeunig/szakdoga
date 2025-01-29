@@ -6,20 +6,20 @@ import {Tabs,TabsContent,TabsList,TabsTrigger,} from "@/components/ui/tabs"
 
 export default function AuthTabs() {
     return (
-        <div className="h-80 grid justify-items-center mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8                         bg-red-400">
+        <div className="h-80 grid justify-items-center mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8                       ">
             
             <Tabs defaultValue="login" className="w-[400px]">
 
-                <TabsList className="grid grid-cols-2">
+                <TabsList className="grid grid-cols-2  bg-blue-400 ">
                     <TabsTrigger value="login">Bejelentkezés</TabsTrigger>
                     <TabsTrigger value="register">Regisztráció</TabsTrigger>
                 </TabsList>
 
 
-                <TabsContent value="login">
-                    <Card>
+                <TabsContent value="login" >
+                    <Card className="border-2 border-blue-400">
 
-                        <CardHeader>
+                        <CardHeader >
 
                             <CardTitle>Bejelentkezés</CardTitle>
                             <CardDescription>
@@ -48,7 +48,7 @@ export default function AuthTabs() {
 
                 
                 <TabsContent value="register">
-                    <Card>
+                    <Card className="border-2 border-blue-400">
                                       
                         <CardHeader>
 
@@ -62,7 +62,7 @@ export default function AuthTabs() {
                         <CardContent className="space-y-2">
                             <div className="space-y-1">
                                 <Label htmlFor="email">E-mail</Label>
-                                <Input id="email" type="email" />
+                                <Input id="email" type="email" className="border-2 border-blue-400" />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="password">Jelszó</Label>

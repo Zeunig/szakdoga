@@ -2,9 +2,9 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, 
 export function CarCardH(){
     return (
         <div className="mb-20">
-            <Card className="w-300 border-4 border-orange-500">
+            <Card className="w-80 h-90 border-dotted border-black bg-orange-400 bg-opacity-40">
                 <CardHeader>
-                    <img src="https://file.kelleybluebookimages.com/kbb/base/evox/CP/55034/2025-Honda-Civic-front_55034_032_1816x735_RE_cropped.png" alt="CarIMG" />
+                    <img src="https://www.usnews.com/cmsmedia/4a/74/b121e9304fdab9561575404faefb/16-2024-chevrolet-corvette-angular-front-jmv.JPG" alt="CarIMG" className="w-70 h-25"  />
                     <CardTitle>Brand - Model</CardTitle>
                     <CardDescription className="font-mono text-xs">|888,888km|888le|8888cc|</CardDescription>
                 </CardHeader>

@@ -6,7 +6,7 @@ import {Tabs,TabsContent,TabsList,TabsTrigger,} from "@/components/ui/tabs"
 
 export default function ProfileTabs() {
     return (
-        <div className="h-80 grid justify-items-center mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8                         bg-red-400">
+        <div className="h-80 grid justify-items-center mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8                        ">
             
             <Tabs defaultValue="login" className="w-[400px]">
 
