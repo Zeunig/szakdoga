@@ -32,9 +32,13 @@ export async function POST(req: Request) {
 
     if (
         typeof(username) === undefined ||
+        (username as string).length === 0 ||
         typeof(password) === undefined ||
+        (password as string).length === 0 ||
         typeof(email) === undefined ||
-        typeof(captcha) === undefined
+        (email as string).length === 0 ||
+        typeof(captcha) === undefined ||
+        (captcha as string).length === 0
     ) {
         let resp = NextResponse.json({"success":false, "message": `Missing fields`}, {"status": 401});
         return resp;

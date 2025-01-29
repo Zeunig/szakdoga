@@ -12,24 +12,25 @@ model car {
   id                 Int                  @id @default(autoincrement())
   creation_date      DateTime?            @db.DateTime(0)
   seller_id          Int
-  featured           Int?                 @db.TinyInt
-  brand              String               @db.VarChar(120)
-  model              String               @db.VarChar(255)
+  featured           Int?                 @default(0) @db.TinyInt
   price              Int
   discounted_price   Int
-  km                 Int
+  brand              String               @db.VarChar(120)
+  model              String               @db.VarChar(255)
   year               Int?
+  mileage            Int
   weight             Int?
   horsepower         Int?
   cc                 Int?
   fuel_type          String?              @db.VarChar(255)
-  wheel              String?              @db.VarChar(255)
   gearbox            String?              @db.VarChar(255)
+  drive_type         String?              @db.VarChar(255)
+  condition          String?              @db.VarChar(100)
   passengers         Int?
-  door_nmbr          Int?
+  doors              Int?
   color              String?              @db.VarChar(255)
-  features           Int
-  status             String               @db.VarChar(100)
+  features           BigInt               @default(0) @db.UnsignedBigInt
+  vin                String?              @db.VarChar(100)
   user               user                 @relation(fields: [seller_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_car_user")
   car_image_relation car_image_relation[]
   favorites          favorites[]
