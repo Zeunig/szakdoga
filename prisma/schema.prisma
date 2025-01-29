@@ -1,10 +1,10 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -16,7 +16,7 @@ model car {
   brand              String               @db.VarChar(120)
   model              String               @db.VarChar(255)
   price              Int
-  discounted_price   Int?
+  discounted_price   Int
   km                 Int
   year               Int?
   weight             Int?
@@ -28,7 +28,8 @@ model car {
   passengers         Int?
   door_nmbr          Int?
   color              String?              @db.VarChar(255)
-  features           Int?
+  features           Int
+  status             String               @db.VarChar(100)
   user               user                 @relation(fields: [seller_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_car_user")
   car_image_relation car_image_relation[]
   favorites          favorites[]
@@ -60,10 +61,11 @@ model user {
   id           Int         @id @default(autoincrement())
   name         String      @db.VarChar(255)
   phone_number String?     @db.VarChar(255)
-  email        String      @db.VarChar(255)
+  email        String      @unique(map: "email") @db.VarChar(255)
   password     String      @db.VarChar(255)
   avatar_url   String?     @db.VarChar(600)
   join_date    DateTime?   @db.Date
+  permissions  BigInt      @default(0) @db.UnsignedBigInt
   car          car[]
   favorites    favorites[]
 }
