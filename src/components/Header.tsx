@@ -9,8 +9,8 @@ export function Header() {
 
               
 
-              <Image src="/logo.png" className="mr-3 h-6 sm:h-9" alt="KPAK Logo" />
-              <Image src="/title.png" className="" alt="KPAK Title" />
+              <img src="/logo.png" className="mr-3 h-6 sm:h-9" alt="KPAK Logo" />
+              <img src="/title.png" className="" alt="KPAK Title" />
 
             </a>
             <div className="flex items-center lg:order-2">

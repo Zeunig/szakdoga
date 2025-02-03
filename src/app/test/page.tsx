@@ -8,64 +8,75 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import SUC from "@/components/SUC";
+
+
 export default function Page() {
     return (
+        <div>
+            
+            <div className="p-4 grid grid-cols-4                 ">
+                <div className="bg-black">
+                </div>
+                <div>
+                    <HoverCard>
+                        <HoverCardTrigger>Huzd ide az egered</HoverCardTrigger>
+                        <HoverCardContent>surprise</HoverCardContent>
+                    </HoverCard>
+                </div>
+                <Combobox />
+                <div>
+                    <Drawer>
+                        <DrawerTrigger>Megnyitás</DrawerTrigger>
+                        <DrawerContent>
+                            <DrawerHeader>
+                                <DrawerTitle>Fiók cím</DrawerTitle>
+                            </DrawerHeader>
+                            <DrawerFooter>
+                                <p>Egy- egy almafa</p>
+                                <p>Kettő- Két latica</p>
+                            </DrawerFooter>
+                        </DrawerContent>
+                    </Drawer>
+                </div>
+                <div className="h-[200px]">
+                    <ResizablePanelGroup direction="horizontal" >
+                        <ResizablePanel className="bg-green-600">
+                            <ResizablePanelGroup direction="vertical" >
+                                <ResizablePanel className="bg-green-600">
+                                    Panel 1
+                                </ResizablePanel>
+                                <ResizableHandle />
+                                <ResizablePanel className="bg-green-900">
+                                    Panel 2
+                                </ResizablePanel>
+                            </ResizablePanelGroup>
+                        </ResizablePanel>
+                        <ResizableHandle />
+                        <ResizablePanel className="bg-green-900">
+                            <ResizablePanelGroup direction="vertical" >
+                                <ResizablePanel className="bg-green-600">
+                                    Panel 1
+                                </ResizablePanel>
+                                <ResizableHandle />
+                                <ResizablePanel className="bg-green-900">
+                                    Panel 2
+                                </ResizablePanel>
+                            </ResizablePanelGroup>
+                        </ResizablePanel>
+                    </ResizablePanelGroup>
+                </div>
 
-        <div className="p-4 grid grid-cols-4">
+                <div>
+                    <img className="absolute animate-spin" src="logo.png" alt="" />
+                    <svg className="absolute animate-spin"></svg>
+                </div>
+            </div>
 
-            <div className="bg-black">
+            <div className="mx-96 mt-80          ">
+                <SUC />
             </div>
-            <div>
-                <HoverCard>
-                    <HoverCardTrigger>Huzd ide az egered</HoverCardTrigger>
-                    <HoverCardContent>surprise</HoverCardContent>
-                </HoverCard>
-            </div>
-            <Combobox />
-            <div>
-                <Drawer>
-                    <DrawerTrigger>Megnyitás</DrawerTrigger>
-                    <DrawerContent>
-                        <DrawerHeader>
-                            <DrawerTitle>Fiók cím</DrawerTitle>
-                        </DrawerHeader>
-                        <DrawerFooter>
-                            <p>Egy- egy almafa</p>
-                            <p>Kettő- Két latica</p>
-                        </DrawerFooter>
-                    </DrawerContent>
-                </Drawer>
-            </div>
-            <div className="h-[200px]">
-                <ResizablePanelGroup direction="horizontal" >
-                    <ResizablePanel className="bg-green-600">
-                        <ResizablePanelGroup direction="vertical" >
-                            <ResizablePanel className="bg-green-600">
-                                Panel 1
-                            </ResizablePanel>
-                            <ResizableHandle />
-                            <ResizablePanel className="bg-green-900">
-                                Panel 2
-                            </ResizablePanel>
-                        </ResizablePanelGroup>
-                    </ResizablePanel>
-                    <ResizableHandle />
-                    <ResizablePanel className="bg-green-900">
-                        <ResizablePanelGroup direction="vertical" >
-                            <ResizablePanel className="bg-green-600">
-                                Panel 1
-                            </ResizablePanel>
-                            <ResizableHandle />
-                            <ResizablePanel className="bg-green-900">
-                                Panel 2
-                            </ResizablePanel>
-                        </ResizablePanelGroup>
-                    </ResizablePanel>
-                </ResizablePanelGroup>
-            </div>
-            <div className="size-60">
-   
-            </div>
+  
 
         </div>
     )

@@ -1,18 +1,33 @@
 import { CarCard } from "@/components/CarCard"
-import { CarCardH } from "@/components/CarCardH"
+import { CarCardH } from "@/components/CarCardHL"
 import { CarSearchCard } from "@/components/CarSearchCard"
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
-import { Rows } from "lucide-react"
+import HorizontalCard from "@/components/HorizonalCard"
+import HorizontalCardHL from "@/components/HorizonalCardHL"
+
+
 
 
 export default function Page() {
     return (
         <div>
             <Header/>
-            <div className="mx-56 mt-24 col-2 bg-indigo-800">
-                <CarSearchCard/>
-                
+            <div className="mx-56 mt-24 col-2 ">
+                <div className="grid grid-cols-4">
+                    <div className="h-auto row-span-11"><CarSearchCard/></div>
+                    <div className="col-span-3">
+                        <div className="mb-3"><HorizontalCardHL/></div>
+                        <div className="mb-3"><HorizontalCard/></div>
+                        <div className="mb-3"><HorizontalCard/></div>
+                        <div className="mb-3"><HorizontalCard/></div>
+                        <div className="mb-3"><HorizontalCard/></div>
+                        <div className="mb-3"><HorizontalCard/></div> 
+                    </div>
+                    
+                    
+                    
+                </div>
             </div>
             <Footer/>
         </div>
