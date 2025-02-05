@@ -109,7 +109,7 @@ export default function AuthTabs() {
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="email">E-mail</Label>
-                                <Input id="email" type="email" name="email" className="border-2 border-blue-400" />
+                                <Input id="email" type="email" name="email" />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="password">Jelszó</Label>
