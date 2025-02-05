@@ -41,8 +41,8 @@ export async function GET(req: NextRequest) {
     /*console.log(req.nextUrl.searchParams);
     console.log(req.nextUrl.searchParams.get("brand") as string);
     const prisma = new PrismaClient();
-    const features_number: number = req.nextUrl.searchParams.get("features") as unknown as number;
-    const features_query = getFeatures(req.nextUrl.searchParams.get("features") as unknown as number || 0);
+    const features_number: number = parseInt(req.nextUrl.searchParams.get("features") as string) | 0;
+    const features_query = getFeatures(parseInt(req.nextUrl.searchParams.get("features") as string) | 0 || 0);
     console.log(features_query);
     const searchResult = await prisma.car.findMany({where: {
         brand: {
@@ -85,46 +85,46 @@ export async function GET(req: NextRequest) {
         }
     }
     
-    
     const result = await Search(
         {
             brand: (req.nextUrl.searchParams.get("brand") as string),
             model: (req.nextUrl.searchParams.get("model") as string),
             fuel_type: (req.nextUrl.searchParams.get("fueltype") as string)?.split(","),
             price: [
-                req.nextUrl.searchParams.get("pricemin") as unknown as number,
-                req.nextUrl.searchParams.get("pricemax") as unknown as number
+                parseInt(req.nextUrl.searchParams.get("pricemin") as string) | 0,
+                parseInt(req.nextUrl.searchParams.get("pricemax") as string) | 99999999999
             ],
             km: [
-                req.nextUrl.searchParams.get("kmmin") as unknown as number,
-                req.nextUrl.searchParams.get("kmmax") as unknown as number
+                parseInt(req.nextUrl.searchParams.get("kmmin") as string) | 0,
+                parseInt(req.nextUrl.searchParams.get("kmmax") as string) | 99999999999
             ],
             features: parseInt(req.nextUrl.searchParams.get("features") as string),
             year: [
-                req.nextUrl.searchParams.get("yearmin") as unknown as number,
-                req.nextUrl.searchParams.get("yearmax") as unknown as number
+                parseInt(req.nextUrl.searchParams.get("yearmin") as string) | 0,
+                parseInt(req.nextUrl.searchParams.get("yearmax") as string) | 99999999999
             ],
             weight: [
-                req.nextUrl.searchParams.get("weightmin") as unknown as number,
-                req.nextUrl.searchParams.get("weightmax") as unknown as number
+                parseInt(req.nextUrl.searchParams.get("weightmin") as string) | 0,
+                parseInt(req.nextUrl.searchParams.get("weightmax") as string) | 99999999999
             ],
             hp: [
-                req.nextUrl.searchParams.get("hpmin") as unknown as number,
-                req.nextUrl.searchParams.get("hpmax") as unknown as number
+                parseInt(req.nextUrl.searchParams.get("hpmin") as string) | 0,
+                parseInt(req.nextUrl.searchParams.get("hpmax") as string) | 99999999999
             ],
             cc: [
-                req.nextUrl.searchParams.get("ccmin") as unknown as number,
-                req.nextUrl.searchParams.get("ccmax") as unknown as number
+                parseInt(req.nextUrl.searchParams.get("ccmin") as string) | 0,
+                parseInt(req.nextUrl.searchParams.get("ccmax") as string) | 99999999999
             ],
             wheels: split_wheels,
             gearbox: (req.nextUrl.searchParams.get("gearbox") as string)?.split(","),
             passengers: passengers,
             door: doors,
             color: (req.nextUrl.searchParams.get("color") as string)?.split(","),
-            status: (req.nextUrl.searchParams.get("status") as string)?.split(",")
+            status: (req.nextUrl.searchParams.get("status") as string)?.split(","),
+            limit: parseInt(req.nextUrl.searchParams.get("limit") as string),
+            offset: parseInt(req.nextUrl.searchParams.get("offset") as string)
         }
     );
-    console.log(result);
     let resp = NextResponse.json(result, {"status": 200});
     return resp;
 }
