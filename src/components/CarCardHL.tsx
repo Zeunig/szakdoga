@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
-export function CarCardH(){
+export function CarCardHL(){
     return (
         <div className="mb-20">
             <Card className="w-80 h-90 border-dotted border-black bg-orange-400 bg-opacity-40">

@@ -65,11 +65,12 @@ export async function POST(req: Request) {
                 email: email,
                 password: encrypted_password,
                 avatar_url: null,
-                join_date: new Date()
+                join_date: new Date(),
+                permissions: 0
             }
         });
         user.catch((err) => {
-            console.error(err);
+            console.log(err);
         })
         let resp = NextResponse.json({"success":true}, {"status": 200});
         return resp;
