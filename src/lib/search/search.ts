@@ -153,7 +153,6 @@ export async function Search(search: ISearch) {
     : Prisma.empty}
    `;
    let query: object[] = await prisma.$queryRaw(prismaquery);
-   console.log(query);
    for(var i = 0; i < query.length; i++) {
         query[i]["id"] = Number(query[i]["id"]);
         query[i]["features"] = Number(query[i]["features"]);

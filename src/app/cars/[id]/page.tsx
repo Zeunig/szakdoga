@@ -13,24 +13,33 @@ import { CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsi
 import { Collapsible } from "@radix-ui/react-collapsible"
 import { Button } from "@/components/ui/button"
 import { ChevronRight, ChevronsDownUp, ChevronsDownUpIcon, ChevronsUpDown } from "lucide-react"
+import { CarListing, parseCarListing } from "@/components/Car"
+import { Prisma, PrismaClient } from "@prisma/client"
+import { useRouter } from "next/navigation"
 
 
-export default function Page() {
+export default function Page(context: {params: {id: number}}) {
     const [api, setApi] = React.useState<CarouselApi>()
     const [current, setCurrent] = React.useState(0)
     const [count, setCount] = React.useState(50)
-
+    const [car, setCar] = React.useState<CarListing>();
+    const router = useRouter();
     React.useEffect(() => {
         if (!api) {
             return
         }
-
         setCount(count);
         setCurrent(api.selectedScrollSnap() + 1)
 
         api.on("select", () => {
             setCurrent(api.selectedScrollSnap() + 1)
-        })
+        });
+        const carData = async () => {
+            console.log(context.params.id);
+            fetch(`/api/cars/${context.params.id}`)
+            .then(res => res.json()).then(json => {setCar(parseCarListing(json[0]));});
+        };
+        carData();
     }, [api])
 
 
@@ -45,7 +54,7 @@ export default function Page() {
 
                 {/*Fő adatok*/}
                 <div className="col-span-2  border-2 border-grey-500 rounded-xl">
-                    <div className="col-span-2 ml-12 mt-2 -mb-3 text-3xl font-bold">Audi R8 Coupé 5.2 V10 quattro R-tronic</div>
+                    <div className="col-span-2 ml-12 mt-2 -mb-3 text-3xl font-bold">{car?.brand} {car?.model}</div>
                     <div className="grid grid-cols-2">
 
                         {/*Képnézegető*/}
