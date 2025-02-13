@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "windows"]
 }
 
 datasource db {
@@ -10,7 +11,7 @@ datasource db {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model car {
   id                 Int                  @id @default(autoincrement())
-  creation_date      DateTime?            @db.DateTime(0)
+  creation_date      DateTime?            @default(now()) @db.Timestamp(0)
   seller_id          Int
   featured           Int?                 @default(0) @db.TinyInt
   price              Int
@@ -31,6 +32,7 @@ model car {
   color              String?              @db.VarChar(255)
   features           BigInt               @default(0) @db.UnsignedBigInt
   vin                String?              @db.VarChar(100)
+  design             String?              @db.VarChar(100)
   user               user                 @relation(fields: [seller_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_car_user")
   car_image_relation car_image_relation[]
   favorites          favorites[]
@@ -63,9 +65,9 @@ model user {
   name         String      @db.VarChar(255)
   phone_number String?     @db.VarChar(255)
   email        String      @unique(map: "email") @db.VarChar(255)
-  password     String      @db.VarChar(255)
+  password     String      @db.VarChar(600)
   avatar_url   String?     @db.VarChar(600)
-  join_date    DateTime?   @db.Date
+  join_date    DateTime?   @default(now()) @db.Timestamp(0)
   permissions  BigInt      @default(0) @db.UnsignedBigInt
   car          car[]
   favorites    favorites[]

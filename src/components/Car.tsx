@@ -1,3 +1,5 @@
+import { getFeatures } from "@/lib/search/features";
+
 export interface CarListing {
     // Identification
     id: number;
@@ -32,7 +34,7 @@ export interface CarListing {
     color: string;
     
     // Additional details
-    features: number;
+    features: string[];
     design: string | null;
 }
 
@@ -55,7 +57,6 @@ export function parseCarListing(json: object): CarListing {
         // Validate condition
         const condition = json.condition as string;
 
-        const features = Number(json.features);
 
         // Convert numeric strings to numbers
         const seller_id = Number(json.seller_id);
@@ -69,7 +70,7 @@ export function parseCarListing(json: object): CarListing {
         const cc = Number(json.cc);
         const passengers = Number(json.passengers);
         const doors = Number(json.doors);
-
+        const features = getFeatures(Number(json.features));
         // Construct and return the CarListing object
         const carListing: CarListing = {
             id,

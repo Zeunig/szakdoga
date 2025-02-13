@@ -37,9 +37,9 @@ export const TPMS = 34359738368
 export const ABS = 68719476736
 export const ESP = 137438953472
 
-export const FEATURES = ["KEYLESS_ENTRY","PREMIUM_WHEELS","ROOF_RACK","TRAILER_HITCH","DUAL_REAR_WHEELS","DISABILITY_EQUIPPED","ANDROID_AUTO","APPLE_CARPLAY","BLUETOOTH_HANDS_FREE","CRUISE_CONTROL","DVD_PLAYER","NAVIGATION","PORTABLE_AUDIO_CONNECTION","PREMIUM_AUDIO","SATELLITE_RADIO","STEERING_WHEEL_CONTROLS","REMOTE_ENGINE_START","ADAPTIVE_CRUISE_CONTROL","HEAD_UP_DISPLAY","RAIN_SENSING_WIPERS","KEYLESS_START","AUTOMATIC_PARKING","WIFI_HOTSPOT","3RD_ROW_SEATS","HEATED_SEATS","LEATHER_SEATS","SUNROOF","BACKUP_CAMERA","NIGHT_VISION","LANE_DEPARTURE_WARNING","BLIND_SPOT_MONITOR","CROSS_TRAFFIC_ALERT","BRAKE_ASSIST","SECURITY_SYSTEM","LANE_KEEPING_ASSIST","TPMS","ABS","ESP"]
+export const FEATURES = ['Keyless Entry', 'Premium Wheels', 'Roof Rack', 'Trailer Hitch', 'Dual Rear Wheels', 'Disability Equipped', 'Android Auto', 'Apple Carplay', 'Bluetooth Hands Free', 'Cruise Control', 'Dvd Player', 'Navigation', 'Portable Audio Connection', 'Premium Audio', 'Satellite Radio', 'Steering Wheel Controls', 'Remote Engine Start', 'Adaptive Cruise Control', 'Head Up Display', 'Rain Sensing Wipers', 'Keyless Start', 'Automatic Parking', 'Wifi Hotspot', '3Rd Row Seats', 'Heated Seats', 'Leather Seats', 'Sunroof', 'Backup Camera', 'Night Vision', 'Lane Departure Warning', 'Blind Spot Monitor', 'Cross Traffic Alert', 'Brake Assist', 'Security System', 'Lane Keeping Assist', 'Tpms', 'Abs', 'Esp']
 
-function getFeatures(decimalValue: number) {
+export function getFeatures(decimalValue: number) {
     let bitPosition = 0; const features = [];
     while (decimalValue > 0) {
         if (decimalValue & 1) {

@@ -1,10 +1,9 @@
 "use server";
 
-import { CarListing, parseCarListing } from "@/components/Car";
 import { Prisma, PrismaClient } from "@prisma/client";
-import { useParams, useRouter } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
+// get car details by id and make it json-serializable
 async function hawkt(id: number) {
     const prisma = new PrismaClient({});
     let query = await prisma.$queryRaw(Prisma.sql`

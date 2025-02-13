@@ -57,21 +57,30 @@ export async function POST(req: Request) {
             return resp;
         }
         const prisma = new PrismaClient();
-        console.log(encrypted_password);
-        const user = prisma.user.create({
+        console.log({
+            name: username,
+            phone_number: null,
+            email: email,
+            password: encrypted_password,
+            avatar_url: null,
+            permissions: 0
+        });
+        const user = await prisma.user.create({
             data: {
                 name: username,
                 phone_number: null,
                 email: email,
                 password: encrypted_password,
                 avatar_url: null,
-                join_date: new Date(),
                 permissions: 0
             }
         });
-        user.catch((err) => {
+        console.log(user);
+        /*.then((a) => {
+            console.log(a);
+        }).catch((err) => {
             console.log(err);
-        })
+        });*/
         let resp = NextResponse.json({"success":true}, {"status": 200});
         return resp;
     }
