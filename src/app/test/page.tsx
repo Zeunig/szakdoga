@@ -74,10 +74,10 @@ export default function Page() {
                     <svg className="absolute animate-spin"></svg>
                 </div>
             </div>
-            <div>
+            <div className="">
                 <AdsGrid/>
             </div>
-            <div>
+            <div className="">
                 <ImageViewer/>
             </div>
 

@@ -6,7 +6,7 @@ export default function SUC() {
                     <img className="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="suc.svg" alt="Site under construction" />
                 </div>
                 <div className="flex flex-col gap-2 py-2">
-                    <p className="text-xl font-bold">Sajnáljuk! Ez az oldal jelenleg nem elérhető!</p>
+                    <p className="text-xl font-bold">Sajnáljuk! Ez az oldal jelenleg fejlesztews alat als!</p>
                     <p>Nézz vissza később, és reméljük hogy addigra elhárítjuk a problémát. 😊</p>
                     <span className="flex items-center justify-start text-gray-500">
                         <svg className="w-4 h-4 mr-1 mt-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

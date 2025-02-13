@@ -11,7 +11,6 @@ export default function Home() {
         <Header/> 
         <div className="container mx-auto mt-4 h-full flex justify-around flex-col ">
           <h1 className="text-3xl md:text-6xl font-extrabold text-white text-center main-text-shadow">Körpörgő Autókereskedés</h1>
-      
         </div>
         <Footer/>
       </div>

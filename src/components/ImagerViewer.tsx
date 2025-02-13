@@ -51,6 +51,7 @@ export function ImageViewer() {
                 <CarouselItem key={index} className="bg-cyan-600 bg-opacity-55">
                   <Image src="/r8.jpg" width={800} height={800} alt="Picture of the author" />
                 </CarouselItem>
+                
               ))}
             </CarouselContent>
             <CarouselPrevious />
