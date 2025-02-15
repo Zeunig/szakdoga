@@ -20,16 +20,14 @@ import {
 } from "@/components/ui/popover"
  
 const make = [
-  {value: "ford",label: "Ford",},
-  {value: "audi",label: "Audi",},
-  {value: "bmw",label: "BMW",},
-  {value: "mb",label: "Mercedes-Benz",},
-  {value: "amg",label: "Mercedes-AMG",},
-  {value: "maybach",label: "Mercedes-Maybach",},
+  {value: "fwd",label: "Elsőkerék",},
+  {value: "rwd",label: "Kátsókerés",},
+  {value: "awd",label: "Összkerék",},
+  {value: "4x4",label: "4x4",},
 ]
 
  
-export function ModelCB() {
+export function DrivetypeCB() {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
  
@@ -44,7 +42,7 @@ export function ModelCB() {
         >
           {value
             ? make.find((make) => make.value === value)?.label
-            : <Search/>}
+            : "Meghajtás fajtája"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>

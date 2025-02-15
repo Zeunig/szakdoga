@@ -9,12 +9,8 @@ export default function RowCardHL() {
                 <img className="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="hplaceholder.jpg" alt="car placeholder img"/>
                 </div>
                 <div className="flex flex-col gap-2 py-2">
-                    <div className="row">
-                    <FlameIcon className="display: inline-block"/>
-                    <FlameIcon className="display: inline-block"/>
-                    <FlameIcon className="display: inline-block"/>
-                    </div>
-                     
+                    <p className="text-xl font-bold ">BMW - M3 ━━━ {"88 888 888"}Ft</p>
+                                         
                     <p>BMW M3 CSL - Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     <div className="text-gray-500 w-96">
                         | {"888,888"}km | {"888"}le | {"8888"}kg |   <br />

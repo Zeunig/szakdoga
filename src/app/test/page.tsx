@@ -10,13 +10,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import SUC from "@/components/SUC";
 import { AdsGrid } from "@/components/ADS/AdsGrid";
-import { ImageViewer } from "@/components/ImagerViewer";
+import { ImageViewer } from "@/components/ImageViewer";
+
 
 
 export default function Page() {
     return (
         <div>
-            
+
             <div className="p-4 grid grid-cols-4                 ">
                 <div className="bg-black">
                 </div>
@@ -85,7 +86,13 @@ export default function Page() {
                 <SUC />
             </div>
 
+            <div>
+                
+            </div>
+
 
         </div>
+
+        
     )
 }

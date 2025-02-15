@@ -20,16 +20,14 @@ import {
 } from "@/components/ui/popover"
  
 const make = [
-  {value: "ford",label: "Ford",},
-  {value: "audi",label: "Audi",},
-  {value: "bmw",label: "BMW",},
-  {value: "mb",label: "Mercedes-Benz",},
-  {value: "amg",label: "Mercedes-AMG",},
-  {value: "maybach",label: "Mercedes-Maybach",},
+  {value: "fwd",label: "Ilyen",},
+  {value: "rwd",label: "Olyan",},
+  {value: "awd",label: "Amolany",},
+  {value: "4x4",label: "Megint masmilyen",},
 ]
 
  
-export function ModelCB() {
+export function ConditionCB() {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
  
@@ -40,11 +38,11 @@ export function ModelCB() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-[160px] justify-between"
         >
           {value
             ? make.find((make) => make.value === value)?.label
-            : <Search/>}
+            : "ㅤ"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
