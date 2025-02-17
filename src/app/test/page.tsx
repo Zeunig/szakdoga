@@ -1,5 +1,5 @@
 
-import { Combobox } from "@/components/BrandCB";
+import { BrandCB } from "@/components/BrandCB";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
@@ -27,7 +27,7 @@ export default function Page() {
                         <HoverCardContent>surprise</HoverCardContent>
                     </HoverCard>
                 </div>
-                <Combobox />
+                <BrandCB />
                 <div>
                     <Drawer>
                         <DrawerTrigger>Megnyitás</DrawerTrigger>
@@ -87,7 +87,7 @@ export default function Page() {
             </div>
 
             <div>
-                
+            <hr className="w-px h-80 ml-96 bg-slate-400 border-0"/>
             </div>
 
 

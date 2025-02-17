@@ -20,6 +20,14 @@ import {
 } from "@/components/ui/popover"
  
 const make = [
+  {value: "01|ford",label: "Ford",},
+  {value: "audi",label: "Audi",},
+  {value: "bmw",label: "BMW",},
+  {value: "mb",label: "Mercedes-Benz",},
+  {value: "amg",label: "Mercedes-AMG",},
+  {value: "maybach",label: "Mercedes-Maybach",},
+]
+const ford = [
   {value: "ford",label: "Ford",},
   {value: "audi",label: "Audi",},
   {value: "bmw",label: "BMW",},

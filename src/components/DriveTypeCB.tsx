@@ -38,7 +38,7 @@ export function DrivetypeCB() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-[160px] justify-between"
         >
           {value
             ? make.find((make) => make.value === value)?.label
