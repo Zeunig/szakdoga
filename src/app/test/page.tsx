@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label"
 import SUC from "@/components/SUC";
 import { AdsGrid } from "@/components/ADS/AdsGrid";
 import { ImageViewer } from "@/components/ImageViewer";
+import MyCars from "@/components/myCars";
 
 
 
@@ -87,7 +88,12 @@ export default function Page() {
             </div>
 
             <div>
-            <hr className="w-px h-80 ml-96 bg-slate-400 border-0"/>
+                <div className="ml-20 mb-5">
+                    <MyCars/>
+                </div>
+            </div>
+            <div>
+                abc 123
             </div>
 
 

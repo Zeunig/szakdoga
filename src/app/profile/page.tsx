@@ -4,128 +4,135 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import ProfileDataTable from "@/components/ProfileDataTable";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger, } from "@/components/ui/tabs"
-import { Cog } from "lucide-react";
-
+import { Cog, Delete, DeleteIcon, EditIcon, Pen, Trash, TrashIcon } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import MyCars from "@/components/MyCars";
+import { Thumb } from "@radix-ui/react-scroll-area";
 export default function Page() {
     return (
         <div>
             <Header />
-            <div className="h-400 mb-60 w-50  mt-20">
+            <div className="">
                 <div>
-                    <div className="h-fit grid justify-items-center  mx-auto w-[1000px] max-w-screen-xl p-4 py-6 lg:py-8 border-2 border-gray-400 rounded-lg ">
+                    <div className="h- ">
 
-                        <Tabs defaultValue="cars" className="w-[700px] grid grid-cols-3 ">
-
-                            <TabsList className="col-1 -ml-24 w-fit h-[300px] grid grid-rows-4 border-2 border-gray-400 rounded-lg">
-                                <TabsTrigger value="profile" className="row-1 w-[130px]  border-2 border-gray-400 rounded-lg">Profil</TabsTrigger>
-                                <TabsTrigger value="settings" className="row-start-2 w-[130px] border-2 border-gray-400 rounded-lg">Regisztráció</TabsTrigger>
-                                <TabsTrigger value="cars" className="row-start-3 w-[130px] border-2 border-gray-400 rounded-lg">Feladott hírdetések</TabsTrigger>
-                                <TabsTrigger value="" className="row-start-4 w-[130px] border-2 border-gray-400 rounded-lg">Mentett hirdetések</TabsTrigger>
+                        <Tabs defaultValue="profile" className="ml-[300px] mr-[300px]">
+                            <TabsList className="h-10 bg-gray-300 border-2 border-gray-400 rounded-lg mt-10">
+                                <TabsTrigger value="profile" className="w-[150px]">Profil</TabsTrigger>
+                                <TabsTrigger value="settings" className="w-[150px]">Beállítások</TabsTrigger>
+                                <TabsTrigger value="cars" className="w-[150px]">Feladott hírdetések</TabsTrigger>
+                                <TabsTrigger value="favorites" className="w-[150px]">Mentett hirdetések</TabsTrigger>
                             </TabsList>
 
 
                             {/*Profil*/}
-                            <TabsContent value="profile" className="-ml-40 -mr-24  mt-0  col-start-2 col-span-2">
-                                <Card className="h-[300px] border-2 border-gray-400 rounded-lg">
-
+                            <TabsContent value="profile" className="">
+                                <Card className="h-[300px] bg-gray-300 border-2 border-gray-400 rounded-lg">
                                     <CardHeader>
-                                        <CardTitle>Profil</CardTitle>
-                                        <CardDescription>
-                                            Itt tudod a profilod adatait megnézni és szerkeszteni
-                                            <hr className="w-[325Px] h-px bg-slate-400 border-0" />
-                                        </CardDescription>
+                                        <CardTitle className="font-bold text-3xl">Kiss Béla <Badge className="ml-20">ADMIN</Badge></CardTitle>
+                                        <hr className="w-80 h-px bg-slate-400 border-0" />
                                     </CardHeader>
+                                    <CardContent className="    ">
 
-                                    <CardContent className="space-y-2">
-                                    <div className="space-y-1">
-                                            
-                                        </div>
-                                        <div className="space-y-1">
-                                            <Label htmlFor="email">Fiók név: </Label>
-                                            {"PLACEHOLDER"}
-                                        </div>
-                                        <div className="space-y-1">
-                                            <Label htmlFor="password">Email cím: </Label>
-                                            {"PLACEHOLDER"}
-                                        </div>
                                     </CardContent>
-
                                     <CardFooter>
-                                        
+                                        Footer
                                     </CardFooter>
-
                                 </Card>
                             </TabsContent>
                             {/*Profil end*/}
 
-                            {/*Settings*/}
-                            <TabsContent value="settings" className="-ml-40 -mr-24  mt-0  col-start-2 col-span-2">
-                                <Card className="h-[300px] border-2 border-gray-400 rounded-lg">
-
+                            {/*Setting*/}
+                            <TabsContent value="settings" className="">
+                                <Card className="h-[300px] bg-gray-300 border-2 border-gray-400 rounded-lg">
                                     <CardHeader>
-                                        <CardTitle> Beálítások</CardTitle>
-                                        <CardDescription>
-                                            Itt tudod a profilod adatait megnézni és szerkeszteni
-                                            <hr className="w-[325Px] h-px bg-slate-400 border-0" />
-                                        </CardDescription>
+                                        <CardTitle className="font-bold text-3xl">Beállítások</CardTitle>
+                                        <hr className="w-80 h-px bg-slate-400 border-0" />
                                     </CardHeader>
-
-                                    <CardContent className="space-y-2">
-                                    <div className="space-y-1">
-                                            
-                                        </div>
-                                        <div className="space-y-1">
-                                            <Label htmlFor="email">Fiók név: </Label>
-                                            {"PLACEHOLDER"}
-                                        </div>
-                                        <div className="space-y-1">
-                                            <Label htmlFor="password">Email cím: </Label>
-                                            {"PLACEHOLDER"}
-                                        </div>
+                                    <CardContent className="    ">
+                                        <div >Email cím változtatása:</div>
+                                        <hr className="w-40 h-px bg-slate-400 border-0 mt-1 mb-3" />
+                                        <div className="display: inline">Regisztrált email cím:</div> <div className="display: inline w-[300px] border-2 border-gray-400 rounded-lg text-muted text-gray-600">kiss.bela@gmail.com</div>
+                                        <br />
+                                        <div className="display: inline">Új email cím:</div>  <input type="email" name="" id="" className="border-2 border-gray-400 rounded-lg display: inline" />
                                     </CardContent>
-
-                                    <CardFooter>
-                                        
-                                    </CardFooter>
-
                                 </Card>
                             </TabsContent>
-                            {/*Profil end*/}
+                            {/*Setting end*/}
 
-                            {/*Profil*/}
-                            <TabsContent value="cars" className="-ml-40 -mr-24 mt-0  col-start-2 col-span-2">
-                                <Card className="border-2 h-[500px] border-gray-400 rounded-lg">
-
+                            {/*myCars*/}
+                            <TabsContent value="cars" className="">
+                                <Card className=" bg-gray-300 border-2 border-gray-400 rounded-lg ">
                                     <CardHeader>
-                                        <CardTitle>Feladott hírdetések</CardTitle>
-                                        <CardDescription>
-                                            Itt látod és tudod szerkeszteni a feladott hídetéseid
-                                            <hr className="w-fit h-px bg-slate-400 border-0" />
-                                        </CardDescription>
+                                        <CardTitle className="font-bold text-3xl">Feladott hírdetések</CardTitle>
+                                        <CardDescription className="">Itt látod a fealdott hírdetéseidet az oldalunkon</CardDescription>
+                                        <hr className="w-80 h-px bg-slate-400 border-0" />
+
                                     </CardHeader>
-
-                                    <CardContent className="space-y-2">
-                                        <div className="space-y-1">
-                                            <ProfileDataTable/>
-                                        </div>
+                                    <CardContent className="min-h-80 max-h-fit">
+                                        <ScrollArea className="h-[550px]">
+                                        <div className="grid grid-cols-4">
+                                        <ScrollBar orientation="vertical"/>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            <div className="mb-3"> <MyCars/> </div>
+                                            </div>
+                                        </ScrollArea >  
                                     </CardContent>
-
-                                    <CardFooter>
-                                        
-                                    </CardFooter>
-
                                 </Card>
                             </TabsContent>
-                            {/*Profil end*/}
+                            {/*myCars end*/}
 
+                            {/*favCars */}
+                            <TabsContent value="favorites" className="">
+                                <Card className=" bg-gray-300 border-2 border-gray-400 rounded-lg ">
+                                    <CardHeader>
+                                        <CardTitle className="font-bold text-3xl">Mentet hírdetések</CardTitle>
+                                        <CardDescription className="">Itt látod azokat a herdetéseket amelyeket kedveltél az oldalunkon</CardDescription>
+                                        <hr className="w-80 h-px bg-slate-400 border-0" />
 
+                                    </CardHeader>
+                                    <CardContent className="min-h-80 max-h-fit">
+                                        <div className="">
+                                            <table className="table-fixed mt-10">
+                                                <thead>
+                                                    <tr className="border-b-2 border-slate-400">
+                                                        <th className="w-[130px] ">Márka</th>
+                                                        <th className="w-[130px] ">Model</th>
+                                                        <th className="w-[130px] ">Kívánt ár</th>
+                                                        <th className="w-[130px] ">Akcíós ár</th>
+                                                    </tr>
+                                                </thead>
 
+                                                <tbody>
 
+                                                    <tr className="border-b-2 border-slate-400">
+                                                        <td className="text-center">Mercedes-Benz</td>
+                                                        <td className="text-center">Golf</td>
+                                                        <td className="text-center ">888 888 888Ft</td>
+                                                        <td className="text-center text-blue-600 font-bold">888 888 888Ft</td>
+                                                    </tr>
+                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </TabsContent>
+                            {/*favCars end*/}
                         </Tabs>
                     </div>
                 </div>
