@@ -7,12 +7,16 @@ import { DrivetypeCB } from "@/components/DriveTypeCB";
 import { ConditionCB } from "@/components/ConditionCB";
 import { Bug } from "lucide-react";
 import { Textarea } from "@/components/TextArea";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+
 
 export default function Page() {
     return (
         <div>
             <Header />
             <div className="h-fit ml-72 mr-72 border-2 border-cyan-500 rounded-xl  mt-14">
+                <form action="submit">
                 <div className="grid grid-cols-3">
                     {/*Cím*/}
                     <div className="grid grid-cols-5 row-start-1 col-start-2 mt-10 mb-20">
@@ -113,8 +117,6 @@ export default function Page() {
                                 </div>
                             </div>
                             {/*allapot vége*/}
-
-
 
                             {/*hp*/}
                             <div className="col-1 row-4 mb-3">
@@ -222,44 +224,52 @@ export default function Page() {
 
                     {/*col-3*/}
                     <div className="col-3 row-start-2 ml-5 -mt-10">
+
                         {/*features*/}
                         <div className="col-start-2">
                             <h1 className="display: inline ">Felszereltség</h1>
                             <hr className="w-80 h-px bg-slate-400 border-0" />
+
+                            <div className="h-[100px] ">
+                                <ScrollArea className="h-[500px]">
+
+                                
+                            
+
 
                             <div className="grid grid-cols-2 grid-rows-4">
                                 {/*külsö*/}
                                 <div className="col-1 row-1">
                                     <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">Külső felszereltség</h3>
                                     <ul className="w-32 text-sm text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="vue-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">DUAL_REAR_WHEELS</label>
+                                                <input id="DUAL_REAR_WHEELS" type="checkbox" value="DUAL_REAR_WHEELS" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="DUAL_REAR_WHEELS" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Uppla házsó kerék</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="react-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="react-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">DISABILITY_EQUIPPED</label>
+                                                <input id="DISABILITY_EQUIPPED" type="checkbox" value="DISABILITY_EQUIPPED" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="DISABILITY_EQUIPPED" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">DISABILITY_EQUIPPED</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="angular-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="angular-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">TRAILER_HITCH</label>
+                                                <input id="TRAILER_HITCH" type="checkbox" value="TRAILER_HITCH" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="TRAILER_HITCH" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Vonóhorog</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">ROOF_RACK</label>
+                                                <input id="ROOF_RACK" type="checkbox" value="ROOF_RACK" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="ROOF_RACK" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Tető csomagtartó</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs  text-gray-900 dark:text-gray-300">PREMIUM_WHEELS</label>
+                                                <input id="PREMIUM_WHEELS" type="checkbox" value="PREMIUM_WHEELS" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="PREMIUM_WHEELS" className="w-full py-3 ms-2 text-xs  text-gray-900 dark:text-gray-300">Prémium felnik</label>
                                             </div>
                                         </li>
                                     </ul>
@@ -270,70 +280,64 @@ export default function Page() {
                                 <div className="col-1 row-start-2 -mt-40">
                                     <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">Belső felszereltség</h3>
                                     <ul className="w-32 text-sm text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="vue-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">APPLE_CARPLAY</label>
+                                                <input id="APPLE_CARPLAY" type="checkbox" value="APPLE_CARPLAY" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="APPLE_CARPLAY" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Apple Carplay</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="react-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="react-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">ANDROID_AUTO</label>
+                                                <input id="ANDROID_AUTO" type="checkbox" value="ANDROID_AUTO" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="ANDROID_AUTO" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Android Auto</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="angular-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="angular-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">LEATHER_SEATS</label>
+                                                <input id="LEATHER_SEATS" type="checkbox" value="LEATHER_SEATS" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="LEATHER_SEATS" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Bőr belső</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">HEATED_SEATS</label>
+                                                <input id="HEATED_SEATS" type="checkbox" value="HEATED_SEATS" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="HEATED_SEATS" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Fűthető ülések</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">THIRD_ROW_SEATS</label>
+                                                <input id="THIRD_ROW_SEATS" type="checkbox" value="THIRD_ROW_SEATS" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="THIRD_ROW_SEATS" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Harmadik ülés sorss</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">SUNROOF</label>
+                                                <input id="SUNROOF" type="checkbox" value="SUNROOF" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="SUNROOF" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Tetőablak</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">NAVIGATION</label>
+                                                <input id="NAVIGATION" type="checkbox" value="NAVIGATION" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="NAVIGATION" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Navi</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">HEATED_SEATS</label>
+                                                <input id="WIFI_HOTSPOT" type="checkbox" value="WIFI_HOTSPOT" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="WIFI_HOTSPOT" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">WIFI Hotspot</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">WIFI_HOTSPOT</label>
+                                                <input id="HEAD_UP_DISPLAY" type="checkbox" value="HEAD_UP_DISPLAY" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="HEAD_UP_DISPLAY" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">HUD</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">HEAD_UP_DISPLAY</label>
-                                            </div>
-                                        </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                            <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">STEERING_WHEEL_CONTROLS</label>
+                                                <input id="STEERING_WHEEL_CONTROLS" type="checkbox" value="STEERING_WHEEL_CONTROLS" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="STEERING_WHEEL_CONTROLS" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Kormány gombok</label>
                                             </div>
                                         </li>
                                     </ul>
@@ -344,40 +348,40 @@ export default function Page() {
                                 <div className="-ml-7 col-2 row-1">
                                     <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">Kénylemi felszereltség</h3>
                                     <ul className="w-32 text-sm text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="vue-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">CRUISE_CONTROL</label>
+                                                <input id="CRUISE_CONTROL" type="checkbox" value="CRUISE_CONTROL" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="CRUISE_CONTROL" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Tempómat</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="react-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="react-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">ADAPTIVE_CRUISE_CONTROL</label>
+                                                <input id="ADAPTIVE_CRUISE_CONTROL" type="checkbox" value="ADAPTIVE_CRUISE_CONTROL" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="ADAPTIVE_CRUISE_CONTROL" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Adaptív tempómat</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="angular-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="angular-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">REMOTE_ENGINE_START</label>
+                                                <input id="REMOTE_ENGINE_START" type="checkbox" value="REMOTE_ENGINE_START" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="REMOTE_ENGINE_START" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Távoli indítás</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">KEYLESS_START</label>
+                                                <input id="KEYLESS_START" type="checkbox" value="KEYLESS_START" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="KEYLESS_START" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Kulcsnélküli indítás</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">RAIN_SENSING_WIPERS</label>
+                                                <input id="RAIN_SENSING_WIPERS" type="checkbox" value="RAIN_SENSING_WIPERS" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="RAIN_SENSING_WIPERS" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Eső érzékelő</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">AUTOMATIC_PARKING</label>
+                                                <input id="AUTOMATIC_PARKING" type="checkbox" value="AUTOMATIC_PARKING" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="AUTOMATIC_PARKING" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Autómata parkolás</label>
                                             </div>
                                         </li>
 
@@ -387,85 +391,79 @@ export default function Page() {
                                 {/*kénylemi end*/}
 
                                 {/*biztonság*/}
-                                <div className="-ml-7 col-2 -mt-32">
+                                <div className="-ml-7 col-2 -mt-28">
                                     <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">Biztonság</h3>
                                     <ul className="w-32 text-sm text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="vue-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">KEYLESS_ENTRY</label>
+                                                <input id="KEYLESS_ENTRY" type="checkbox" value="KEYLESS_ENTRY" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="KEYLESS_ENTRY" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Kulcsmentes nyitás</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="react-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="react-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">AUTOMATIC_PARKING</label>
+                                                <input id="ESP" type="checkbox" value="ESP" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="ESP" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">ESP</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="angular-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="angular-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">ESP</label>
+                                                <input id="ABS" type="checkbox" value="ABS" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="ABS" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">ABS</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">ABS</label>
+                                                <input id="NIGHT_VISION" type="checkbox" value="NIGHT_VISION" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="NIGHT_VISION" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Éjjellátó</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">NIGHT_VISION</label>
+                                                <input id="BACKUP_CAMERA" type="checkbox" value="BACKUP_CAMERA" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="BACKUP_CAMERA" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Tolató kamera</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">BACKUP_CAMERA</label>
+                                                <input id="LANE_DEPARTURE_WARNING" type="checkbox" value="LANE_DEPARTURE_WARNING" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="LANE_DEPARTURE_WARNING" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Sávelhagyás figyelmeztető</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">LANE_DEPARTURE_WARNING</label>
+                                                <input id="BLIND_SPOT_MONITOR" type="checkbox" value="BLIND_SPOT_MONITOR" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="BLIND_SPOT_MONITOR" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Holttér figyelő</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">BLIND_SPOT_MONITOR</label>
+                                                <input id="CROSS_TRAFFIC_ALERT" type="checkbox" value="CROSS_TRAFFIC_ALERT" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="CROSS_TRAFFIC_ALERT" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">CROSS_TRAFFIC_ALERT</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">CROSS_TRAFFIC_ALERT</label>
+                                                <input id="BRAKE_ASSIST" type="checkbox" value="BRAKE_ASSIST" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="BRAKE_ASSIST" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Fék rásegítés</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">BRAKE_ASSIST</label>
+                                                <input id="SECURITY_SYSTEM" type="checkbox" value="SECURITY_SYSTEM" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="SECURITY_SYSTEM" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Lopásgátló</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">SECURITY_SYSTEM</label>
+                                                <input id="LANE_KEEPING_ASSIST" type="checkbox" value="LANE_KEEPING_ASSIST" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="LANE_KEEPING_ASSIST" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Autómata sávtartás</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">LANE_KEEPING_ASSIST</label>
-                                            </div>
-                                        </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                            <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">TPMS</label>
+                                                <input id="TPMS" type="checkbox" value="TPMS" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="TPMS" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">TPMS</label>
                                             </div>
                                         </li>
 
@@ -477,50 +475,47 @@ export default function Page() {
                                 <div className="col-1 -mt-16">
                                     <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">Hifi/Hangredszer</h3>
                                     <ul className="w-32 text-sm text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="vue-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="vue-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">BLUETOOTH_HANDS_FREE</label>
+                                                <input id="BLUETOOTH_HANDS_FREE" type="checkbox" value="BLUETOOTH_HANDS_FREE" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="BLUETOOTH_HANDS_FREE" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Bluetooth</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="react-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="react-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">DVD_PLAYER</label>
+                                                <input id="DVD_PLAYER" type="checkbox" value="DVD_PLAYER" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="DVD_PLAYER" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">DVD lejátszó</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="angular-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="angular-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">PORTABLE_AUDIO_CONNECTION</label>
+                                                <input id="PREMIUM_AUDIO" type="checkbox" value="PREMIUM_AUDIO" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                                                <label htmlFor="PREMIUM_AUDIO" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Felsőkategóriás hifi</label>
                                             </div>
                                         </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                        <li className="w-full border-2  border-gray-300">
                                             <div className="flex items-center ps-3">
-                                                <input id="laravel-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="laravel-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">PREMIUM_AUDIO</label>
-                                            </div>
-                                        </li>
-                                        <li className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                            <div className="flex items-center ps-3">
-                                                <input id="react-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                <label htmlFor="react-checkbox" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">SATELLITE_RADIO</label>
+                                                <input id="SATELLITE_RADIO" type="checkbox" value="SATELLITE_RADIO" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 rounded-sm " />
+                                                <label htmlFor="SATELLITE_RADIO" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Műholdas rádió</label>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
                                 {/*audio end*/}
                             </div>
-
+                            </ScrollArea>
+                            </div>
                         </div>
                         {/*features vége*/}
                     </div>
                     {/*col-3 end*/}
 
                 </div>
+                </form>
                 <button type="submit"> <Bug /> </button>
             </div>
             <Footer />
         </div>
+
     )
 }

@@ -11,7 +11,8 @@ import { Label } from "@/components/ui/label"
 import SUC from "@/components/SUC";
 import { AdsGrid } from "@/components/ADS/AdsGrid";
 import { ImageViewer } from "@/components/ImageViewer";
-import MyCars from "@/components/myCars";
+
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 
 
@@ -89,13 +90,22 @@ export default function Page() {
 
             <div>
                 <div className="ml-20 mb-5">
-                    <MyCars/>
+                    
                 </div>
             </div>
             <div>
                 abc 123
             </div>
 
+            <div className="h-20 bg-blue-500">
+            <ScrollArea className="h-20">
+                a <br />
+                b <br />
+                c <br />
+                d <br />
+                e <br />
+            </ScrollArea>
+            </div>
 
         </div>
 

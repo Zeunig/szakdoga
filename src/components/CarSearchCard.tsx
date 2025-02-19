@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { BrandCB, Combobox } from "@/components/BrandCB"
+import { BrandCB} from "@/components/BrandCB"
 import { Search } from "@/lib/search/search"
 import { SearchIcon } from "lucide-react"
 import { ModelCB } from "./ModelCB"
