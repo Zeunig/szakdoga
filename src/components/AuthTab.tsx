@@ -15,12 +15,24 @@ export interface IAlert {
 
 export default function AuthTabs() {
     let [registerAlert, setRegisterAlert] = useState([] as IAlert[]);
-    function parseResponse(json: any) {
+    function parseResponse(json: any, email: string, password: string) {
         if(json["success"] === true) {
-            setRegisterAlert([{alert_type: "success", title: "Sikeres regisztráció", message: "Hamarosan átirányítunk a főoldalra"}])
-            setTimeout(() => {
-                window.location.href = `http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}`;
-            },2000);
+            fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/auth/login`, {
+                method: "POST",
+                body: JSON.stringify(
+                    {
+                        "username": email,
+                        "password": password
+                    }
+                )
+            })
+            .then(res => res.json()).then(json => {
+                setRegisterAlert([{alert_type: "success", title: "Sikeres regisztráció", message: "Hamarosan átirányítunk a főoldalra"}])
+                setTimeout(() => {
+                    window.location.href = `http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}`;
+                },2000);
+            });
+            
         }else {
             setRegisterAlert([{alert_type: "danger", title: "Hiba", message: json["message"] as string}]);
             console.log(registerAlert);
@@ -67,7 +79,7 @@ export default function AuthTabs() {
                 }
             )
         })
-        .then(res => res.json()).then(json => parseResponse(json));
+        .then(res => res.json()).then(json => parseResponse(json, formData.get("email") as string, formData.get("password") as string));
     }
     return (
         <div className="h-80 grid justify-items-center mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 bg-red-400">
