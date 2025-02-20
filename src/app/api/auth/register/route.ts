@@ -72,7 +72,6 @@ export async function POST(req: Request) {
                 email: email,
                 password: encrypted_password,
                 avatar_url: null,
-                permissions: 0
             }
         });
         console.log(user);
