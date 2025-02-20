@@ -16,7 +16,7 @@ export default function Page() {
         <div>
             <Header />
             <div className="h-fit ml-72 mr-72 border-2 border-cyan-500 rounded-xl  mt-14">
-                <form action="submit">
+                <form action="">
                 <div className="grid grid-cols-3">
                     {/*Cím*/}
                     <div className="grid grid-cols-5 row-start-1 col-start-2 mt-10 mb-20">
@@ -50,9 +50,9 @@ export default function Page() {
                                 <h1 className="">Üzemanyag</h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-40 ml-4">
-                                    <input type="radio" name="fuel" id="gas" />
+                                    <input type="radio" name="fuel" id="gas" required />
                                     <label htmlFor="gas">Benzin</label>
-                                    <input type="radio" name="fuel" id="diesel" className="ml-5" />
+                                    <input type="radio" name="fuel" id="diesel" className="ml-5" required/>
                                     <label htmlFor="diesel">Dízel</label>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@ export default function Page() {
                                 <h1 className="display: inline font-semibold">Kilóméter </h1><h1 className="display: inline">óra állás</h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-10">
-                                    <input type="number" className="mt-1 w-32 border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" />
+                                    <input type="number" className="mt-1 w-32 border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" required/>
                                 </div>
                             </div>
                             {/*km vége*/}
@@ -73,7 +73,7 @@ export default function Page() {
                                 <h1 className="display: inline">Kívánt ár </h1><h1 className="display inline font-semibold">(Ft)</h1>
                                 <hr className="w-96 h-px bg-slate-400 border-0" />
                                 <div className="w-fit">
-                                    <input type="text" className="mt-1 ml-5 w-[312px] border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" />
+                                    <input type="text" className="mt-1 ml-5 w-[312px] border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" required />
                                 </div>
                             </div>
                             {/*ár vége*/}
@@ -103,7 +103,7 @@ export default function Page() {
                                 <h1 className="display: inline ">Gyártási </h1><h1 className="display: inline font-semibold">év</h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-10">
-                                    <input type="number" className="mt-1 w-32 border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" />
+                                    <input type="number" className="mt-1 w-32 border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" required/>
                                 </div>
                             </div>
                             {/*év vége*/}
@@ -112,7 +112,7 @@ export default function Page() {
                             <div className="col-1 row-2 mb-3">
                                 <h1 className="display: inline ">Autó állapota</h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
-                                <div className="w-9">
+                                <div className="w-9" >
                                     <ConditionCB />
                                 </div>
                             </div>
@@ -144,9 +144,9 @@ export default function Page() {
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-10">
                                     <div className="w-40 ">
-                                        <input type="radio" name="gb" id="manual" />
+                                        <input type="radio" name="gb" id="manual" required />
                                         <label htmlFor="manual" className="text-xs">Manuális</label>
-                                        <input type="radio" name="gb" id="auto" className="ml-5" />
+                                        <input type="radio" name="gb" id="auto" className="ml-5" required/>
                                         <label htmlFor="auto" className="text-xs">Autómata</label>
                                     </div>
                                 </div>
@@ -211,7 +211,7 @@ export default function Page() {
 
                         </div>
                         {/*desc*/}
-                        <div className="-mt-14">
+                        <div className="-mt-32">
                             <h1 className="display: inline ">Hirdetés leírása</h1>
                             <hr className="w-[363px] h-px bg-slate-400 border-0" />
                             <div className="w-[340px] h-[200px] mt-3 ml-3 mr-3 border-2  border-gray-300 rounded-md">
@@ -219,6 +219,10 @@ export default function Page() {
                             </div>
                         </div>
                         {/*desc end*/}
+
+                        
+                        <button className="ml-28 mt-10 h-10 bg-blue-600 w-40 text-white rounded-lg hover:to-blue-300">Hirdetés feladása</button>
+                        
                     </div>
                     {/*col-2 end*/}
 
@@ -510,9 +514,8 @@ export default function Page() {
                     </div>
                     {/*col-3 end*/}
 
-                </div>
+                </div>s
                 </form>
-                <button type="submit"> <Bug /> </button>
             </div>
             <Footer />
         </div>
