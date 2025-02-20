@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 const bcrypt = require('bcrypt');
 const jose = require('jose')
 const { createSecretKey } = require('crypto');
-const secretKey = createSecretKey(process.env.JWT_SECRET, 'utf-8');
+export const secretKey = createSecretKey(process.env.JWT_SECRET, 'utf-8');
 const alg = 'HS256'
 export async function POST(req: Request) {
     // validating the request
@@ -45,12 +45,13 @@ export async function POST(req: Request) {
         .setIssuedAt()
         .setIssuer('urn:zeunig:issuer')
         .setAudience('urn:zeunig:audience')
-        .setExpirationTime('1m')
+        .setExpirationTime('7d')
         .sign(secretKey);
         let resp = NextResponse.json({"success":true}, {"status": 200});
         resp.cookies.set("auth",token, {
             httpOnly: true,
-            secure: true
+            secure: process.env.NODE_ENV === 'production',
+            path: "/"
         });
         // TODO: refresh tokens
         return resp;

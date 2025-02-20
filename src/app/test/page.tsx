@@ -97,6 +97,7 @@ export default function Page() {
                 abc 123
             </div>
 
+<<<<<<< Updated upstream
             <div className="h-20 bg-blue-500">
             <ScrollArea className="h-20">
                 a <br />
@@ -106,6 +107,13 @@ export default function Page() {
                 e <br />
             </ScrollArea>
             </div>
+=======
+            <form action="http://localhost:3000/api/marketplace/image" method="post" encType="multipart/form-data">
+            <input id="file" name="file" type="file"></input>
+            <input type="submit" value="submitttt xddddd" />
+            </form>
+
+>>>>>>> Stashed changes
 
         </div>
 
