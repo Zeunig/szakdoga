@@ -17,10 +17,13 @@ export const config = {
 
 // Middleware function that runs before matching routes
 export async function middleware(request: NextRequest) {
-    console.log(request.url);
     const token = request.cookies.get('auth')?.value;
     if (!token) {
-        return NextResponse.redirect(new URL('/auth',request.url));
+        if (request.nextUrl.pathname.startsWith("/api")) {
+            return NextResponse.json({"error":"Unauthorized"},{"status": 401});
+        }else {
+            return NextResponse.redirect(new URL('/auth',request.url));
+        }
     }
     try {
         let auth = await authentication(token);
@@ -30,12 +33,20 @@ export async function middleware(request: NextRequest) {
             console.log(response.headers.get("x-user-id"));
             return response
         }else {
-            return NextResponse.redirect(new URL('/auth',request.url));
+            if (request.nextUrl.pathname.startsWith("/api")) {
+                return NextResponse.json({"error":"Unauthorized"},{"status": 401});
+            }else {
+                return NextResponse.redirect(new URL('/auth',request.url));
+            }
         }
         
     }catch(err) {
         console.log(err);
-        return NextResponse.redirect(new URL('/auth',request.url));
+        if (request.nextUrl.pathname.startsWith("/api")) {
+            return NextResponse.json({"error":"Unauthorized"},{"status": 401});
+        }else {
+            return NextResponse.redirect(new URL('/auth',request.url));
+        }
     }finally {
     }
 }
