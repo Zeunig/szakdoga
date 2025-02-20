@@ -1,17 +1,18 @@
-import { NextResponse } from 'next/server'
+/*import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { secretKey } from './src/app/api/auth/login/route';
+import { secretKey } from './app/api/auth/login/route';
 const jose = require('jose')
 
-/*export const config = {
+export const config = {
   matcher: [
     // Match /api/ paths but exclude /api/car/
     '/(api(?!/car/)(?:/?|/.*))',
     // Match /profile/ paths
     '/profile/:path*'
   ]
-}*/
+}
 export default async function middleware(request: NextRequest) {
+  return NextResponse.redirect(new URL('/home', request.url));
   console.log(request.url);
   const token = request.cookies.get('auth')?.value;
   if (!token) {
@@ -32,5 +33,4 @@ export default async function middleware(request: NextRequest) {
     const response = NextResponse.next()
     return response
   }
-}
- 
+}*/
