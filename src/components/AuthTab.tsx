@@ -27,6 +27,30 @@ export default function AuthTabs() {
             console.error(json);
         }
     }
+    function parseResponseLogin(json: any) {
+        if(json["success"] === true) {
+            setRegisterAlert([{alert_type: "success", title: "Sikeres bejelentkezés", message: "Hamarosan átirányítunk a főoldalra"}])
+            setTimeout(() => {
+                window.location.href = `http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}`;
+            },2000);
+        }else {
+            setRegisterAlert([{alert_type: "danger", title: "Hiba", message: json["message"] as string}]);
+            console.log(registerAlert);
+            console.error(json);
+        }
+    }
+    async function login(formData: FormData) {
+        fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/auth/login`, {
+            method: "POST",
+            body: JSON.stringify(
+                {
+                    "username": formData.get("email"),
+                    "password": formData.get("password")
+                }
+            )
+        })
+        .then(res => res.json()).then(json => parseResponseLogin(json));
+    }
     async function register(formData: FormData) {
         let hcaptcha_response = document.getElementsByTagName("iframe")[0].getAttribute("data-hcaptcha-response");
         if (hcaptcha_response?.length === 0) {
@@ -58,30 +82,31 @@ export default function AuthTabs() {
 
                 <TabsContent value="login" >
                     <Card className="border-2 border-blue-400">
+                        <form action={login}>
+                            <CardHeader >
 
-                        <CardHeader >
+                                <CardTitle>Bejelentkezés</CardTitle>
+                                <CardDescription>
+                                    Add meg a fiókod E-mail címét illetve jelszavát.
+                                </CardDescription>
 
-                            <CardTitle>Bejelentkezés</CardTitle>
-                            <CardDescription>
-                                Add meg a fiókod E-mail címét illetve jelszavát.
-                            </CardDescription>
+                            </CardHeader>
 
-                        </CardHeader>
+                            <CardContent className="space-y-2">
+                                <div className="space-y-1">
+                                    <Label htmlFor="email">E-mail</Label>
+                                    <Input id="email" type="email" name="email" />
+                                </div>
+                                <div className="space-y-1">
+                                    <Label htmlFor="password">Jelszó</Label>
+                                    <Input id="password" type="password" name="password"/>
+                                </div>
+                            </CardContent>
 
-                        <CardContent className="space-y-2">
-                            <div className="space-y-1">
-                                <Label htmlFor="email">E-mail</Label>
-                                <Input id="email" type="email" />
-                            </div>
-                            <div className="space-y-1">
-                                <Label htmlFor="password">Jelszó</Label>
-                                <Input id="password" type="password"/>
-                            </div>
-                        </CardContent>
-
-                        <CardFooter>
-                            <Button>Bejelentkezés</Button>
-                        </CardFooter>
+                            <CardFooter>
+                                <Button>Bejelentkezés</Button>
+                            </CardFooter>
+                        </form>
 
                     </Card>
                 </TabsContent>

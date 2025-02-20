@@ -12,24 +12,25 @@ const jose = require('jose')
   ]
 }*/
 export default async function middleware(request: NextRequest) {
-    console.log(request.url);
-    const token = request.cookies.get('auth')?.value;
-    if (!token) {
-      return NextResponse.redirect(new URL('/auth',request.url));
-    }
-    try {
-      const { payload, protectedHeader } = await jose.verifyJWT(token, secretKey, {
-        issuer: "urn:zeunig:issuer",
-        audience: "urn:zeunig:audience"
-      });
-      console.log(payload);
-      console.log(protectedHeader);
-      const response = NextResponse.next()
-      return response
-    }catch {
-      return NextResponse.redirect(new URL('/auth',request.url));
-    }finally {
-
-    }
+  console.log(request.url);
+  const token = request.cookies.get('auth')?.value;
+  if (!token) {
+    return NextResponse.redirect(new URL('/auth',request.url));
+  }
+  try {
+    const { payload, protectedHeader } = await jose.verifyJWT(token, secretKey, {
+      issuer: "urn:zeunig:issuer",
+      audience: "urn:zeunig:audience"
+    });
+    console.log(payload);
+    console.log(protectedHeader);
+    const response = NextResponse.next()
+    return response
+  }catch {
+    return NextResponse.redirect(new URL('/auth',request.url));
+  }finally {
+    const response = NextResponse.next()
+    return response
+  }
 }
  
