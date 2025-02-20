@@ -94,7 +94,6 @@ export default function AuthTabs() {
 
                 <TabsContent value="login" >
                     <Card className="border-2 border-blue-400">
-<<<<<<< Updated upstream
                         <form action={login}>
                             <CardHeader >
 
@@ -116,29 +115,10 @@ export default function AuthTabs() {
                                 </div>
                             </CardContent>
 
-<<<<<<< Updated upstream
-                            <CardFooter>
-                                <Button>Bejelentkezés</Button>
-                            </CardFooter>
-                        </form>
-
-=======
-                        <CardContent className="space-y-2">
-                            <div className="space-y-1">
-                                <Label htmlFor="email">E-mail</Label>
-                                <Input id="email" type="email" />
-                            </div>
-                            <div className="space-y-1">
-                                <Label htmlFor="password">Jelszó</Label>
-                                <Input id="password" type="password"/>
-                            </div>
-                        </CardContent>
-
                         <CardFooter>
                             <Button type="submit">Bejelentkezés</Button>
                         </CardFooter>
                         </form>
->>>>>>> Stashed changes
                     </Card>
                 </TabsContent>
 

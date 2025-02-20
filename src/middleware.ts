@@ -1,8 +1,8 @@
 // middleware.ts
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-const jose = require('jose')
-
+import * as jose from 'jose';
+import { authentication } from './lib/auth';
 export const config = {
     matcher: [
       // Match /api/ paths but exclude /api/car/
@@ -12,18 +12,8 @@ export const config = {
     ]
   }
 
-async function getSecretKey() {
-    const encoder = new TextEncoder();
-    const keyData = encoder.encode(process.env.JWT_SECRET);
 
-    return await crypto.subtle.importKey(
-        "raw", // Key format
-        keyData,
-        { name: "HMAC", hash: { name: "SHA-256" } }, // Algorithm options
-        false, // Not extractable
-        ["sign", "verify"] // Usages
-    );
-}
+
 
 // Middleware function that runs before matching routes
 export async function middleware(request: NextRequest) {
@@ -33,18 +23,19 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL('/auth',request.url));
     }
     try {
-        const { payload, protectedHeader } = await jose.verifyJWT(token, await getSecretKey(), {
-        issuer: "urn:zeunig:issuer",
-        audience: "urn:zeunig:audience"
-        });
-        console.log(payload);
-        console.log(protectedHeader);
-        const response = NextResponse.next()
-        return response
-    }catch {
+        let auth = await authentication(token);
+        if (auth["success"] == true) {
+            const response = NextResponse.next();
+            response.headers.append("x-user-id", auth["payload"]["id"] as string);
+            console.log(response.headers.get("x-user-id"));
+            return response
+        }else {
+            return NextResponse.redirect(new URL('/auth',request.url));
+        }
+        
+    }catch(err) {
+        console.log(err);
         return NextResponse.redirect(new URL('/auth',request.url));
     }finally {
-        const response = NextResponse.next()
-        return response
     }
 }
