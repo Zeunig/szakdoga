@@ -1,4 +1,4 @@
-
+"use client"
 
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -7,12 +7,15 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger, } from "@/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger, } from "@/components/ui/tabs";
 import { Cog, Delete, DeleteIcon, EditIcon, Pen, Trash, TrashIcon } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import MyCars from "@/components/MyCars";
 import { Thumb } from "@radix-ui/react-scroll-area";
+
 export default function Page() {
+
+
     return (
         <div>
             <Header />
@@ -33,7 +36,7 @@ export default function Page() {
                             <TabsContent value="profile" className="">
                                 <Card className="h-[300px] bg-gray-300 border-2 border-gray-400 rounded-lg">
                                     <CardHeader>
-                                        <CardTitle className="font-bold text-3xl">Kiss Béla <Badge className="ml-20">ADMIN</Badge></CardTitle>
+                                        <CardTitle className="font-bold text-3xl">Kiss Béla</CardTitle>
                                         <hr className="w-80 h-px bg-slate-400 border-0" />
                                     </CardHeader>
                                     <CardContent className="    ">
