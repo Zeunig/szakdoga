@@ -6,7 +6,7 @@ export default function RowCardHL() {
         <div className=" min-h-92">
             <div className=" flex gap-3 bg-white border border-4  border-orange-400 rounded-xl overflow-hidden items-center justify-start">
                 <div className="relative w-60 h-32 flex-shrink-0">
-                <img className="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="hplaceholder.jpg" alt="car placeholder img"/>
+                <img className="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="../hplaceholder.jpg" alt="car placeholder img"/>
                 </div>
                 <div className="flex flex-col gap-2 py-2">
                     <p className="text-xl font-bold ">BMW - M3 ━━━ {"88 888 888"}Ft</p>
