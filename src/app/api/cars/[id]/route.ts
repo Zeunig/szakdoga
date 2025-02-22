@@ -19,7 +19,16 @@ async function hawkt(id: number) {
                 }
             },
             include: {
-                car_image_relation: true
+                car_image_relation: true,
+                user: {
+                    include: {
+                        password: false,
+                        permissions: false,
+                        phone_number: false,
+                        email: false,
+                        join_date: false
+                    }
+                }
             }
         });
     }catch (err) {
