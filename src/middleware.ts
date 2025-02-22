@@ -17,7 +17,7 @@ export const config = {
 
 // Middleware function that runs before matching routes
 export async function middleware(request: NextRequest) {
-    const token = request.cookies.get('auth')?.value;
+    /*const token = request.cookies.get('auth')?.value;
     if (!token) {
         if (request.nextUrl.pathname.startsWith("/api")) {
             return NextResponse.json({"error":"Unauthorized"},{"status": 401});
@@ -48,5 +48,5 @@ export async function middleware(request: NextRequest) {
             return NextResponse.redirect(new URL('/auth',request.url));
         }
     }finally {
-    }
+    }*/
 }
