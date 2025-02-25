@@ -45,7 +45,8 @@ interface PublishInterface {
     color: string,
     features: number,
     vin: string,
-    design: string
+    design: string,
+    images: string[]
 };
 
 const CONDITION_ACCEPTED_VALUES = ["Új","Újszerű","Alig használt","Használt","Megviselt","Hibás","Hiányos","Törött"];
@@ -57,7 +58,7 @@ export async function POST(req: NextRequest) {
     let json: PublishInterface = await req.json();
     // validate the data
     if (json.year < 1900) {
-        return NextResponse.json({"success":false, "message": "Érvénytelen évjárat, lovat akarsz eladni vagy mi a faszom van?"},{"status": 400})
+        return NextResponse.json({"success":false, "message": "Érvénytelen évjárat"},{"status": 400})
     }
     if (!CONDITION_ACCEPTED_VALUES.includes(json.condition)) {
         return NextResponse.json({"success":false, "message": "Érvénytelen állapot"},{"status": 400})
@@ -70,6 +71,17 @@ export async function POST(req: NextRequest) {
     }
     if (!DESIGN_ACCEPTED_VALUES.includes(json.design)) {
         return NextResponse.json({"success":false, "message": "Érvénytelen kivitel"},{"status": 400})
+    }
+    for(var i = 0; i < json.images.length; i++) {
+        if(!(/[c-z]{4,5}:\/\/(rubyrose.top|listings-prod.tcimg.net)\//.test(json.images[i]))) {
+            return NextResponse.json({"success":false, "message": `Érvénytelen kép URL : ${json.images[i]}`},{"status": 400})
+        }
+    }
+    let create = [];
+    for(var i = 0; i < json.images.length; i++) {
+        create.push({
+            image_url: json.images[i]
+        });
     }
     const prisma = new PrismaClient();
     const car = await prisma.car.create({
@@ -94,8 +106,11 @@ export async function POST(req: NextRequest) {
             color: json.color,
             features: json.features,
             vin: json.vin,
-            design: json.design
-        }
+            design: json.design,
+            car_image_relation: {
+                create: create
+            }
+        },
     });
     console.log(car);
     let resp = NextResponse.json({"success":true}, {"status": 200});
