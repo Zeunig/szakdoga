@@ -36,6 +36,8 @@ export interface CarListing {
     // Additional details
     features: string[];
     design: string | null;
+
+    images: string[];
 }
 
 
@@ -71,6 +73,10 @@ export function parseCarListing(json: object): CarListing {
         const passengers = Number(json.passengers);
         const doors = Number(json.doors);
         const features = getFeatures(Number(json.features));
+        let images = [];
+        for(var i = 0; i < json["car_image_relation"].length; i++) {
+            images.push(json["car_image_relation"][i]["image_url"] as string);
+        }
         // Construct and return the CarListing object
         const carListing: CarListing = {
             id,
@@ -96,7 +102,8 @@ export function parseCarListing(json: object): CarListing {
             features,
             vin: json.vin as string,
             design: json.design as string,
-            seller_name: json.seller_name as string
+            seller_name: json.seller_name as string,
+            images
         };
         return carListing;
     } catch (error) {

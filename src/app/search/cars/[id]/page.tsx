@@ -18,7 +18,7 @@ import { Prisma, PrismaClient } from "@prisma/client"
 import { useRouter } from "next/navigation"
 
 
-export default function Page(context: {params: {id: number}}) {
+export default function Page(context: {params: Promise<{id: number}>}) {
     const [api, setApi] = React.useState<CarouselApi>()
     const [current, setCurrent] = React.useState(0)
     const [count, setCount] = React.useState(50)
@@ -35,9 +35,9 @@ export default function Page(context: {params: {id: number}}) {
             setCurrent(api.selectedScrollSnap() + 1)
         });
         const carData = async () => {
-            console.log(context.params.id);
-            fetch(`/api/cars/${context.params.id}`)
-            .then(res => res.json()).then(json => {setCar(parseCarListing(json[0]));});
+            const {id} = await context.params;
+            fetch(`/api/cars/${id}`)
+            .then(res => res.json()).then(json => {console.log(json["data"]);let parsed_car = parseCarListing(json["data"]);setCar(parsed_car);setCount(parsed_car.images.length);console.log(parsed_car)});
         };
         carData();
     }, [api])
@@ -65,7 +65,7 @@ export default function Page(context: {params: {id: number}}) {
                                         <CarouselItem key={index}>
                                             <Card className="h-auto w-auto">
                                                 <CardContent className="flex aspect-square items-center justify-center p-6 bg-slate-300 border-2 border-slate-300 rounded-sm">
-                                                    <Image src="/r8.jpg" width={500} height={500} alt="Picture of the author" />
+                                                    <Image src={car?.images[index] || "/r8.jpg"} width={500} height={500} alt="Picture of the author" />
 
                                                 </CardContent>
                                             </Card>
@@ -95,10 +95,10 @@ export default function Page(context: {params: {id: number}}) {
                             <div className="ml-5 mr-40 grid grid-cols2 text-sm ">
 
                                 <div className="col-start-1 col-end-2">Ár:</div>
-                                <div className="col-start-2 font-bold proportional-nums">{car?.price} Ft</div>
+                                <div className="col-start-2 font-bold proportional-nums">{car?.price.toLocaleString(undefined)} Ft</div>
 
                                 <div className="col-start-1 col-end-2">Akciós ár:</div>
-                                <div className="col-start-2 font-bold text-blue-600 proportional-nums">{car?.discounted_price} Ft</div>
+                                <div className="col-start-2 font-bold text-blue-600 proportional-nums">{car?.discounted_price.toLocaleString(undefined)} Ft</div>
 
                                 
 
@@ -130,7 +130,7 @@ export default function Page(context: {params: {id: number}}) {
                             <div className="ml-5 mr-40 grid grid-cols2 text-sm">
 
                                 <div className="col-start-1 col-end-2 mb-1">Km. óra állás:</div>
-                                <div className="col-start-2 proportional-nums">{car?.mileage}km</div>
+                                <div className="col-start-2 proportional-nums">{car?.mileage.toLocaleString(undefined)} km</div>
 
                                 <div className="col-start-1 col-end-2 mb-1">Ajtók száma:</div>
                                 <div className="col-start-2 proportional-nums">{car?.doors}</div>
@@ -162,7 +162,7 @@ export default function Page(context: {params: {id: number}}) {
                                 <div className="col-start-1 col-end-2 mb-1">Teljesítmény:</div>
                                 <div className="col-start-2">
                                     <HoverCard openDelay={0}>
-                                        <HoverCardTrigger className="underline proportional-nums">{car?.horsepower/1.3}kw</HoverCardTrigger>
+                                        <HoverCardTrigger className="underline proportional-nums">{parseInt(car?.horsepower/1.3)}kw</HoverCardTrigger>
                                         <HoverCardContent className="w-44 proportional-nums">Ez átváltva {car?.horsepower} Lóerő</HoverCardContent>
                                     </HoverCard>
                                 </div>
