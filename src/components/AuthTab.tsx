@@ -17,6 +17,7 @@ export default function AuthTabs() {
     let [registerAlert, setRegisterAlert] = useState([] as IAlert[]);
     function parseResponse(json: any, email: string, password: string) {
         if(json["success"] === true) {
+<<<<<<< Updated upstream
             fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/auth/login`, {
                 method: "POST",
                 body: JSON.stringify(
@@ -33,6 +34,12 @@ export default function AuthTabs() {
                 },2000);
             });
             
+=======
+            setRegisterAlert([{alert_type: "success", title: "Sikeres regisztráció", message: "Hamarosan átirányítunk a bejelentkezés felületre"}])
+            setTimeout(() => {
+                window.location.reload();
+            },2000);
+>>>>>>> Stashed changes
         }else {
             setRegisterAlert([{alert_type: "danger", title: "Hiba", message: json["message"] as string}]);
             console.log(registerAlert);
@@ -94,6 +101,10 @@ export default function AuthTabs() {
 
                 <TabsContent value="login" >
                     <Card className="border-2 border-blue-400">
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                         <form action={login}>
                             <CardHeader >
 
@@ -101,6 +112,8 @@ export default function AuthTabs() {
                                 <CardDescription>
                                     Add meg a fiókod E-mail címét illetve jelszavát.
                                 </CardDescription>
+
+
 
                             </CardHeader>
 
@@ -115,10 +128,20 @@ export default function AuthTabs() {
                                 </div>
                             </CardContent>
 
+<<<<<<< Updated upstream
                         <CardFooter>
                             <Button type="submit">Bejelentkezés</Button>
                         </CardFooter>
                         </form>
+=======
+
+                            <CardFooter>
+                                <Button>Bejelentkezés</Button>
+                            </CardFooter>
+                        </form>
+
+
+>>>>>>> Stashed changes
                     </Card>
                 </TabsContent>
 
