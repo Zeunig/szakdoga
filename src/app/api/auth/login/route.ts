@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     try {
         var body = await req.json();
     }catch(e) {
-        let resp = NextResponse.json({"success":false, "message": `Failed to parse the request body`}, {"status": 401});
+        let resp = NextResponse.json({"success":false, "message": `Hibás adatok`}, {"status": 400});
         return resp;
     }
     let username = body["username"];
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
             typeof(username) === undefined ||
             typeof(password) === undefined
     ) {
-        let resp = NextResponse.json({"success":false, "message": `Missing fields`}, {"status": 401});
+        let resp = NextResponse.json({"success":false, "message": `Hiányzó e-mail/jelszó`}, {"status": 400});
         return resp;
     }
     const prisma = new PrismaClient();
@@ -31,7 +31,7 @@ export async function POST(req: Request) {
         }
     });
     if (db_result === null) {
-        let resp = NextResponse.json({"success":false, "message": `Invalid e-mail or password`}, {"status": 400});
+        let resp = NextResponse.json({"success":false, "message": `Érvénytelen e-mail és/vagy jelszó`}, {"status": 400});
         return resp;
     }
     var a = await bcrypt.compare(password, db_result.password);
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
         // TODO: refresh tokens
         return resp;
     }else {
-        let resp = NextResponse.json({"success":false, "message": `Invalid e-mail or password`}, {"status": 400});
+        let resp = NextResponse.json({"success":false, "message": `Érvénytelen e-mail és/vagy jelszó`}, {"status": 400});
         return resp;
     }
     

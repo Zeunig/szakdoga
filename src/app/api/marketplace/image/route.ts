@@ -12,18 +12,17 @@ export async function POST(req: NextRequest) {
     const id = [...crypto.getRandomValues(new Uint8Array(20))].map(m=>('0'+m.toString(16)).slice(-2)).join('');
     const file_name = id + "." + extension;
     if(!["png","jpg","jpeg","webp"].includes(extension)) {
-        return NextResponse.json({"error":"Invalid file type"},{"status":400});
+        return NextResponse.json({"success": false, "error":"Érvénytelen fájl"},{"status":400});
     }
     try {
         let data = await file.bytes();
         await writeFile(path.join(process.cwd(), "public/car/",file_name),data).catch((err) => {
             console.log(err);
-            return NextResponse.json({"error":`Something went wrong while uploading file : ${err}`},{"status":400});
+            return NextResponse.json({"success": false, "error":`Nem működött a fájlfeltöltés. Kérjük, próbálja meg újra később!`},{"status":400});
         });
     }catch(err) {
-
-    }finally {
-        console.log("hawk tuah");
+        console.error(err);
+        return NextResponse.json({"success": false, "error":`Nem működött a fájlfeltöltés. Kérjük, próbálja meg újra később!`},{"status":400});
     }
     return NextResponse.json({"success":true,"image_id": id},{"status":200});
 }
