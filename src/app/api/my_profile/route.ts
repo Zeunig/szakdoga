@@ -13,7 +13,7 @@ BigInt.prototype.toJSON = function () { return Number(this) }
 export async function GET(req: NextRequest) {
     let auth_cookie = req.cookies.get('auth')?.value;
     if (!auth_cookie) {
-        return NextResponse.json({"error": "Unauthorized"}, {"status": 401});
+        return NextResponse.json({"success": false, "error": "Nem vagy bejelentkezve!"}, {"status": 401});
     }
     let auth = await authentication(auth_cookie);
     console.log(auth);
@@ -38,9 +38,9 @@ export async function GET(req: NextRequest) {
             }
         });
         console.log(query);
-        return NextResponse.json(query, {"status": 200});
+        return NextResponse.json({"success": false, "data": query}, {"status": 200});
     }else {
-        return NextResponse.json({"error": "Unauthorized"}, {"status": 401});
+        return NextResponse.json({"success": false, "error": "Nem vagy bejelentkezve!"}, {"status": 401});
     }
     
 }

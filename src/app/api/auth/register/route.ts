@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     try {
         var body = await req.json();
     }catch(e) {
-        let resp = NextResponse.json({"success":false, "message": `Failed to parse the request body`}, {"status": 401});
+        let resp = NextResponse.json({"success":false, "message": `Érvénytelen adat`}, {"status": 400});
         return resp;
     }
     let username = body["username"];
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
         typeof(captcha) === undefined ||
         (captcha as string).length === 0
     ) {
-        let resp = NextResponse.json({"success":false, "message": `Missing fields`}, {"status": 401});
+        let resp = NextResponse.json({"success":false, "message": `Hiányzó adatok`}, {"status": 400});
         return resp;
     }
     // verifying captcha answer

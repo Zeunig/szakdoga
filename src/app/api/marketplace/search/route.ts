@@ -125,6 +125,6 @@ export async function GET(req: NextRequest) {
             offset: parseInt(req.nextUrl.searchParams.get("offset") as string)
         }
     );
-    let resp = NextResponse.json(result, {"status": 200});
+    let resp = NextResponse.json({"success": true, "data":result}, {"status": 200});
     return resp;
 }
