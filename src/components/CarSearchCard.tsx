@@ -9,7 +9,7 @@ import { ModelCB } from "./ModelCB"
 export function CarSearchCard() {
     return (
         <div className="mb-20">
-            <Card className="w-80 h-fit border-dashed border-gray-800">
+            <Card className="lg:w-80 lg:h-fit border-dashed border-gray-800">
                 <CardHeader>
                     
                     <CardTitle className="text-lg font-bold">
@@ -34,62 +34,9 @@ export function CarSearchCard() {
                         <br />
                         
                     </div>
-                    <p>01</p>
-                    <p>02</p>
-                    <p>03</p>
-                    <p>04</p>               
-                    <p>05</p>             
-                    <p>06</p>                    
-                    <p>07</p>
-                    <p>08</p>
-                    <p>09</p>
-                    <p>10</p>
-                    <p>11</p>               
-                    <p>12</p>             
-                    <p>13</p>                    
-                    <p>1</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>               
-                    <p>01</p>             
-                    <p>01</p>                    
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>               
-                    <p>01</p>             
-                    <p>01</p>                    
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>               
-                    <p>01</p>             
-                    <p>01</p>                    
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>               
-                    <p>01</p>             
-                    <p>01</p>                    
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>               
-                    <p>01</p>             
-                    <p>01</p>                    
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>
-                    <p>01</p>               
-                    <p>01</p>             
-                    <p>01</p>                    
-                    <p>01</p>
+                    <div>
+                        
+                    </div>
 
 
                 </CardContent>

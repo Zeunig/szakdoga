@@ -17,14 +17,14 @@ export default function Page() {
 
 
     return (
-        <div>
+        <div className="scrollbar-hidden">
             <Header />
             <div className="">
                 <div>
-                    <div className="h- ">
+                    <div className="">
 
-                        <Tabs defaultValue="profile" className="ml-[300px] mr-[300px]">
-                            <TabsList className="h-10 bg-gray-300 border-2 border-gray-400 rounded-lg mt-10">
+                        <Tabs defaultValue="profile" className="ml-5 mr-5 lg:ml-[300px] lg:mr-[300px]">
+                            <TabsList className="w-full h-10 bg-gray-300 border-2 border-gray-400 rounded-lg mt-10">
                                 <TabsTrigger value="profile" className="w-[150px]">Profil</TabsTrigger>
                                 <TabsTrigger value="settings" className="w-[150px]">Beállítások</TabsTrigger>
                                 <TabsTrigger value="cars" className="w-[150px]">Feladott hírdetések</TabsTrigger>
@@ -78,7 +78,7 @@ export default function Page() {
                                     </CardHeader>
                                     <CardContent className="min-h-80 max-h-fit">
                                         <ScrollArea className="h-[550px]">
-                                        <div className="grid grid-cols-4">
+                                        <div className="grid grid-cols-1 ml-14 lg:ml-0 lg:grid-cols-4">
                                         <ScrollBar orientation="vertical"/>
                                             <div className="mb-3"> <MyCars/> </div>
                                             <div className="mb-3"> <MyCars/> </div>
@@ -104,7 +104,7 @@ export default function Page() {
                                 <Card className=" bg-gray-300 border-2 border-gray-400 rounded-lg ">
                                     <CardHeader>
                                         <CardTitle className="font-bold text-3xl">Mentet hírdetések</CardTitle>
-                                        <CardDescription className="">Itt látod azokat a herdetéseket amelyeket kedveltél az oldalunkon</CardDescription>
+                                        <CardDescription className="w-64 lg:w-[500px]">Itt látod azokat a herdetéseket amelyeket kedveltél az oldalunkon</CardDescription>
                                         <hr className="w-80 h-px bg-slate-400 border-0" />
 
                                     </CardHeader>
@@ -140,7 +140,9 @@ export default function Page() {
                     </div>
                 </div>
             </div>
+            <div className="mt-auto">
             <Footer />
+            </div>
         </div>
 
     )

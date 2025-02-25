@@ -10,22 +10,26 @@ import RowCardHL from "@/components/RowCardHL"
 export default function Page() {
     return (
         <div>
-            <Header/>
-            <div className="mx-56 mt-24 col-2 ">
-                <div className="grid grid-cols-4">
-                    <div className="h-auto row-span-11"><CarSearchCard/></div>
-                    <div className="col-span-3">
-                        <div className="mb-3"><RowCardHL/></div>
-                        <div className="mb-3"><Rowcard/></div>
-                        <div className="mb-3"><Rowcard/></div>
-                        <div className="mb-3"><Rowcard/></div>
-                        <div className="mb-3"><Rowcard/></div>
-                        <div className="mb-3"><Rowcard/></div> 
-                    </div>               
+            <Header />
+            <div>
+                <div className="">
+                    <div className="mx-5 lg:mx-56 lg:mt-24">
+                        <div className="grid grid-cols-1 lg:grid-cols-4">
+                            <div className="h-auto row-span-11"><CarSearchCard /></div>
+                            <div className="col-span-3">
+                                <div className="mb-3"><RowCardHL /></div>
+                                <div className="mb-3"><Rowcard /></div>
+                                <div className="mb-3"><Rowcard /></div>
+                                <div className="mb-3"><Rowcard /></div>
+                                <div className="mb-3"><Rowcard /></div>
+                                <div className="mb-3"><Rowcard /></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </div>
-        
+
     )
 }

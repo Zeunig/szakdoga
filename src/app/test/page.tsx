@@ -21,13 +21,14 @@ import {
     SheetTitle,
     SheetTrigger,
   } from "@/components/ui/sheet"
+import HeaderBTN from "@/components/HeaderBTN";
 
 
 export default function Page() {
     return (
         <div>
 
-            <div className="p-4 grid grid-cols-4      hidden               ">
+            <div className="p-4 grid grid-cols-4                     ">
                 <div className="bg-black">
                 </div>
                 <div>
@@ -51,7 +52,7 @@ export default function Page() {
                         </DrawerContent>
                     </Drawer>
                 </div>
-                <div className="h-[200px] hidden">
+                <div className="h-[200px] ">
                     <ResizablePanelGroup direction="horizontal" >
                         <ResizablePanel className="bg-green-600">
                             <ResizablePanelGroup direction="vertical" >
@@ -79,25 +80,29 @@ export default function Page() {
                     </ResizablePanelGroup>
                 </div>
 
-                <div className="hidden">
+                <div className="">
                     <img className="absolute animate-spin" src="logo.png" alt="" />
                     <svg className="absolute animate-spin"></svg>
                 </div>
             </div>
-            <div className="hidden">
+            <div className="">
                 <AdsGrid/>
             </div>
-            <div className="hidden">
+            <div className="">
                 <ImageViewer/>
             </div>
 
-            <div className="mx-96 mt-80     hidden     ">
+            <div>
+                <HeaderBTN/>
+            </div>
+
+            <div className="mx-96 mt-80          ">
                 <SUC />
             </div>
 
 
 
-            <div className="h-20 bg-blue-500 hidden">
+            <div className="h-20 bg-blue-500 ">
             <ScrollArea className="h-20">
                 a <br />
                 b <br />
