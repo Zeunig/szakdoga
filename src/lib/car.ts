@@ -1,6 +1,6 @@
 import { getFeatures } from "@/lib/search/features";
 
-export interface CarListing {
+export interface ICarListing {
     // Identification
     id: number;
     vin: string;

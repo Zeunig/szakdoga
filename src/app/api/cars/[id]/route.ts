@@ -4,7 +4,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 // get car details by id and make it json-serializable
-async function get_car_from_db(id: number) {
+export async function get_car_from_db(id: number) {
     const prisma = new PrismaClient({});
     try {
         var query = await prisma.car.findFirst({

@@ -6,9 +6,7 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'listings-prod.tcimg.net',
-        port: '',
         pathname: '**',
-        search: '',
       },
     ]
   }
