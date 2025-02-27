@@ -26,7 +26,7 @@ export default async function Page(context: {params: Promise<{id: number}>}) {
     let car = parseCarListing(car_data);
     return (
         <div>
-            <CarListing {...car}/>
+            <CarListing {...car}/>  
         </div>
     )
 }

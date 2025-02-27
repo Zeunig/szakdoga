@@ -31,6 +31,8 @@ export async function get_car_from_db(id: number) {
     }
     query["id"] = Number(query["id"]);
     query["features"] = Number(query["features"]);
+    query["creation_date"] = query["creation_date"]?.toISOString();
+    console.log(query);
     return query;
 }
 
