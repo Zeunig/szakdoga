@@ -80,10 +80,7 @@ export default function Page() {
                     </ResizablePanelGroup>
                 </div>
 
-                <div className="">
-                    <img className="absolute animate-spin" src="logo.png" alt="" />
-                    <svg className="absolute animate-spin"></svg>
-                </div>
+                
             </div>
             <div className="">
                 <AdsGrid/>
@@ -91,6 +88,11 @@ export default function Page() {
             <div className="">
                 <ImageViewer/>
             </div>
+
+            <div className="">
+                    <img className="absolute animate-spin mt-32" src="logo.png" alt="" />
+                    
+                </div>
 
             <div>
                 <HeaderBTN/>
