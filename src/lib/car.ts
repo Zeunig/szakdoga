@@ -78,7 +78,7 @@ export function parseCarListing(json: object): CarListing {
             images.push(json["car_image_relation"][i]["image_url"] as string);
         }
         // Construct and return the CarListing object
-        const carListing: CarListing = {
+        const carListing: ICarListing = {
             id,
             creation_date,
             seller_id,

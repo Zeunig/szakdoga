@@ -1,3 +1,4 @@
+import { authentication } from "@/lib/auth";
 import { PrismaClient } from "@prisma/client";
 import { randomInt } from "crypto";
 import { NextRequest, NextResponse } from "next/server";

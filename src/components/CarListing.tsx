@@ -156,7 +156,7 @@ export function CarListing(car: ICarListing) {
                                 <div className="col-start-1 col-end-2 mb-1">Teljesítmény:</div>
                                 <div className="col-start-2">
                                     <HoverCard openDelay={0}>
-                                        <HoverCardTrigger className="underline proportional-nums">{(car?.horsepower/1.3) as number}kw</HoverCardTrigger>
+                                        <HoverCardTrigger className="underline proportional-nums">{parseInt(car?.horsepower/1.3)} kw</HoverCardTrigger>
                                         <HoverCardContent className="w-44 proportional-nums">Ez átváltva {car?.horsepower} Lóerő</HoverCardContent>
                                     </HoverCard>
                                 </div>
