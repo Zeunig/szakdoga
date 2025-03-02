@@ -1,3 +1,12 @@
+
+export interface IFeatures {
+    exterior: string[],
+    other: string[],
+    technology: string[],
+    interior: string[],
+    safety: string[]
+}
+
 export const KEYLESS_ENTRY = 1
 export const PREMIUM_WHEELS = 2
 export const ROOF_RACK = 4
@@ -39,13 +48,34 @@ export const ESP = 137438953472
 
 export const FEATURES = ['Keyless Entry', 'Premium Wheels', 'Roof Rack', 'Trailer Hitch', 'Dual Rear Wheels', 'Disability Equipped', 'Android Auto', 'Apple Carplay', 'Bluetooth Hands Free', 'Cruise Control', 'Dvd Player', 'Navigation', 'Portable Audio Connection', 'Premium Audio', 'Satellite Radio', 'Steering Wheel Controls', 'Remote Engine Start', 'Adaptive Cruise Control', 'Head Up Display', 'Rain Sensing Wipers', 'Keyless Start', 'Automatic Parking', 'Wifi Hotspot', '3Rd Row Seats', 'Heated Seats', 'Leather Seats', 'Sunroof', 'Backup Camera', 'Night Vision', 'Lane Departure Warning', 'Blind Spot Monitor', 'Cross Traffic Alert', 'Brake Assist', 'Security System', 'Lane Keeping Assist', 'Tpms', 'Abs', 'Esp']
 
-export function getFeatures(decimalValue: number) {
-    let bitPosition = 0; const features = [];
+function dec2bin(dec: number) {
+    return (dec >>> 0).toString(2);
+  }
+
+export function getFeatures(decimalValue: number): IFeatures {
+    let features: IFeatures = {
+        exterior: [],
+        other: [],
+        technology: [],
+        interior: [],
+        safety: []
+    };
+    let bitPosition = 0;
     while (decimalValue > 0) {
         if (decimalValue & 1) {
-            features.push(FEATURES[bitPosition]);
+            if(bitPosition >= 0 && bitPosition <= 4) {
+                features.exterior.push(FEATURES[bitPosition]);
+            }else if(bitPosition == 5) {
+                features.interior.push(FEATURES[bitPosition]);
+            }else if(bitPosition >= 6 && bitPosition <= 22) {
+                features.technology.push(FEATURES[bitPosition]);
+            }else if(bitPosition >= 23 && bitPosition <= 26) {
+                features.interior.push(FEATURES[bitPosition]);
+            }else {
+                features.safety.push(FEATURES[bitPosition]);
+            }
         }
-        decimalValue >>= 1;
+        decimalValue >>>= 1;
         bitPosition++;
     }
     return features

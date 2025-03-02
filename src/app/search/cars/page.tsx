@@ -1,3 +1,5 @@
+"use server";
+
 import { CarSearchCard } from "@/components/CarSearchCard"
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
@@ -7,7 +9,7 @@ import RowCardHL from "@/components/RowCardHL"
 
 
 
-export default function Page() {
+export default async function Page() {
     return (
         <div>
             <Header />

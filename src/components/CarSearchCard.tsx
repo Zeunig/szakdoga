@@ -1,3 +1,4 @@
+"use server";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -5,8 +6,10 @@ import { BrandCB} from "@/components/BrandCB"
 import { Search } from "@/lib/search/search"
 import { SearchIcon } from "lucide-react"
 import { ModelCB } from "./ModelCB"
-
-export function CarSearchCard() {
+import { get_car_selection, ISortedCarSelection } from "@/app/jobs/carCounter/route"
+export async function CarSearchCard() {
+    let cars = await get_car_selection();
+    console.log(cars);
     return (
         <div className="mb-20">
             <Card className="lg:w-80 lg:h-fit border-dashed border-gray-800">
@@ -22,7 +25,7 @@ export function CarSearchCard() {
                     <div className="mb-6">
                         <Label htmlFor="email">Márka</Label>
                         <br />
-                        <BrandCB/>
+                        <BrandCB {...cars}/>
                     </div>
                     <div className="mb-6">
                         <Label htmlFor="email">Modell</Label>

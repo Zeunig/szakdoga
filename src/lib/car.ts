@@ -1,4 +1,6 @@
-import { getFeatures } from "@/lib/search/features";
+import { getFeatures, IFeatures } from "@/lib/search/features";
+
+
 
 export interface ICarListing {
     // Identification
@@ -34,33 +36,22 @@ export interface ICarListing {
     color: string;
     
     // Additional details
-    features: string[];
+    features: IFeatures;
     design: string | null;
 
     images: string[];
 }
 
 
-export function parseCarListing(json: object): CarListing {
+export function parseCarListing(json: object): ICarListing {
     try {
         console.log(json);
         const id = Number(json.id);
-
-        // Parse date
         const creation_date = json.creation_date as string;
-
-        // Validate fuel type
         const fuel_type = json.fuel_type as string;
-        // Validate gearbox type
         const gearbox = json.gearbox as string;
-        // Validate drive type
         const drive_type = json.drive_type as string;
-
-        // Validate condition
         const condition = json.condition as string;
-
-
-        // Convert numeric strings to numbers
         const seller_id = Number(json.seller_id);
         const featured = Number(json.featured);
         const price = Number(json.price);

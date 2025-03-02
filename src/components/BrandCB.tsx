@@ -18,6 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { ISortedCarSelection } from "@/app/jobs/carCounter/route"
  
 const make = [
   {value: "ford",label: "Ford",},
@@ -28,11 +29,11 @@ const make = [
   {value: "maybach",label: "Mercedes-Maybach",},
 ]
 
- 
-export function BrandCB() {
+
+export function BrandCB(car_selection: ISortedCarSelection[]) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
- 
+  const [selectedBrandIndex, setSelectedBrandIndex] = React.useState(-1);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>

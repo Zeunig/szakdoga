@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { type CarouselApi } from "@/components/ui/carousel"
 import Image from "next/image";
-import { CarCardHL } from "@/c          omponents/CarCardHL"
+import { CarCardHL } from "@/components/CarCardHL"
 import { AdsGrid } from "@/components/ADS/AdsGrid"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
 import { CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
@@ -17,12 +17,14 @@ import { ChevronRight, ChevronsDownUp, ChevronsDownUpIcon, ChevronsUpDown } from
 import { ICarListing, parseCarListing } from "@/lib/car"
 import { Prisma, PrismaClient } from "@prisma/client"
 import { useRouter } from "next/navigation"
+import {BigImageViewer} from "./BigImageViewer";
 
 export function CarListing(car: ICarListing) {
 
     const [api, setApi] = React.useState<CarouselApi>()
     const [current, setCurrent] = React.useState(0)
-    const [count, setCount] = React.useState(50)
+    const [count, setCount] = React.useState(car.images.length);
+    const [showImageViewer, setShowImageViewer] = React.useState("");
     const router = useRouter();
     React.useEffect(() => {
         if (!api) {
@@ -43,6 +45,11 @@ export function CarListing(car: ICarListing) {
     console.log(car);
     return (
         <div>
+            {/* Nagy képnézegető */}
+            {
+                showImageViewer != "" && <div onClick={() => {setShowImageViewer("")}}><BigImageViewer imagePath={showImageViewer}/></div>
+            }
+            {/* Nagy képnézegető vége */}
             <Header />
             <div className="lg:grid grid-cols-3 grid-row-2 ml-2 mr-2 lg:ml-64 lg:mr-64 mt-20 ">
 
@@ -56,7 +63,7 @@ export function CarListing(car: ICarListing) {
                             <Carousel setApi={setApi} className="mt-20 h-[200px] w-[400px]  ">
                                 <CarouselContent className="">
                                     {Array.from({ length: count }).map((_, index) => (
-                                        <CarouselItem key={index} className="h-fit w-fit ">
+                                        <CarouselItem key={index} className="h-fit w-fit " onClick={() => {setShowImageViewer(car?.images[index])}}>
                                             <Image src={car?.images[index] || "/r8.jpg"} width={800} height={800} alt="Picture of the author" className="flex  items-center justify-center p-6 " />
                                         </CarouselItem>
                                     ))}
@@ -168,21 +175,14 @@ export function CarListing(car: ICarListing) {
 
                             <div className="ml-5 mr-40 text-sm">
                                 <Collapsible>
-                                    <CollapsibleTrigger><ChevronsUpDown className="display: inline" />Műszaki Felszeretség   </CollapsibleTrigger>
+                                    <CollapsibleTrigger><ChevronsUpDown className="display: inline" />Biztonsági Felszeretség   </CollapsibleTrigger>
                                     <hr className="ml-5 w-36 h-px bg-slate-400 border-0" />
                                     <CollapsibleContent>
                                         <div className="ml-7 grid grid-cols-1">
                                             <ol className="list-disc">
-                                                <li>01</li>
-                                                <li>02</li>
-                                                <li>03</li>
-                                                <li>04</li>
-                                                <li>05</li>
-                                                <li>06</li>
-                                                <li>07</li>
-                                                <li>08</li>
-                                                <li>09</li>
-                                                <li>10</li>
+                                                {car.features.safety.map((feature) => (
+                                                    <li>{feature}</li>
+                                                ))}
                                             </ol>
                                         </div>
                                     </CollapsibleContent>
@@ -194,16 +194,9 @@ export function CarListing(car: ICarListing) {
                                     <CollapsibleContent>
                                         <div className="ml-7 grid grid-cols-1">
                                             <ol className="list-disc">
-                                                <li>01</li>
-                                                <li>02</li>
-                                                <li>03</li>
-                                                <li>04</li>
-                                                <li>05</li>
-                                                <li>06</li>
-                                                <li>07</li>
-                                                <li>08</li>
-                                                <li>09</li>
-                                                <li>10</li>
+                                                {car.features.interior.map((feature) => (
+                                                    <li>{feature}</li>
+                                                ))}
                                             </ol>
                                         </div>
                                     </CollapsibleContent>
@@ -215,16 +208,9 @@ export function CarListing(car: ICarListing) {
                                     <CollapsibleContent>
                                         <div className="ml-7 grid grid-cols-1">
                                             <ol className="list-disc">
-                                                <li>01</li>
-                                                <li>02</li>
-                                                <li>03</li>
-                                                <li>04</li>
-                                                <li>05</li>
-                                                <li>06</li>
-                                                <li>07</li>
-                                                <li>08</li>
-                                                <li>09</li>
-                                                <li>10</li>
+                                                {car.features.exterior.map((feature) => (
+                                                    <li>{feature}</li>
+                                                ))}
                                             </ol>
                                         </div>
                                     </CollapsibleContent>
