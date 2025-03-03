@@ -1,4 +1,4 @@
-"use server";
+"use client";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -13,9 +13,10 @@ import SMGR2 from "./smSearch/SMGR2";
 import SMGR3 from "./smSearch/SMGR3";
 import SMGR4 from "./smSearch/SMGR4";
 import SMGR5 from "./smSearch/SMGR5";
-export async function CarSearchCard() {
-    let cars = await get_car_selection();
-    console.log(cars);
+import React from "react";
+
+export function CarSearchCard(cars: ISortedCarSelection[]) {
+    const [selectedBrand, setSelectedBrand] = React.useState("");
     return (
         <div className="mb-20">
             <Card className="lg:w-80 lg:h-fit border-dashed border-gray-800">
@@ -28,7 +29,21 @@ export async function CarSearchCard() {
 
                 </CardHeader>
                 <CardContent>
-                    {/*lg*/}
+                    <div className="mb-6">
+                        <Label htmlFor="email">Márka</Label>
+                        <br />
+                        <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand}/>
+                    </div>
+                    <div className="mb-6">
+                        <Label htmlFor="email">Modell</Label>
+                        <br />
+                        <ModelCB car_selection={cars} selectedBrand={selectedBrand}/>
+                    </div>
+                    <div className="mb-6">
+                        <Label htmlFor="email">Modell</Label>
+                        <br />
+                        
+                    </div>
                     <div>
 
                         <div className="bg-red-400">
