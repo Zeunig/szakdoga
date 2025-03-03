@@ -36,7 +36,7 @@ export default function HeaderBTN() {
                     <Menu />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="mt-2  w-[120px] bg-blue-600 p-0">
+            <PopoverContent className="mt-2  w-[120px] p-0">
                 <Command className="">
                     <button className="ml-[9px] w-[100px] border-2 border-gray-300 rounded-lg mt-2 mb-2 transform transition duration-250 hover:scale-110 hover:bg-blue-400">
                         <a href="/">HOME</a>
