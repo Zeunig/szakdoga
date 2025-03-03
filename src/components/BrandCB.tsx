@@ -30,10 +30,10 @@ const make = [
 ]
 
 
-export function BrandCB(car_selection: ISortedCarSelection[]) {
+export function BrandCB({car_selection, setSelectedBrand}: {car_selection: ISortedCarSelection[], setSelectedBrand: React.Dispatch<React.SetStateAction<string>>}) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
-  const [selectedBrandIndex, setSelectedBrandIndex] = React.useState(-1);
+  let cars = Object.values(car_selection);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -44,7 +44,7 @@ export function BrandCB(car_selection: ISortedCarSelection[]) {
           className="w-[200px] justify-between"
         >
           {value
-            ? make.find((make) => make.value === value)?.label
+            ? cars.find((car) => car.brand === value)?.brand
             : <Search/>}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -55,11 +55,12 @@ export function BrandCB(car_selection: ISortedCarSelection[]) {
           <CommandList>
             <CommandEmpty>Nincs találat.</CommandEmpty>
             <CommandGroup>
-              {make.map((make) => (
+              {cars.map((car) => (
                 <CommandItem
-                  key={make.value}
-                  value={make.value}
+                  key={car.brand}
+                  value={car.brand}
                   onSelect={(currentValue) => {
+                    setSelectedBrand(car.brand)
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
                   }}
@@ -67,10 +68,10 @@ export function BrandCB(car_selection: ISortedCarSelection[]) {
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === make.value ? "opacity-100" : "opacity-0"
+                      value === car.brand ? "opacity-100" : "opacity-0"
                     )}
                   />
-                  {make.label}
+                  {`${car.brand} (${car.totalCount})`}
                 </CommandItem>
               ))}
             </CommandGroup>

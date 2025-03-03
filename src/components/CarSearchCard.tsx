@@ -1,4 +1,4 @@
-"use server";
+"use client";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -7,9 +7,9 @@ import { Search } from "@/lib/search/search"
 import { SearchIcon } from "lucide-react"
 import { ModelCB } from "./ModelCB"
 import { get_car_selection, ISortedCarSelection } from "@/app/jobs/carCounter/route"
-export async function CarSearchCard() {
-    let cars = await get_car_selection();
-    console.log(cars);
+import React from "react";
+export function CarSearchCard(cars: ISortedCarSelection[]) {
+    const [selectedBrand, setSelectedBrand] = React.useState("");
     return (
         <div className="mb-20">
             <Card className="lg:w-80 lg:h-fit border-dashed border-gray-800">
@@ -25,12 +25,12 @@ export async function CarSearchCard() {
                     <div className="mb-6">
                         <Label htmlFor="email">Márka</Label>
                         <br />
-                        <BrandCB {...cars}/>
+                        <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand}/>
                     </div>
                     <div className="mb-6">
                         <Label htmlFor="email">Modell</Label>
                         <br />
-                        <ModelCB/>
+                        <ModelCB car_selection={cars} selectedBrand={selectedBrand}/>
                     </div>
                     <div className="mb-6">
                         <Label htmlFor="email">Modell</Label>

@@ -18,6 +18,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { ISortedCarSelection } from "@/app/jobs/carCounter/route"
  
 const make = [
   {value: "01|ford",label: "Ford",},
@@ -37,10 +38,12 @@ const ford = [
 ]
 
  
-export function ModelCB() {
+export function ModelCB({car_selection, selectedBrand}: {car_selection: ISortedCarSelection[], selectedBrand: string}) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
- 
+  let cars = Object.values(car_selection);
+  console.log(selectedBrand);
+  console.log(cars);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -51,7 +54,7 @@ export function ModelCB() {
           className="w-[200px] justify-between"
         >
           {value
-            ? make.find((make) => make.value === value)?.label
+            ? cars.find((car) => car.brand === selectedBrand)?.models.find((model) => model.model === value)?.model
             : <Search/>}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -61,26 +64,31 @@ export function ModelCB() {
           <CommandInput placeholder="Írja ide..." />
           <CommandList>
             <CommandEmpty>Nincs találat.</CommandEmpty>
-            <CommandGroup>
-              {make.map((make) => (
-                <CommandItem
-                  key={make.value}
-                  value={make.value}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
-                    setOpen(false)
-                  }}
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      value === make.value ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                  {make.label}
-                </CommandItem>
-              ))}
-            </CommandGroup>
+              {cars.filter((car) => car.brand === selectedBrand).map((brand) => {
+                let a = (<CommandGroup>
+                  {
+                    brand.models.map((model) => (
+                      <CommandItem
+                        key={model.model}
+                        value={model.model}
+                        onSelect={(currentValue) => {
+                          setValue(currentValue === value ? "" : currentValue)
+                          setOpen(false)
+                        }}
+                      >
+                        <Check
+                          className={cn(
+                            "mr-2 h-4 w-4",
+                            value === model.model ? "opacity-100" : "opacity-0"
+                          )}
+                        />
+                        {`${model.model} (${model.count})`}
+                      </CommandItem>
+                    ))
+                  }
+                </CommandGroup>);
+                return a;
+              })}
           </CommandList>
         </Command>
       </PopoverContent>
