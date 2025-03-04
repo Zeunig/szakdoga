@@ -181,7 +181,7 @@ export function CarListing(car: ICarListing) {
                                         <div className="ml-7 grid grid-cols-1">
                                             <ol className="list-disc">
                                                 {car.features.safety.map((feature) => (
-                                                    <li>{feature}</li>
+                                                    <li key={feature}>{feature}</li>
                                                 ))}
                                             </ol>
                                         </div>
@@ -195,7 +195,7 @@ export function CarListing(car: ICarListing) {
                                         <div className="ml-7 grid grid-cols-1">
                                             <ol className="list-disc">
                                                 {car.features.interior.map((feature) => (
-                                                    <li>{feature}</li>
+                                                    <li key={feature}>{feature}</li>
                                                 ))}
                                             </ol>
                                         </div>
@@ -209,7 +209,7 @@ export function CarListing(car: ICarListing) {
                                         <div className="ml-7 grid grid-cols-1">
                                             <ol className="list-disc">
                                                 {car.features.exterior.map((feature) => (
-                                                    <li>{feature}</li>
+                                                    <li key={feature}>{feature}</li>
                                                 ))}
                                             </ol>
                                         </div>

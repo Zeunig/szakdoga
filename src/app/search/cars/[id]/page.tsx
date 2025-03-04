@@ -23,10 +23,21 @@ import { get_car_from_db } from "@/app/api/cars/[id]/route"
 export default async function Page(context: {params: Promise<{id: number}>}) {
     const {id} = await context.params;
     let car_data = await get_car_from_db(id) as object;
-    let car = parseCarListing(car_data);
+    var car;
+    if(car_data["success"] === false) {
+        car = null;
+    }else {
+        car = parseCarListing(car_data);
+    }
+    console.log(car == null);
     return (
         <div>
-            <CarListing {...car}/>  
+            {
+                (car != null) && <CarListing {...car}/>
+            }
+            {
+                (car == null) && <h1>A keresett autó nem található</h1>
+            }
         </div>
     )
 }
