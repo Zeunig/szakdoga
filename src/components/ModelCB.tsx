@@ -65,13 +65,14 @@ export function ModelCB({car_selection, selectedBrand}: {car_selection: ISortedC
           <CommandList>
             <CommandEmpty>Nincs találat.</CommandEmpty>
               {cars.filter((car) => car.brand === selectedBrand).map((brand) => {
-                let a = (<CommandGroup>
+                let a = (<CommandGroup key={"cmdgroup"}>
                   {
                     brand.models.map((model) => (
                       <CommandItem
-                        key={model.model}
+                        key={`${model.model.toLowerCase().trim()}${model.count}`}
                         value={model.model}
                         onSelect={(currentValue) => {
+                          console.log(currentValue);
                           setValue(currentValue === value ? "" : currentValue)
                           setOpen(false)
                         }}

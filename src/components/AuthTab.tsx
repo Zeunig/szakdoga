@@ -14,6 +14,7 @@ export interface IAlert {
 }
 
 export default function AuthTabs() {
+    let [loginAlert, setLoginAlert] = useState([] as IAlert[]);
     let [registerAlert, setRegisterAlert] = useState([] as IAlert[]);
     function parseResponse(json: any, email: string, password: string) {
         if(json["success"] === true) {
@@ -41,12 +42,12 @@ export default function AuthTabs() {
     }
     function parseResponseLogin(json: any) {
         if(json["success"] === true) {
-            setRegisterAlert([{alert_type: "success", title: "Sikeres bejelentkezés", message: "Hamarosan átirányítunk a főoldalra"}])
+            setLoginAlert([{alert_type: "success", title: "Sikeres bejelentkezés", message: "Hamarosan átirányítunk a főoldalra"}])
             setTimeout(() => {
                 window.location.href = `http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}`;
             },2000);
         }else {
-            setRegisterAlert([{alert_type: "danger", title: "Hiba", message: json["message"] as string}]);
+            setLoginAlert([{alert_type: "danger", title: "Hiba", message: json["message"] as string}]);
             console.log(registerAlert);
             console.error(json);
         }
@@ -94,6 +95,11 @@ export default function AuthTabs() {
 
                 <TabsContent value="login" >
                     <Card className="border-2 border-blue-400">
+                        {
+                            loginAlert.map(alert => (
+                                <Alert alert_type={alert.alert_type} title={alert.title} message={alert.message}></Alert>
+                            ))
+                        }
                         <form action={login}>
                             <CardHeader >
 
