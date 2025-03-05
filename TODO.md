@@ -1,6 +1,6 @@
 # **Hátralévő dolgok**
 ---
-##Frontend
+## Frontend
 ---
 -Landing
 -Keresés frontend
@@ -12,7 +12,7 @@
 -fizetett kiemelés az uploadra
 
 
-##Backend
+## Backend
 ---
 
 -header login meg a profile 
@@ -25,7 +25,7 @@
 
 
 
-##Fullstack
+## Fullstack
 ---
 -my profile
 >logout
