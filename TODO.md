@@ -16,7 +16,6 @@
 ## Backend
 ---
 
--header login meg a profile <br>
 -profilehoz my cars <br>
 <br>
 -auto kedvelés <br>
@@ -29,7 +28,6 @@
 ##Fullstack
 ---
 -my profile<br>
->logout<br>
 >rendes adaok<br>
 <br>
 -jelszó min 8 karakter Aa1 formátum<br>

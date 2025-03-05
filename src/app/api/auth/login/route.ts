@@ -51,7 +51,7 @@ export async function POST(req: Request) {
         resp.cookies.set("auth",token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            path: "/"
+            path: "/",
         });
         // TODO: refresh tokens
         return resp;
