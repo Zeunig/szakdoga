@@ -9,7 +9,7 @@ export const config = {
       '/(api(?!/car/|/auth/)(?:/?|/.*))',
       // Match /profile/ paths
       '/profile/:path*',
-      '/upload/'
+      '/upload'
     ]
   }
 
@@ -30,7 +30,7 @@ export async function middleware(request: NextRequest) {
         let auth = await authentication(token);
         if (auth["success"] == true) {
             const response = NextResponse.next();
-            response.headers.append("x-user-id", auth["payload"]["id"] as string);
+            response.headers.set("x-user-id", auth["payload"]["id"] as string);
             console.log(response.headers.get("x-user-id"));
             return response
         }else {

@@ -1,4 +1,4 @@
-"use client"
+"use server"
 
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -13,7 +13,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import MyCars from "@/components/MyCars";
 import { Thumb } from "@radix-ui/react-scroll-area";
 
-export default function Page() {
+export default async function Page() {
 
 
     return (

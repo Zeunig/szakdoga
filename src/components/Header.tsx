@@ -1,7 +1,37 @@
+"use server";
+
 import Image from "next/image";
 import HeaderBTN from "./HeaderBTN";
+import { useEffect } from "react";
+import { headers } from "next/headers";
+import { NextRequest } from "next/server";
 
-export function Header() {
+/*async function MyProfile() {
+  if (headersList.get("cookie")?.toString().includes("auth=")) {
+    return (
+      <div className="flex items-center lg:order-2">
+<a href="/profile" className="">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>
+      </a>
+      </div>
+    );
+  }
+  return (
+    <div className="flex items-center lg:order-2">
+  <a href="/auth" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Bejelentkezés/Regisztráció</a>
+      
+      <HeaderBTN/>
+
+    </div>
+
+  );
+}*/
+
+export async function Header() {
+    const headersList = await headers();
+
     return (
       <header>
         <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
@@ -14,17 +44,22 @@ export function Header() {
               <img src="/title.png" className="" alt="KPAK Title" />
 
             </a>
-            <div className="flex items-center lg:order-2">
-              <a href="/auth" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in/Register</a>
-              <a href="/profile" className="">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                  </svg>
-              </a>
+              {headersList.get("cookie")?.toString().includes("auth=") && <div className="flex items-center lg:order-2">
+<a href="/profile" className="">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>
+      </a>
+      </div>}
+              {!(headersList.get("cookie")?.toString().includes("auth=")) && <div className="flex items-center lg:order-2">
+  <a href="/auth" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Bejelentkezés/Regisztráció</a>
+      
+      <HeaderBTN/>
+
+    </div>
+              }
               
               
-              <HeaderBTN/>
-            </div>
             <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 <li>
