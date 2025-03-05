@@ -1,34 +1,35 @@
 # **Hátralévő dolgok**
 ---
-## Frontend
+##Frontend
 ---
--Landing <br>
--Keresés frontend <br>
--Responzivitás <br>
--/search undo <br>
-<br>
--reklámok <br>
--auto kedvelés <br>
--fizetett kiemelés az uploadra <br>
-<br>
+-Landing
+-Keresés frontend
+-Responzivitás
+-/search undo
+-car id page kép felfele kb 15px
 
-## Backend
+-reklámok
+-auto kedvelés
+-fizetett kiemelés az uploadra
+
+
+##Backend
 ---
 
--header login meg a profile <br>
--profilehoz my cars<br>
-<br>
--auto kedvelés<br>
--email check hogy jó e<br>
-<br>
--STRIPE<br>
+-header login meg a profile 
+-profilehoz my cars
+
+-auto kedvelés
+-email check hogy jó e
+
+-STRIPE
 
 
 
-## Fullstack
+##Fullstack
 ---
--my profile<br>
->logout<br>
->rendes adaok<br>
-<br>
+-my profile
+>logout
+>rendes adaok
+
 -jelszó min 8 karakter Aa1 formátum
