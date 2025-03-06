@@ -51,7 +51,7 @@ model car_image_relation {
 }
 
 model favorites {
-  id      Int   @id
+  id      Int   @id @default(autoincrement())
   car_id  Int?
   user_id Int?
   car     car?  @relation(fields: [car_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_favorites_car")
@@ -59,6 +59,7 @@ model favorites {
 
   @@index([car_id], map: "FK_favorites_car")
   @@index([user_id], map: "FK_favorites_user")
+  @@index([id], map: "id")
 }
 
 model user {
