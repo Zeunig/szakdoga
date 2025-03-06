@@ -23,8 +23,8 @@ export default async function Page() {
                 <div>
                     <div className="">
 
-                        <Tabs defaultValue="profile" className="ml-5 mr-5 lg:ml-[300px] lg:mr-[300px]">
-                            <TabsList className="w-full h-10 bg-gray-300 border-2 border-gray-400 rounded-lg mt-10">
+                        <Tabs defaultValue="profile" className="ml-5 mr-5 lg:ml-[300px] lg:mr-[300px] ">
+                            <TabsList className="w-full lg:w-[700px] h-10 bg-gray-300 border-2 border-gray-400 rounded-lg mt-10">
                                 <TabsTrigger value="profile" className="w-[150px]">Profil</TabsTrigger>
                                 <TabsTrigger value="settings" className="w-[150px]">Beállítások</TabsTrigger>
                                 <TabsTrigger value="cars" className="w-[150px]">Feladott hírdetések</TabsTrigger>
