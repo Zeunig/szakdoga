@@ -22,6 +22,12 @@ export async function GET(req: NextRequest) {
                 car: {
                     include: {
                         featured: false,
+                        car_image_relation: {
+                            include: {
+                                id: false,
+                                car_id: false
+                            },
+                        },
                         user: {
                             include: {
                                 password: false,
