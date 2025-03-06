@@ -8,7 +8,7 @@ export default function ProfileTabs() {
     return (
         <div className="h-80 grid justify-items-center mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8                        ">
             
-            <Tabs defaultValue="login" className="w-[400px]">
+            <Tabs defaultValue="profile" className="w-[400px] ">
 
                 <TabsList className="grid grid-cols-4">
                     <TabsTrigger value="profile">Progil</TabsTrigger>
@@ -18,7 +18,7 @@ export default function ProfileTabs() {
                 </TabsList>
 
 
-                <TabsContent value="login">
+                <TabsContent value="profile">
                     <Card>
 
                         <CardHeader>
