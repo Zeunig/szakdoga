@@ -2,6 +2,46 @@ import { authentication } from "@/lib/auth";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
+export async function GET(req: NextRequest) {
+    let auth_cookie = req.cookies.get('auth')?.value;
+    if (!auth_cookie) {
+        return NextResponse.json({"success": false, "error": "Nem vagy bejelentkezve!"}, {"status": 401});
+    }
+    let auth = await authentication(auth_cookie);
+    if (auth["success"] == true) {
+        const prisma = new PrismaClient();
+        let user_id = auth["payload"]["id"] as unknown as number;
+        const result = await prisma.favorites.findMany({
+            where: {
+                user_id,
+                car: {
+                    listed: 1
+                }
+            },
+            include: {
+                car: {
+                    include: {
+                        featured: false,
+                        user: {
+                            include: {
+                                password: false,
+                                permissions: false,
+                                phone_number: false,
+                                email: false,
+                                join_date: false
+                            }
+                        }
+                    }
+                },
+                user: false
+            } 
+        });
+        return NextResponse.json(JSON.parse(JSON.stringify(result, (_, v) => typeof v === 'bigint' ? v.toString() : v)), {"status": 200});
+    }else {
+        return NextResponse.json({"success": false, "error": "Érvénytelen autó!"}, {"status": 400});
+    }
+}
+
 export async function PUT(req: NextRequest) {
     let auth_cookie = req.cookies.get('auth')?.value;
     if (!auth_cookie) {
@@ -28,9 +68,7 @@ export async function PUT(req: NextRequest) {
         }else {
             return NextResponse.json({"success": false, "error": "Érvénytelen autó!"}, {"status": 400});
         }
-        
     }
-
 }
 
 export async function DELETE(req: NextRequest) {
