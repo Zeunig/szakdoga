@@ -33,7 +33,7 @@ export default async function Page(context: {params: Promise<{id: number}>}) {
     return (
         <div>
             {
-                (car != null) && <CarListing {...car}/>
+                (car != null) && <div><Header /><CarListing {...car}/></div>
             }
             {
                 (car == null) && <h1>A keresett autó nem található</h1>

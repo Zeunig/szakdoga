@@ -11,38 +11,75 @@ export async function GET(req: NextRequest) {
     if (auth["success"] == true) {
         const prisma = new PrismaClient();
         let user_id = auth["payload"]["id"] as unknown as number;
-        const result = await prisma.favorites.findMany({
-            where: {
-                user_id,
-                car: {
-                    listed: 1
-                }
-            },
-            include: {
-                car: {
-                    include: {
-                        featured: false,
-                        car_image_relation: {
-                            include: {
-                                id: false,
-                                car_id: false
-                            },
-                        },
-                        user: {
-                            include: {
-                                password: false,
-                                permissions: false,
-                                phone_number: false,
-                                email: false,
-                                join_date: false
-                            }
-                        }
+        let car_id = parseInt(req.nextUrl.searchParams.get("car_id") as string);
+        if(Number.isNaN(car_id)) {
+            var result = await prisma.favorites.findMany({
+                where: {
+                    user_id,
+                    car: {
+                        listed: 1
                     }
                 },
-                user: false
-            } 
-        });
+                include: {
+                    car: {
+                        include: {
+                            featured: false,
+                            car_image_relation: {
+                                include: {
+                                    id: false,
+                                    car_id: false
+                                },
+                            },
+                            user: {
+                                include: {
+                                    password: false,
+                                    permissions: false,
+                                    phone_number: false,
+                                    email: false,
+                                    join_date: false
+                                }
+                            }
+                        }
+                    },
+                    user: false
+                } 
+            });
+        }else {
+            var result = await prisma.favorites.findMany({
+                where: {
+                    user_id,
+                    car: {
+                        listed: 1,
+                        id: car_id
+                    }
+                },
+                include: {
+                    car: {
+                        include: {
+                            featured: false,
+                            car_image_relation: {
+                                include: {
+                                    id: false,
+                                    car_id: false
+                                },
+                            },
+                            user: {
+                                include: {
+                                    password: false,
+                                    permissions: false,
+                                    phone_number: false,
+                                    email: false,
+                                    join_date: false
+                                }
+                            }
+                        }
+                    },
+                    user: false
+                } 
+            });
+        }
         return NextResponse.json(JSON.parse(JSON.stringify(result, (_, v) => typeof v === 'bigint' ? v.toString() : v)), {"status": 200});
+        
     }else {
         return NextResponse.json({"success": false, "error": "Érvénytelen autó!"}, {"status": 400});
     }

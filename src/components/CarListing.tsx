@@ -18,6 +18,7 @@ import { ICarListing, parseCarListing } from "@/lib/car"
 import { Prisma, PrismaClient } from "@prisma/client"
 import { useRouter } from "next/navigation"
 import {BigImageViewer} from "./BigImageViewer";
+import FavoriteButton from "./FavoriteButton";
 
 export function CarListing(car: ICarListing) {
 
@@ -25,6 +26,7 @@ export function CarListing(car: ICarListing) {
     const [current, setCurrent] = React.useState(0)
     const [count, setCount] = React.useState(car.images.length);
     const [showImageViewer, setShowImageViewer] = React.useState("");
+    const [isOpen, setIsOpen] = React.useState(false);
     const router = useRouter();
     React.useEffect(() => {
         if (!api) {
@@ -37,12 +39,6 @@ export function CarListing(car: ICarListing) {
             setCurrent(api.selectedScrollSnap() + 1)
         });
     }, [api])
-
-
-
-
-    const [isOpen, setIsOpen] = React.useState(false)
-    console.log(car);
     return (
         <div>
             {/* Nagy képnézegető */}
@@ -50,12 +46,11 @@ export function CarListing(car: ICarListing) {
                 showImageViewer != "" && <div onClick={() => {setShowImageViewer("")}}><BigImageViewer imagePath={showImageViewer}/></div>
             }
             {/* Nagy képnézegető vége */}
-            <Header />
             <div className="lg:grid grid-cols-3 grid-row-2 ml-2 mr-2 lg:ml-64 lg:mr-64 mt-20 ">
 
                 {/*Fő adatok*/}
                 <div className="col-span-2  border-2 border-grey-500 rounded-xl">
-                    <div className="col-span-2 ml-12 mt-2 -mb-3 text-3xl font-bold">{car?.brand} {car?.model}</div>
+                    <div className="col-span-2 ml-12 mt-2 -mb-3 text-3xl font-bold inline-flex"><FavoriteButton car_id={car?.id}/> {car?.brand} {car?.model}</div>
                     <div className="grid grid-rows-2 lg:grid-cols-2">
 
                         {/*Képnézegető*/}
@@ -91,7 +86,7 @@ export function CarListing(car: ICarListing) {
                                 <div className="col-start-2 font-bold proportional-nums">{car?.price.toLocaleString(undefined)} Ft</div>
 
                                 <div className="col-start-1 col-end-2">Akciós ár:</div>
-                                <div className="col-start-2 font-bold text-blue-600 proportional-nums">{parseInt(car?.discounted_price*0.8).toLocaleString(undefined)} Ft</div>
+                                <div className="col-start-2 font-bold text-blue-600 proportional-nums">{(car?.discounted_price*0.8).toLocaleString(undefined)} Ft</div>
 
                                 
 
@@ -155,8 +150,8 @@ export function CarListing(car: ICarListing) {
                                 <div className="col-start-1 col-end-2 mb-1">Teljesítmény:</div>
                                 <div className="col-start-2">
                                     <HoverCard openDelay={0}>
-                                        <HoverCardTrigger className="underline proportional-nums">{parseInt(car?.horsepower/1.3)} kw</HoverCardTrigger>
-                                        <HoverCardContent className="w-44 proportional-nums">Ez átváltva {car?.horsepower} Lóerő</HoverCardContent>
+                                        <HoverCardTrigger className="underline proportional-nums">{Math.floor(car?.horsepower/1.3)} kw</HoverCardTrigger>
+                                        <HoverCardContent className="w-44 proportional-nums">Ez átváltva {Math.floor(car?.horsepower)} Lóerő</HoverCardContent>
                                     </HoverCard>
                                 </div>
 

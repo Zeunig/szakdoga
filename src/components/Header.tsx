@@ -1,10 +1,7 @@
 "use server";
 
-import Image from "next/image";
 import HeaderBTN from "./HeaderBTN";
-import { useEffect } from "react";
 import { headers } from "next/headers";
-import { NextRequest } from "next/server";
 import { LogOutIcon, UserIcon } from "lucide-react";
 
 /*async function MyProfile() {
