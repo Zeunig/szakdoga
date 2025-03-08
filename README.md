@@ -9,7 +9,6 @@
 -car id page kép felfele kb 15px <br>
 <br>
 -reklámok <br>
--auto kedvelés <br>
 -fizetett kiemelés az uploadra <br>
 
 
@@ -17,9 +16,6 @@
 ---
 
 -profilehoz my cars <br>
-<br>
--auto kedvelés <br>
--email check hogy jó e <br>
 <br>
 -STRIPE
 <br>

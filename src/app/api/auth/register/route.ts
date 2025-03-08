@@ -17,6 +17,21 @@ function encrypt_pw(password: string)  {
     })
 }
 
+function validatePassword(password: string) {
+
+    return /[A-Z]/       .test(password) &&
+           /[a-z]/       .test(password) &&
+           /[0-9]/       .test(password) &&
+           /[^A-Za-z0-9]/.test(password) &&
+           password.length > 8;
+
+}
+
+function validateEmail(email: string) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+
 export async function POST(req: Request) {
     // validating the request
     try {
@@ -41,6 +56,15 @@ export async function POST(req: Request) {
         (captcha as string).length === 0
     ) {
         let resp = NextResponse.json({"success":false, "message": `Hiányzó adatok`}, {"status": 400});
+        return resp;
+    }
+    // megnézzük h jó-e az email meg a jelszó tuah
+    if(!validateEmail(email)) {
+        let resp = NextResponse.json({"success":false, "message": `Érvénytelen e-mail`}, {"status": 400});
+        return resp;
+    }
+    if(!validatePassword(password)) {
+        let resp = NextResponse.json({"success":false, "message": `Érvénytelen jelszó`}, {"status": 400});
         return resp;
     }
     // verifying captcha answer

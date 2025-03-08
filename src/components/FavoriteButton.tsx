@@ -9,6 +9,7 @@ import React, { useEffect, useLayoutEffect } from "react";
 export default function FavoriteButton({car_id}: {car_id: number}) {
     const [favorited, setFavorited] = React.useState<boolean>(false);
     const [show, setShow] = React.useState<boolean>(false);
+    const [available, setAvailable] = React.useState<boolean>(true);
     useEffect(() => {
         fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/profile/favorites?car_id=${car_id}`, {
             method: "GET"
@@ -24,8 +25,13 @@ export default function FavoriteButton({car_id}: {car_id: number}) {
             console.log("asd");
             setShow(true);
         });
-    });
+    }, [setFavorited, setShow]);
     function toggleFavorite() {
+        console.log(available);
+        if(!available) {
+            return;
+        }
+        setAvailable(false);
         if(favorited) {
             setFavorited(false);
             fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/profile/favorites?car_id=${car_id}`, {
@@ -36,6 +42,7 @@ export default function FavoriteButton({car_id}: {car_id: number}) {
                     console.error(res.text);
                     setFavorited(true);
                 }
+                setAvailable(true);
             })
         }else {
             setFavorited(true);
@@ -47,6 +54,7 @@ export default function FavoriteButton({car_id}: {car_id: number}) {
                     console.error(res.text);
                     setFavorited(false);
                 }
+                setAvailable(true);
             })
         }
     }
@@ -58,7 +66,7 @@ export default function FavoriteButton({car_id}: {car_id: number}) {
         }
     }
     return (
-        <div className="mr-3 w-[32px]" onClick={() => {toggleFavorite()}}>
+        <div className={"mr-3 w-[32px] " + (available && "cursor-pointer")} onClick={() => {toggleFavorite()}}>
             {show && render()}
         </div>
     );
