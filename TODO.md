@@ -11,6 +11,7 @@
 -reklámok <br>
 -auto kedvelés <br>
 -fizetett kiemelés az uploadra <br>
+-Sikeres fizetés oldal
 
 
 ## Backend

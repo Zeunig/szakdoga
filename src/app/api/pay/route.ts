@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
                 return resp;
             }
             var session = await stripe.checkout.sessions.create({
-                success_url: `http://localhost:3000/pay/success`, // TODO : mindig jó domain
+                success_url: `http://localhost:3000/pay/success?redirect_to=/search/cars/${car_id}`, // TODO : mindig jó domain
                 line_items: [
                   {
                     price: 'price_1R0kMWQetjTlAjyTl37eq5py',
@@ -31,17 +31,16 @@ export async function POST(req: NextRequest) {
                   },
                 ],
                 metadata: {
-                    "user_id": req.headers.get("x-user-id"),
                     "car_id": car_id
                 },
                 mode: 'payment',
             });
             console.log(session);
-            return NextResponse.redirect(session["url"], {status: 302});
+            return NextResponse.json({"redirect": session["url"]}, {status: 201});
         case 2:
             // Korlátlan autó feltöltés
             var session = await stripe.checkout.sessions.create({
-                success_url: `http://localhost:3000/pay/success`, // TODO : mindig jó domain
+                success_url: `http://localhost:3000/pay/success?redirect_to=/profile`, // TODO : mindig jó domain
                 line_items: [
                   {
                     price: 'price_1R0kNAQetjTlAjyTb8PLkGzK',
@@ -53,6 +52,6 @@ export async function POST(req: NextRequest) {
                 },
                 mode: 'payment',
             });
-            return NextResponse.redirect(session["url"], {status: 302});
+            return NextResponse.json({"redirect": session["url"]}, {status: 201});
     }
 }
