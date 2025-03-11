@@ -1,4 +1,4 @@
-
+"use client";
 import { BrandCB } from "@/components/BrandCB";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
@@ -22,12 +22,44 @@ import {
     SheetTrigger,
   } from "@/components/ui/sheet"
 import HeaderBTN from "@/components/HeaderBTN";
+import React, { useRef } from "react";
 
 
 export default function Page() {
+    const carIdRef = useRef(0);   
+    async function buyFeature() {
+        fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/pay`, {
+            method: "POST",
+            redirect: "follow",
+            body: JSON.stringify(
+                {
+                    "product_id": 1,
+                    "car_id": document.getElementById("carid")?.nodeValue
+                }
+            )
+        })
+        .then(res => res.json()).then(json => window.location.href = json["redirect"]);
+
+    }
+    async function buyUpload() {
+        fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/pay`, {
+            method: "POST",
+            redirect: "follow",
+            body: JSON.stringify(
+                {
+                    "product_id": 2
+                }
+            )
+        })
+        .then(res => res.json()).then(json => window.location.href = json["redirect"]);
+    }
     return (
         <div>
-
+            <div>
+                <Input type="number" name="carid" id="carid" />
+                <button onClick={buyFeature}>Vásárlás: Kiemelés</button>
+                <button onClick={buyUpload}>Vásárlás: Végtelen feltöltés</button>
+            </div>
             <div className="p-4 grid grid-cols-4                     ">
                 <div className="bg-black">
                 </div>
@@ -37,7 +69,6 @@ export default function Page() {
                         <HoverCardContent>surprise</HoverCardContent>
                     </HoverCard>
                 </div>
-                <BrandCB />
                 <div>
                     <Drawer>
                         <DrawerTrigger>Megnyitás</DrawerTrigger>
