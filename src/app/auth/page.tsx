@@ -9,7 +9,7 @@ export default function Page() {
     return ( 
         <div> 
             <Header/>
-            <div id="bg" className="h-400 mb-64 ">
+            <div className="mt-10">
                 <AuthTabs/>
             </div>   
             <Footer/>   

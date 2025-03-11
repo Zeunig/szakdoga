@@ -1,7 +1,7 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -30,13 +30,18 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem
   }
+
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;
   }
+
   .scrollbar-hidden {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
   }
+
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -63,17 +68,28 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%
   }
+  .hvr-glow:hover{
+    box-shadow:0 0 16px #155dfc !important;
+  }
+  .hvr-outline-out:before{
+    border:#155dfc solid 2px !important;	
+    border-radius: 14px !important;
+  }
+  .hvr-underline-from-center:before{
+    background:#155dfc !important;
+    
+  }
+
+  
 }
-@theme {
-  --color-mint-500: oklch(0.72 0.11 178);
-}
+
 
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
-

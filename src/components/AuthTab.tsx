@@ -83,7 +83,7 @@ export default function AuthTabs() {
         .then(res => res.json()).then(json => parseResponse(json, formData.get("email") as string, formData.get("password") as string));
     }
     return (
-        <div className="h-80 grid justify-items-center mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 bg-red-400">
+        <div className="h-80 grid justify-items-center mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             
             <Tabs defaultValue="login" className="w-[400px]">
 
@@ -94,7 +94,7 @@ export default function AuthTabs() {
 
 
                 <TabsContent value="login" >
-                    <Card className="border-2 border-blue-400">
+                    <Card className="border-2 border-slate-300 hover:border-blue-400 duration-500">
                         {
                             loginAlert.map(alert => (
                                 <Alert alert_type={alert.alert_type} title={alert.title} message={alert.message}></Alert>
@@ -115,11 +115,11 @@ export default function AuthTabs() {
                             <CardContent className="space-y-2">
                                 <div className="space-y-1">
                                     <Label htmlFor="email">E-mail</Label>
-                                    <Input id="email" type="email" name="email" />
+                                    <Input id="email" type="email" name="email" className="border-2 hover:border-blue-300"/>
                                 </div>
                                 <div className="space-y-1">
                                     <Label htmlFor="password">Jelszó</Label>
-                                    <Input id="password" type="password" name="password"/>
+                                    <Input id="password" type="password" name="password" className="border-2 hover:border-blue-300"/>
                                 </div>
                             </CardContent>
 
@@ -152,22 +152,22 @@ export default function AuthTabs() {
                             <CardContent className="space-y-2">
                             <div className="space-y-1">
                                 <Label htmlFor="email">Név</Label>
-                                <Input id="name" type="text" name="name" />
+                                <Input id="name" type="text" name="name" className="border-2 hover:border-blue-300"/>
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="email">E-mail</Label>
-                                <Input id="email" type="email" name="email" />
+                                <Input id="email" type="email" name="email" className="border-2 hover:border-blue-300" />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="password">Jelszó</Label>
-                                <Input id="password" type="password" name="password"/>
+                                <Input id="password" type="password" name="password" className="border-2 hover:border-blue-300"/>
                             </div>
                             <div className="h-captcha" data-sitekey="10000000-ffff-ffff-ffff-000000000001"></div>
                             <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
                             </CardContent>
 
                             <CardFooter>
-                            <Button type="submit">Fiók létrehozása</Button>
+                            <Button type="submit" className="">Fiók létrehozása</Button>
                             </CardFooter>
                         </form>         
 

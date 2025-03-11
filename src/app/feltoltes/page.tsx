@@ -18,10 +18,10 @@ import Upload from "@/components/Upload";
 export default async function Page() {
     let cars = await get_car_selection();
     return (
-        <div>
-            <Header />
-            <Upload {...cars} />
-            <Footer />
+        <div className="flex flex-col h-screen">
+            <div><Header /></div>
+            <div><Upload {...cars} /></div>
+            <div><Footer /></div>
         </div>
 
     )

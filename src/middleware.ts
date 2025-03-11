@@ -6,10 +6,10 @@ import { authentication } from './lib/auth';
 export const config = {
     matcher: [
       // Match /api/ paths but exclude /api/car/
-      '/(api(?!/car/|/auth/)(?:/?|/.*))',
+      '/(api(?!/car/|/auth/|/pay/webhook)(?:/?|/.*))',
       // Match /profile/ paths
       '/profile/:path*',
-      '/upload'
+      '/upload',
     ]
   }
 
