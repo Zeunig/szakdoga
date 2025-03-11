@@ -18,12 +18,6 @@
 ---
 
 -profilehoz my cars <br>
-<br>
--auto kedvelés <br>
--email check hogy jó e <br>
-<br>
--STRIPE
-<br>
 
 
 ##Fullstack
@@ -31,4 +25,3 @@
 -my profile<br>
 >rendes adaok<br>
 <br>
--jelszó min 8 karakter Aa1 formátum<br>
