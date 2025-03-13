@@ -35,7 +35,16 @@ export async function get_my_profile(user_id: number) {
             password: false,
             car: {
                 include: {
+                    car_image_relation: {
+                        include: {
+                            car_id: false,
+                            id: false
+                        }
+                    },
                     features: false
+                },
+                where: {
+                    listed: 1
                 }
             },
             favorites: true

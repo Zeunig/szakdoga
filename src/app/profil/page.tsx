@@ -9,6 +9,7 @@ import MyCars from "@/components/MyCars";
 import { cookies } from 'next/headers';
 import { authentication } from "@/lib/auth";
 import { get_my_profile } from "../api/my_profile/route";
+import { ICarListing } from "@/lib/car";
 
 
 export default async function Page() {
@@ -24,7 +25,8 @@ export default async function Page() {
             return;
         }
     }
-    console.log(profile);
+    var cars = profile["car"] as ICarListing[];
+    console.log(cars);
     return (
         <div className="scrollbar-hidden">
             <Header />
@@ -36,7 +38,7 @@ export default async function Page() {
                             <TabsList className="w-full lg:w-[700px] h-10 bg-gray-300 border-2 border-gray-400 rounded-lg mt-10">
                                 <TabsTrigger value="profile" className="w-[150px]">Profil</TabsTrigger>
                                 <TabsTrigger value="settings" className="w-[150px]">Beállítások</TabsTrigger>
-                                <TabsTrigger value="cars" className="w-[150px]">Feladott hírdetések</TabsTrigger>
+                                <TabsTrigger value="cars" className="w-[150px]">Feladott hirdetések</TabsTrigger>
                                 <TabsTrigger value="favorites" className="w-[150px]">Mentett hirdetések</TabsTrigger>
                             </TabsList>
 
@@ -45,6 +47,7 @@ export default async function Page() {
                             <TabsContent value="profile" className="">
                                 <Card className="h-[300px] bg-gray-300 border-2 border-gray-400 rounded-lg">
                                     <CardHeader>
+                                        <img width="64px" height="64px" src={profile?.avatar_url} alt="" />
                                         <CardTitle className="font-bold text-3xl">{profile?.name}</CardTitle>
                                         <hr className="w-80 h-px bg-slate-400 border-0" />
                                     </CardHeader>
@@ -52,8 +55,8 @@ export default async function Page() {
 
                                     </CardContent>
                                     <CardFooter>
-                                        Csatlakozott : {profile?.join_date?.toLocaleDateString()}
-                                        
+                                        Csatlakozott : {profile?.join_date?.toLocaleDateString()}<br></br>
+                                        Feltett autók : {cars.length}<br></br>
                                     </CardFooter>
                                 </Card>
                             </TabsContent>
@@ -69,10 +72,10 @@ export default async function Page() {
                                     <CardContent className="    ">
                                         <div >Email cím változtatása:</div>
                                         <hr className="w-40 h-px bg-slate-400 border-0 mt-1 mb-3" />
-                                        <div className="display: inline">Regisztrált email cím:</div> <div className="display: inline w-[300px] border-2 border-gray-400 rounded-lg text-muted text-gray-600">kiss.bela@gmail.com</div>
+                                        <div className="display: inline">Regisztrált email cím:</div> <div className="display: inline w-[300px] border-2 border-gray-400 rounded-lg text-muted text-gray-600">{profile?.email}</div>
                                         <br />
                                         <div className="display: inline">Új email cím:</div>  <input type="email" name="" id="" className="border-2 border-gray-400 rounded-lg display: inline" />
-                                    </CardContent>
+                                    </CardContent> {/* TODO : EMAIL MÓDOSÍTÁS */}
                                 </Card>
                             </TabsContent>
                             {/*Setting end*/}
@@ -90,18 +93,11 @@ export default async function Page() {
                                         <ScrollArea className="h-[550px]">
                                         <div className="grid grid-cols-1 ml-14 lg:ml-0 lg:grid-cols-4">
                                         <ScrollBar orientation="vertical"/>
-                                            <div className="mb-3"> <MyCars/> </div>
-                                            <div className="mb-3"> <MyCars/> </div>
-                                            <div className="mb-3"> <MyCars/> </div>
-                                            <div className="mb-3"> <MyCars/> </div>
-                                            <div className="mb-3"> <MyCars/> </div>
-                                            <div className="mb-3"> <MyCars/> </div>
-                                            <div className="mb-3"> <MyCars/> </div>
-                                            <div className="mb-3"> <MyCars/> </div>
-                                            <div className="mb-3"> <MyCars/> </div>
-                                            <div className="mb-3"> <MyCars/> </div>
-                                            <div className="mb-3"> <MyCars/> </div>
-                                            <div className="mb-3"> <MyCars/> </div>
+                                            {
+                                                cars.map((car) => (
+                                                    <div className="mb-3"> <MyCars car={car}/> </div>
+                                                ))
+                                            }
                                             </div>
                                         </ScrollArea >  
                                     </CardContent>
