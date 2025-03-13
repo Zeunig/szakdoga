@@ -2,20 +2,29 @@
 
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
-import ProfileDataTable from "@/components/ProfileDataTable";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger, } from "@/components/ui/tabs";
-import { Cog, Delete, DeleteIcon, EditIcon, Pen, Trash, TrashIcon } from "lucide-react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import MyCars from "@/components/MyCars";
-import { Thumb } from "@radix-ui/react-scroll-area";
+import { cookies } from 'next/headers';
+import { authentication } from "@/lib/auth";
+import { get_my_profile } from "../api/my_profile/route";
+
 
 export default async function Page() {
-
-
+    const auth_cookie = (await cookies()).get("auth");
+    if(auth_cookie === undefined) {
+        console.error("TODO: redirect /auth");
+        return;
+    }else {
+        let auth = await authentication(auth_cookie.value);
+        if (auth["success"] == true) {
+            var profile = await get_my_profile(auth["payload"]["id"] as unknown as number);
+        }else {
+            return;
+        }
+    }
+    console.log(profile);
     return (
         <div className="scrollbar-hidden">
             <Header />
@@ -36,14 +45,15 @@ export default async function Page() {
                             <TabsContent value="profile" className="">
                                 <Card className="h-[300px] bg-gray-300 border-2 border-gray-400 rounded-lg">
                                     <CardHeader>
-                                        <CardTitle className="font-bold text-3xl">Kiss Béla</CardTitle>
+                                        <CardTitle className="font-bold text-3xl">{profile?.name}</CardTitle>
                                         <hr className="w-80 h-px bg-slate-400 border-0" />
                                     </CardHeader>
                                     <CardContent className="    ">
 
                                     </CardContent>
                                     <CardFooter>
-                                        Footer
+                                        Csatlakozott : {profile?.join_date?.toLocaleDateString()}
+                                        
                                     </CardFooter>
                                 </Card>
                             </TabsContent>

@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 
+
 export async function GET(req: NextRequest) {
     let user_id = parseInt(req.nextUrl.searchParams.get("user_id") as string);
     console.log(typeof(user_id));
