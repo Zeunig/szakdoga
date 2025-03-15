@@ -63,6 +63,7 @@ null,
 true);*/
 
 export async function GET(req: Request) {
+    console.log(location.protocol);
     try {
         const prisma = new PrismaClient();
         let prismaquery = Prisma.sql`SELECT brand, model, COUNT(brand) AS count

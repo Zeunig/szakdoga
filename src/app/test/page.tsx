@@ -28,7 +28,7 @@ import React, { useRef } from "react";
 export default function Page() {
     const carIdRef = useRef(0);   
     async function buyFeature() {
-        fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/pay`, {
+        fetch(`${location.protocol}//${window.location.host}/api/pay`, {
             method: "POST",
             redirect: "follow",
             body: JSON.stringify(
@@ -42,7 +42,7 @@ export default function Page() {
 
     }
     async function buyUpload() {
-        fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/pay`, {
+        fetch(`${location.protocol}//${window.location.host}/api/pay`, {
             method: "POST",
             redirect: "follow",
             body: JSON.stringify(

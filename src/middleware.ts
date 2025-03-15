@@ -8,7 +8,7 @@ export const config = {
       // Match /api/ paths but exclude /api/car/
       '/(api(?!/car/|/auth/|/pay/webhook)(?:/?|/.*))',
       // Match /profile/ paths
-      '/profile/:path*',
+      '/profil/:path*',
       '/feltoltes',
     ]
   }

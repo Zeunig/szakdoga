@@ -18,7 +18,7 @@ export default function AuthTabs() {
     let [registerAlert, setRegisterAlert] = useState([] as IAlert[]);
     function parseResponse(json: any, email: string, password: string) {
         if(json["success"] === true) {
-            fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/auth/login`, {
+            fetch(`${location.protocol}//${window.location.host}/api/auth/login`, {
                 method: "POST",
                 body: JSON.stringify(
                     {
@@ -30,7 +30,7 @@ export default function AuthTabs() {
             .then(res => res.json()).then(json => {
                 setRegisterAlert([{alert_type: "success", title: "Sikeres regisztráció", message: "Hamarosan átirányítunk a főoldalra"}])
                 setTimeout(() => {
-                    window.location.href = `http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}`;
+                    window.location.href = `${location.protocol}//${window.location.host}`;
                 },2000);
             });
             
@@ -44,7 +44,7 @@ export default function AuthTabs() {
         if(json["success"] === true) {
             setLoginAlert([{alert_type: "success", title: "Sikeres bejelentkezés", message: "Hamarosan átirányítunk a főoldalra"}])
             setTimeout(() => {
-                window.location.href = `http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}`;
+                window.location.href = `${location.protocol}//${window.location.host}`;
             },2000);
         }else {
             setLoginAlert([{alert_type: "danger", title: "Hiba", message: json["message"] as string}]);
@@ -53,7 +53,7 @@ export default function AuthTabs() {
         }
     }
     async function login(formData: FormData) {
-        fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/auth/login`, {
+        fetch(`${location.protocol}//${window.location.host}/api/auth/login`, {
             method: "POST",
             body: JSON.stringify(
                 {
@@ -69,7 +69,7 @@ export default function AuthTabs() {
         if (hcaptcha_response?.length === 0) {
             return;
         }
-        fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/auth/register`, {
+        fetch(`${location.protocol}//${window.location.host}/api/auth/register`, {
             method: "POST",
             body: JSON.stringify(
                 {

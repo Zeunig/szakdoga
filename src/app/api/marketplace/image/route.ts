@@ -5,9 +5,7 @@ import { writeFile } from "fs/promises";
 
 export async function POST(req: NextRequest) {
     const formData = await req.formData();
-    console.log(formData);
     const file = formData.get("file") as File;
-    console.log(file);
     let extension = file.name.split(".").at(-1) as string;
     const id = [...crypto.getRandomValues(new Uint8Array(20))].map(m=>('0'+m.toString(16)).slice(-2)).join('');
     const file_name = id + "." + extension;
@@ -18,11 +16,11 @@ export async function POST(req: NextRequest) {
         let data = await file.bytes();
         await writeFile(path.join(process.cwd(), "public/car/",file_name),data).catch((err) => {
             console.log(err);
-            return NextResponse.json({"success": false, "error":`Nem működött a fájlfeltöltés. Kérjük, próbálja meg újra később!`},{"status":400});
+            return NextResponse.json({"success": false, "error":`Nem működött a fájlfeltöltés. Kérjük, próbálja meg újra később!`},{"status":500});
         });
     }catch(err) {
         console.error(err);
-        return NextResponse.json({"success": false, "error":`Nem működött a fájlfeltöltés. Kérjük, próbálja meg újra később!`},{"status":400});
+        return NextResponse.json({"success": false, "error":`Nem működött a fájlfeltöltés. Kérjük, próbálja meg újra később!`},{"status":500});
     }
     return NextResponse.json({"success":true,"image_id": id},{"status":200});
 }

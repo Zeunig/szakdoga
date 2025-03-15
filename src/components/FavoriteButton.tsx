@@ -12,7 +12,7 @@ export default function FavoriteButton({car_id}: {car_id: number}) {
     const [show, setShow] = React.useState<boolean>(false);
     const [available, setAvailable] = React.useState<boolean>(true);
     useEffect(() => {
-        fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/profile/favorites?car_id=${car_id}`, {
+        fetch(`${location.protocol}//${window.location.host}/api/profile/favorites?car_id=${car_id}`, {
             method: "GET"
         })
         .then(res => res.json()).then(json => {
@@ -35,7 +35,7 @@ export default function FavoriteButton({car_id}: {car_id: number}) {
         setAvailable(false);
         if(favorited) {
             setFavorited(false);
-            fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/profile/favorites?car_id=${car_id}`, {
+            fetch(`${location.protocol}//${window.location.host}/api/profile/favorites?car_id=${car_id}`, {
                 method: "DELETE"
             })
             .then(res => {
@@ -47,7 +47,7 @@ export default function FavoriteButton({car_id}: {car_id: number}) {
             })
         }else {
             setFavorited(true);
-            fetch(`http${window.location.host.includes("localhost:") ? "" : "s"}://${window.location.host}/api/profile/favorites?car_id=${car_id}`, {
+            fetch(`${location.protocol}//${window.location.host}/api/profile/favorites?car_id=${car_id}`, {
                 method: "PUT"
             })
             .then(res => {
