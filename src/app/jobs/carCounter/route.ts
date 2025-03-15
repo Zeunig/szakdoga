@@ -90,6 +90,6 @@ export async function DELETE(req: Request) {
 
 const car_selection: ISortedCarSelection[] = [];
 
-export async function get_car_selection() {
+export async function get_car_selection(): Promise<ISortedCarSelection[]> {
     return car_selection;
 }

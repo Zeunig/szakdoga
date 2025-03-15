@@ -12,10 +12,10 @@ import SMGR1 from "./smSearch/SMGR1";
 import SMGR2 from "./smSearch/SMGR2";
 import SMGR3 from "./smSearch/SMGR3";
 import SMGR4 from "./smSearch/SMGR4";
-import SMGR5 from "./smSearch/SMGR5";
 import React from "react";
+import { ICarListing } from "@/lib/car";
 
-export function CarSearchCard(cars: ISortedCarSelection[]) {
+export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelection[], setSearchResult: React.Dispatch<React.SetStateAction<ICarListing[]>>}) {
     const [selectedBrand, setSelectedBrand] = React.useState("");
     return (
         <div className="mb-20">
