@@ -83,17 +83,18 @@ export default function AuthTabs() {
         .then(res => res.json()).then(json => parseResponse(json, formData.get("email") as string, formData.get("password") as string));
     }
     return (
-        <div className="h-80 grid justify-items-center mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div className="h-[500px] flex justify-center mx-auto w-12/12  p-4 py-6 lg:py-8 bg-blue-50">
             
-            <Tabs defaultValue="login" className="w-[400px]">
+            <Tabs defaultValue="login" className="w-[400px] ">
 
-                <TabsList className="grid grid-cols-2  bg-blue-400 ">
+                <TabsList className="grid grid-cols-2 bg-blue-300 ">
                     <TabsTrigger value="login">Bejelentkezés</TabsTrigger>
                     <TabsTrigger value="register">Regisztráció</TabsTrigger>
                 </TabsList>
 
 
                 <TabsContent value="login" >
+
                     <Card className="border-2 border-slate-300 hover:border-blue-400 duration-500">
                         {
                             loginAlert.map(alert => (
@@ -135,7 +136,7 @@ export default function AuthTabs() {
 
                 
                 <TabsContent value="register">
-                    <Card>
+                    <Card className="border-2 border-slate-300 hover:border-blue-400 duration-500">
                         {
                             registerAlert.map(alert => (
                                 <Alert alert_type={alert.alert_type} title={alert.title} message={alert.message}></Alert>
@@ -167,7 +168,7 @@ export default function AuthTabs() {
                             </CardContent>
 
                             <CardFooter>
-                            <Button type="submit" className="">Fiók létrehozása</Button>
+                            <Button type="submit" className="hvr-grow">Fiók létrehozása</Button>
                             </CardFooter>
                         </form>         
 

@@ -79,6 +79,16 @@
     background:#155dfc !important;
     
   }
+  .hvr-underline-from-left:before{
+    background:#155dfc !important;
+    
+  }
+
+
+  .hvr-icon-fade 
+  .hvr-icon:hover{color:#155dfc}
+    
+
 
   
 }

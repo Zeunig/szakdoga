@@ -29,38 +29,34 @@ export function CarSearchCard(cars: ISortedCarSelection[]) {
 
                 </CardHeader>
                 <CardContent>
-                    <div className="mb-6">
-                        <Label htmlFor="email">Márka</Label>
-                        <br />
-                        <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand}/>
-                    </div>
-                    <div className="mb-6">
-                        <Label htmlFor="email">Modell</Label>
-                        <br />
-                        <ModelCB car_selection={cars} selectedBrand={selectedBrand}/>
-                    </div>
-                    <div className="mb-6">
-                        <Label htmlFor="email">Modell</Label>
-                        <br />
-                        
-                    </div>
                     <div>
 
-                        <div className="bg-red-400">
+                        <div className="bg--400">
                             <Collapsible className="hidden lg:block">
-                                <CollapsibleTrigger>Group 01</CollapsibleTrigger>
-                                <CollapsibleContent>
-                                    ------Content #1 <br />
-                                    ------Content #2 <br />
-                                    ------Content #3 <br />
-                                    ------Content #4 <br />
-                                    ------Content #5 <br />
-                                    ------Content #6 <br />
+                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg hover:text-blue-400">Márka, model, típus</CollapsibleTrigger>
+                                
+                                <CollapsibleContent className="grid grid-rows-4">
+                                <hr className="w-full h-px bg-slate-400 border-0 -mb-40" />
+                                <div>
+
+                                <label htmlFor="" className="">Márka <br /> </label> 
+                                <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand}/>
+
+                                </div>
+                                <div>
+
+                                <label htmlFor="">Model <br /> </label>
+                                <ModelCB car_selection={cars} selectedBrand={selectedBrand}/>
+                                
+                                </div>
+                                
                                 </CollapsibleContent>
                             </Collapsible>
                         </div>
+                        
+                        <hr className="w-full h-px bg-slate-400 border-0" />
 
-                        <div className="bg-blue-400">
+                        <div className="bg--400">
                             <Collapsible className="hidden lg:block">
                                 <CollapsibleTrigger>Group 02</CollapsibleTrigger>
                                 <CollapsibleContent>

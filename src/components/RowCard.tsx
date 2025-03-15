@@ -1,24 +1,24 @@
 import Image from "next/image";
 export default function RowCard() {
     return (
-        <div className=" min-h-92">
-            <div className="lg:flex gap-3 bg-white border border-gray-950 rounded-xl overflow-hidden items-center justify-start">
-                <div className=" mt-1 relative w-60 h-32 flex-shrink-0">
-                    <img className="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="../hplaceholder.jpg" alt="car placeholder img" />
+        <div className="">
+            <div className="lg:flex gap-3 lg:min-h-52 bg-white border border-gray-950 rounded-xl overflow-hidden items-center justify-start bg-rose-50">
+                <div className="flex mt-1 relative w-52 h-32 flex-shrink-0  ml-5 lg:ml-0 place-self-start lg:place-self-center">
+                    <img className="w-full lg:absolute lg:left-0 lg:top-0 lg:w-full lg:h-full object-cover object-center transition duration-50" loading="lazy" src="../hplaceholder.jpg" alt="car placeholder img" />
                 </div>
-                <div className="flex flex-col gap-2 py-2">
+                <div className="py-4">
                     <div className="grid grid-cols-2">
                         <p className="text-xl font-bold ml-5 lg:ml-0">BMW - M3</p>
-                        <p className="text-xl font-bold text-blue-600 -ml-16 lg:-ml-28">{"88 888 888"} Ft</p>
+                        <p className="text-xl font-bold text-blue-600 lg:absolute lg:right-60">{"88 888 888"} Ft</p>
                     </div>
-                    <p className="ml-5 lg:ml-0">BMW M3 CSL - Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    
                     <div className="text-gray-500 w-96 ml-5 lg:ml-0">
                         | {"888,888"}km | {"888"}le | {"8888"}kg |   <br />
                     </div>
-                    <div className="w-0 h-0 hidden lg:block lg:text-gray-500  lg:w-96 lg:h-fit ">
-                        Description of your post/article,   <br />
-                        Description of your post/article,   <br />
-                        Description of your post/article,   <br />
+                    <div className="hidden lg:block lg:text-gray-500">
+                        Description of your post/article,   
+                        Description of your post/article,  
+                        Description of your post/article,   
                     </div>
                     <span className="flex items-center justify-start text-gray-500 ml-5 lg:ml-0">
                         <svg className="w-4 h-4 mr-1 mt-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

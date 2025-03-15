@@ -50,7 +50,7 @@ export function CarListing(car: ICarListing) {
 
                 {/*Fő adatok*/}
                 <div className="col-span-2  border-2 border-grey-500 rounded-xl">
-                    <div className="col-span-2 ml-12 mt-2 -mb-3 text-3xl font-bold inline-flex"><FavoriteButton car_id={car?.id}/> {car?.brand} {car?.model}</div>
+                    <div className="col-span-2 ml-12 mt-2 -mb-3 text-3xl font-bold inline-flex "><FavoriteButton car_id={car?.id} /> {car?.brand} {car?.model}</div>
                     <div className="grid grid-rows-2 lg:grid-cols-2">
 
                         {/*Képnézegető*/}

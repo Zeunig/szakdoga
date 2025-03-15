@@ -6,12 +6,22 @@ import { Header } from "@/components/Header";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function Page() {
-    return ( 
+    return (
+        <div className="flex flex-col h-screen">
+
         <div> 
             <Header/>
-            <div className="mt-10">
+        </div>
+
+            <div>
+            <div className="h-fit">
                 <AuthTabs/>
             </div>   
+            </div>   
+
+        <div>
             <Footer/>   
+        </div>
+
         </div>
     )}
