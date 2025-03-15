@@ -9,7 +9,7 @@ export const config = {
       '/(api(?!/car/|/auth/|/pay/webhook)(?:/?|/.*))',
       // Match /profile/ paths
       '/profile/:path*',
-      '/upload',
+      '/feltoltes',
     ]
   }
 

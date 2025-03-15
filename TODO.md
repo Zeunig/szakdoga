@@ -9,7 +9,6 @@
 -car id page kép felfele kb 15px <br>
 <br>
 -reklámok <br>
--auto kedvelés <br>
 -fizetett kiemelés az uploadra <br>
 -Sikeres fizetés oldal
 

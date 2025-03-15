@@ -21,7 +21,6 @@ import {
     SheetTitle,
     SheetTrigger,
   } from "@/components/ui/sheet"
-import HeaderBTN from "@/components/HeaderBTN";
 import React, { useRef } from "react";
 
 
@@ -126,7 +125,6 @@ export default function Page() {
                 </div>
 
             <div>
-                <HeaderBTN/>
             </div>
 
             <div className="mx-96 mt-80          ">
