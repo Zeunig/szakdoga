@@ -45,7 +45,6 @@ export interface ICarListing {
 
 export function parseCarListing(json: object): ICarListing {
     try {
-        console.log(json);
         const id = Number(json.id);
         const creation_date = json.creation_date as string;
         const fuel_type = json.fuel_type as string;
@@ -98,7 +97,7 @@ export function parseCarListing(json: object): ICarListing {
         };
         return carListing;
     } catch (error) {
-        console.log(error);
+        console.error(error);
         return undefined;
     }
 }

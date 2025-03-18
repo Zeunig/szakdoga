@@ -154,6 +154,8 @@ export async function Search(search: ISearch) {
    `;
    let query: object[] = await prisma.$queryRaw(prismaquery);
    for(var i = 0; i < query.length; i++) {
+      let hawk_tuah = await prisma.$queryRaw(Prisma.sql`SELECT image_url FROM szakdoga.car_image_relation WHERE car_id=${Number(query[i]["id"])}`);
+        console.log(hawk_tuah);query[i]["car_image_relation"] = hawk_tuah;
         query[i]["id"] = Number(query[i]["id"]);
         query[i]["features"] = Number(query[i]["features"]);
    }

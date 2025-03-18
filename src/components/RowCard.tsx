@@ -1,19 +1,20 @@
+import { ICarListing } from "@/lib/car";
 import Image from "next/image";
-export default function RowCard() {
+export default function RowCard({car} : {car: ICarListing}) {
     return (
         <div className="">
             <div className="lg:flex gap-3 lg:min-h-52 bg-white border border-gray-950 rounded-xl overflow-hidden items-center justify-start bg-rose-50">
                 <div className="flex mt-1 relative w-52 h-32 flex-shrink-0  ml-5 lg:ml-0 place-self-start lg:place-self-center">
-                    <img className="w-full lg:absolute lg:left-0 lg:top-0 lg:w-full lg:h-full object-cover object-center transition duration-50" loading="lazy" src="../hplaceholder.jpg" alt="car placeholder img" />
+                    <img className="w-full lg:absolute lg:left-0 lg:top-0 lg:w-full lg:h-full object-cover object-center transition duration-50" loading="lazy" src={car.images[0]} alt="car placeholder img" />
                 </div>
                 <div className="py-4">
                     <div className="grid grid-cols-2">
-                        <p className="text-xl font-bold ml-5 lg:ml-0">BMW - M3</p>
-                        <p className="text-xl font-bold text-blue-600 lg:absolute lg:right-60">{"88 888 888"} Ft</p>
+                        <p className="text-xl font-bold ml-5 lg:ml-0">{car.brand} {car.model}</p>
+                        <p className="text-xl font-bold text-blue-600 lg:absolute lg:right-60">{car.price.toLocaleString()} Ft</p>
                     </div>
                     
                     <div className="text-gray-500 w-96 ml-5 lg:ml-0">
-                        | {"888,888"}km | {"888"}le | {"8888"}kg |   <br />
+                    {car.mileage} km | {car.horsepower} le | {car.cc} cc<br />
                     </div>
                     <div className="hidden lg:block lg:text-gray-500">
                         Description of your post/article,   

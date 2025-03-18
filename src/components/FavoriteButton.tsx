@@ -67,7 +67,7 @@ export default function FavoriteButton({car_id}: {car_id: number}) {
         }
     }
     return (
-        <div className={"mr-3 w-[32px] " + (available && "cursor-pointer")} onClick={() => {toggleFavorite()}}>
+        <div className={"mr-2 w-[32px] flex " + (available && "cursor-pointer")} onClick={() => {toggleFavorite()}}>
             {show && render()}
         </div>
     );

@@ -6,7 +6,7 @@ import { authentication } from './lib/auth';
 export const config = {
     matcher: [
       // Match /api/ paths but exclude /api/car/
-      '/(api(?!/car/|/auth/|/pay/webhook)(?:/?|/.*))',
+      //'/(api(?!/car/|/auth/|/pay/webhook)(?:/?|/.*))',
       // Match /profile/ paths
       '/profil/:path*',
       '/feltoltes',
