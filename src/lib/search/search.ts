@@ -13,8 +13,8 @@ export interface ISearch {
     cc: number[] | [0,2000000000],
     wheels: string[] | undefined,
     gearbox: string[] | undefined,
-    passengers: number[] | undefined,
-    door: number[] | undefined,
+    passengers: number[] | [0,2000000000],
+    door: number[] | [0, 2000000000],
     color: string[] | undefined,
     status: string[] | undefined,
 
@@ -133,11 +133,11 @@ export async function Search(search: ISearch) {
   ${search.gearbox !== undefined 
     ? Prisma.sql`AND gearbox IN (${Prisma.join(search.gearbox)})` 
     : Prisma.empty}
-  ${search.passengers !== undefined 
-    ? Prisma.sql`AND passengers IN (${Prisma.join(search.passengers)})` 
+    ${search.passengers && search.passengers[0] !== null && search.passengers[1] !== null
+    ? Prisma.sql`AND passengers BETWEEN ${search.passengers[0]} AND ${search.passengers[1]}` 
     : Prisma.empty}
-  ${search.door !== undefined 
-    ? Prisma.sql`AND doors IN (${Prisma.join(search.door)})` 
+    ${search.door && search.door[0] !== null && search.door[1] !== null
+    ? Prisma.sql`AND doors BETWEEN ${search.door[0]} AND ${search.door[1]}` 
     : Prisma.empty}
   ${search.color !== undefined 
     ? Prisma.sql`AND color IN (${Prisma.join(search.color)})` 

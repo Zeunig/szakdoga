@@ -11,6 +11,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collap
 import React, { ChangeEvent } from "react";
 import { ICarListing } from "@/lib/car";
 import { CB } from "./CB";
+import axios from 'axios';
 
 export interface searchCondition {
     brand?: string,
@@ -30,31 +31,42 @@ export interface searchCondition {
     max_hp?: number,
     wheels?: string[],
     gearbox?: string[],
-    passengers?: number[],
-    doors?: number[],
-    color?: string[],
-    features: number,
+    min_doors: number,
+    max_doors: number,
+    min_passengers: number,
+    max_passengers: number
+    features?: number,
     status?: string[]
 }
 
 export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelection[], setSearchResult: React.Dispatch<React.SetStateAction<ICarListing[]>>}) {
     const [selectedBrand, setSelectedBrand] = React.useState("");
-    const [selectedWheels, setSelectedWheels] = React.useState<string[]>([]);
-    const [selectedGearbox, setSelectedGearbox] = React.useState<string[]>([]);
-    const [selectedPassengers, setSelectedPassengers] = React.useState<string[]>([]);
-    const [selectedDoors, setSelectedDoors] = React.useState<string[]>([]);
-    const [selectedColor, setSelectedColor] = React.useState<string[]>([]);
-    const [selectedStatus, setSelectedStatus] = React.useState<string[]>([]);
-    
-
-    const [searchConditions, setSearchConditions] = React.useState<searchCondition>({} as searchCondition);
+    const [searchConditions, setSearchConditions] = React.useState<searchCondition>({wheels: [],gearbox: [], passengers: [], doors: [], color: [], status: []});
     /*function changeSearchCondition({value}: {value: searchCondition}) {
 
     }*/
     async function search() {
-        console.log(document.querySelectorAll('input'));
+        let url = new URL("/api/marketplace/search", window.location.origin);
+        console.log("hawk");
+        for(var i = 0; i < Object.keys(searchConditions).length; i++) {
+            if(Array.isArray(Object.values(searchConditions)[i])) {
+                if(Object.values(searchConditions)[i].length != 0) {
+                    let value = "";
+                    for(var j = 0; j < Object.values(searchConditions)[i].length; i++) {
+                        value += Object.values(searchConditions)[i][j];
+                        value += ",";
+                    }
+                    url.searchParams.append(Object.keys(searchConditions)[i], value);
+                }
+                
+            }else {
+                url.searchParams.append(Object.keys(searchConditions)[i],Object.values(searchConditions)[i]);
+            }
+        }
+        console.log(url);
+        axios.get(url.toString()).then((res) => console.log(res.data));
     }
-    function change(e: ChangeEvent<HTMLInputElement>) {
+    /*function change(e: ChangeEvent<HTMLInputElement>) {
         if(e.target.id.startsWith("wheels")) {
             let value = e.target.id.split(".")[-1].toUpperCase();
             let wheels = selectedWheels;
@@ -82,15 +94,37 @@ export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelectio
         }else if(e.target.id.endsWith("passengers")) {
 
         }
-    }
+    }*/
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         const { name, value, type } = e.target;
+        console.log(name);
         const parsedValue = type === 'number' ? parseFloat(value) : value;
         
         setSearchConditions({
             ...searchConditions,
             [name]: parsedValue
         });
+        console.log(searchConditions);
+    }
+    function handleCheckbox(e: ChangeEvent<HTMLInputElement>) {
+        const { name, value, type, checked } = e.target;
+        const parsedValue = value === 'on' ? true : false;
+        const category = name.split(".")[0];
+        const parsedItem = name.split(".")[1];
+        console.log(checked);
+        if(checked) {
+            setSearchConditions({
+                ...searchConditions,
+                [category]: [...(searchConditions as any)[category], parsedItem]
+            });
+        }else {
+            setSearchConditions({
+                ...searchConditions,
+                [category]: ((searchConditions as any)[category] || []).filter((item: string) => item !== parsedItem)
+            });
+        }
+        
+        console.log(searchConditions);
     }
     return (
         <div className="mb-20">
@@ -136,46 +170,46 @@ export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelectio
                                 <CollapsibleTrigger className="text-blue-600 font-bold text-lg hover:text-blue-400">Alap információk</CollapsibleTrigger>
                                 <CollapsibleContent>
                                     <label htmlFor="">Ár</label><br></br>
-                                    <input type="number" onChange={(e) => {change(e)}} id="minprice" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {change(e)}} id="maxprice" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minprice" name="min_price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxprice" name="max_price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     <br></br>
                                     <label htmlFor="">Kilométer</label><br></br>
-                                    <input type="number" onChange={(e) => {change(e)}} id="minkm" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {change(e)}} id="maxkm" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minkm" name="min_km" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxkm" name="max_km" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     <br></br>
                                     <label htmlFor="">Évjárat</label><br></br>
-                                    <input type="number" onChange={(e) => {change(e)}} id="minyear" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {change(e)}} id="maxyear" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minyear" name="min_year" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxyear" name="max_year" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     <br></br>
                                     <label htmlFor="">Súly</label><br></br>
-                                    <input type="number" onChange={(e) => {change(e)}} id="minweight" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {change(e)}} id="maxweight" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minweight" name="min_weight" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxweight" name="max_weight" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     <br></br>
                                     <label htmlFor="">Köbcenti</label><br></br>
-                                    <input type="number" onChange={(e) => {change(e)}} id="mincc" name="price" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {change(e)}} id="maxcc" name="price" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="mincc" name="min_cc" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxcc" name="max_cc" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     <br></br>
                                     <label htmlFor="">Lóerő</label><br></br>
-                                    <input type="number" onChange={(e) => {change(e)}} id="minhp" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {change(e)}} id="maxhp" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minhp" name="min_hp" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxhp" name="max_hp" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     <br></br>
                                     <label htmlFor="">Kerékmeghajtás</label><br></br>
-                                        <input type="checkbox" name="" id="wheels.fwd" onChange={(e) => {change(e)}}></input>
-                                        <input type="checkbox" name="" id="wheels.rwd"></input>
-                                        <input type="checkbox" name="" id="wheels.awd"></input> 
-                                        <input type="checkbox" name="" id="wheels.4wd"></input>
+                                        <input type="checkbox" name="wheels.fwd" id="wheels.fwd" onChange={(e) => {handleCheckbox(e)}}></input>
+                                        <input type="checkbox" name="wheels.rwd" id="wheels.rwd" onChange={(e) => {handleCheckbox(e)}}></input>
+                                        <input type="checkbox" name="wheels.awd" id="wheels.awd" onChange={(e) => {handleCheckbox(e)}}></input> 
+                                        <input type="checkbox" name="wheels.4wd" id="wheels.4wd" onChange={(e) => {handleCheckbox(e)}}></input>
                                     <br></br>
                                     <label htmlFor="">Gearbox</label><br></br>
-                                        <input type="checkbox" name="" id="gearbox.manual"></input>
-                                        <input type="checkbox" name="" id="gearbox.automatic"></input>
+                                        <input type="checkbox" name="gearbox.manual" id="gearbox.manual" onChange={(e) => {handleCheckbox(e)}}></input>
+                                        <input type="checkbox" name="gearbox.automatic" id="gearbox.automatic" onChange={(e) => {handleCheckbox(e)}}></input>
                                     <br></br>
                                     <label htmlFor="">Passengers</label><br></br>
-                                    <input type="number" onChange={(e) => {change(e)}} id="minpassengers" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {change(e)}} id="maxpassengers" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minpassengers" name="min_passengers" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxpassengers" name="max_passengers" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     <br></br>
                                     <label htmlFor="">Ajtók</label><br></br>
-                                    <input type="number" onChange={(e) => {change(e)}} id="mindoors" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {change(e)}} id="maxdoors" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="mindoors" name="min_doors" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxdoors" name="max_doors" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     <br></br>
                                     <label htmlFor="">Állapot</label><br></br>
                                     
@@ -241,7 +275,7 @@ export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelectio
                 </CardFooter>
             </Card>
             <label htmlFor="">Lóerő</label><br></br>
-            <CB selection={[]} setter={setSelectedWheels}/>         
+            <CB selection={[]} setter={setSearchConditions}/>         
             <br></br>
         </div>
     )

@@ -19,6 +19,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { ISortedCarSelection } from "@/app/jobs/carCounter/route"
+import { ISearch } from "@/lib/search/search"
+import { searchCondition } from "./CarSearchCard"
  
 const make = [
   {value: "ford",label: "Ford",},
@@ -30,7 +32,7 @@ const make = [
 ]
 
 
-export function CB({selection, setter}: {selection: string[], setter: React.Dispatch<React.SetStateAction<string[]>>}) {
+export function CB({selection, setter}: {selection: string[], setter: React.Dispatch<React.SetStateAction<searchCondition>>}) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
   return (
