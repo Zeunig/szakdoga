@@ -22,6 +22,70 @@ export interface ISearch {
     offset: number | 0
 }
 
+export async function SearchAmountOfResults(search: ISearch) {
+  const prisma = new PrismaClient({
+    log: ["query"]
+  });
+  let prismaquery = Prisma.sql`
+   SELECT COUNT(szakdoga.car.id) FROM szakdoga.car
+   WHERE 1=1
+   ${!(Number.isNaN(search.features))
+   ? Prisma.sql`AND (${search.features} & features) = ${search.features}`
+   : Prisma.empty}
+   ${search.brand !== null 
+    ? Prisma.sql`AND brand LIKE ${search.brand}` 
+    : Prisma.empty}
+  ${search.model !== null 
+    ? Prisma.sql`AND model LIKE ${search.model}` 
+    : Prisma.empty}
+  AND price BETWEEN ${search.price[0]} AND ${search.price[1]}
+  ${search.fuel_type !== undefined 
+    ? Prisma.sql`AND fuel_type IN ${search.fuel_type}` 
+    : Prisma.empty}
+  ${search.km && search.km[0] !== null && search.km[1] !== null
+    ? Prisma.sql`AND mileage BETWEEN ${search.km[0]} AND ${search.km[1]}` 
+    : Prisma.empty}
+  ${search.year && search.year[0] !== null && search.year[1] !== null
+    ? Prisma.sql`AND year BETWEEN ${search.year[0]} AND ${search.year[1]}` 
+    : Prisma.empty}
+  ${search.weight && search.weight[0] !== null && search.weight[1] !== null
+    ? Prisma.sql`AND weight BETWEEN ${search.weight[0]} AND ${search.weight[1]}` 
+    : Prisma.empty}
+  ${search.hp && search.hp[0] !== null && search.hp[1] !== null
+    ? Prisma.sql`AND horsepower BETWEEN ${search.hp[0]} AND ${search.hp[1]}` 
+    : Prisma.empty}
+  ${search.cc && search.cc[0] !== null && search.cc[1] !== null
+    ? Prisma.sql`AND cc BETWEEN ${search.cc[0]} AND ${search.cc[1]}` 
+    : Prisma.empty}
+  ${search.wheels !== undefined 
+    ? Prisma.sql`AND drive_type IN (${Prisma.join(search.wheels)})` 
+    : Prisma.empty}
+  ${search.gearbox !== undefined 
+    ? Prisma.sql`AND gearbox IN (${Prisma.join(search.gearbox)})` 
+    : Prisma.empty}
+    ${search.passengers && search.passengers[0] !== null && search.passengers[1] !== null
+    ? Prisma.sql`AND passengers BETWEEN ${search.passengers[0]} AND ${search.passengers[1]}` 
+    : Prisma.empty}
+    ${search.door && search.door[0] !== null && search.door[1] !== null
+    ? Prisma.sql`AND doors BETWEEN ${search.door[0]} AND ${search.door[1]}` 
+    : Prisma.empty}
+  ${search.color !== undefined 
+    ? Prisma.sql`AND color IN (${Prisma.join(search.color)})` 
+    : Prisma.empty}
+  ${search.status !== undefined 
+    ? Prisma.sql`AND design IN (${Prisma.join(search.status)})` 
+    : Prisma.empty}
+    ${!(Number.isNaN(search.limit))
+    ? Prisma.sql`LIMIT ${search.limit}`
+    : Prisma.sql`LIMIT 10`}
+    ${!(Number.isNaN(search.offset))
+    ? Prisma.sql`OFFSET ${search.offset}`
+    : Prisma.empty}
+   `;
+   let query = await prisma.$queryRaw(prismaquery);
+   return Number(query[0]["COUNT(szakdoga.car.id)"]);
+}
+
 export async function Search(search: ISearch) {
     if (search.limit > 50) {
         return "Limit too high";

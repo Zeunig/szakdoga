@@ -1,7 +1,7 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { FEATURES } from "@/lib/search/features";
-import { Search } from "@/lib/search/search";
+import { Search, SearchAmountOfResults } from "@/lib/search/search";
 import { split } from "postcss/lib/list";
 /*
     Accepted params : 
@@ -71,53 +71,54 @@ export async function GET(req: NextRequest) {
     let resp = NextResponse.json({}, {"status": 400});
     return resp;*/
     let split_wheels = (req.nextUrl.searchParams.get("wheels") as string)?.split(",");
-    
+    let query = {
+        brand: (req.nextUrl.searchParams.get("brand") as string),
+        model: (req.nextUrl.searchParams.get("model") as string),
+        fuel_type: (req.nextUrl.searchParams.get("fuel_type") as string)?.split(","),
+        price: [
+            parseInt(req.nextUrl.searchParams.get("min_price") as string) | 0,
+            parseInt(req.nextUrl.searchParams.get("max_price") as string) | 99999999999
+        ],
+        km: [
+            parseInt(req.nextUrl.searchParams.get("min_km") as string) | 0,
+            parseInt(req.nextUrl.searchParams.get("max_km") as string) | 99999999999
+        ],
+        features: parseInt(req.nextUrl.searchParams.get("features") as string),
+        year: [
+            parseInt(req.nextUrl.searchParams.get("min_year") as string) | 0,
+            parseInt(req.nextUrl.searchParams.get("max_year") as string) | 99999999999
+        ],
+        weight: [
+            parseInt(req.nextUrl.searchParams.get("min_weight") as string) | 0,
+            parseInt(req.nextUrl.searchParams.get("max_weight") as string) | 99999999999
+        ],
+        hp: [
+            parseInt(req.nextUrl.searchParams.get("min_hp") as string) | 0,
+            parseInt(req.nextUrl.searchParams.get("max_hp") as string) | 99999999999
+        ],
+        cc: [
+            parseInt(req.nextUrl.searchParams.get("min_cc") as string) | 0,
+            parseInt(req.nextUrl.searchParams.get("max_cc") as string) | 99999999999
+        ],
+        wheels: split_wheels,
+        gearbox: (req.nextUrl.searchParams.get("gearbox") as string)?.split(","),
+        passengers: [
+            parseInt(req.nextUrl.searchParams.get("min_passengers") as string) | 0,
+            parseInt(req.nextUrl.searchParams.get("max_passengers") as string) | 99999999999
+        ],
+        door: [
+            parseInt(req.nextUrl.searchParams.get("min_doors") as string) | 0,
+            parseInt(req.nextUrl.searchParams.get("max_doors") as string) | 99999999999
+        ],
+        color: (req.nextUrl.searchParams.get("color") as string)?.split(","),
+        status: (req.nextUrl.searchParams.get("status") as string)?.split(","),
+        limit: parseInt(req.nextUrl.searchParams.get("limit") as string),
+        offset: parseInt(req.nextUrl.searchParams.get("offset") as string)
+    };
     const result = await Search(
-        {
-            brand: (req.nextUrl.searchParams.get("brand") as string),
-            model: (req.nextUrl.searchParams.get("model") as string),
-            fuel_type: (req.nextUrl.searchParams.get("fuel_type") as string)?.split(","),
-            price: [
-                parseInt(req.nextUrl.searchParams.get("min_price") as string) | 0,
-                parseInt(req.nextUrl.searchParams.get("max_price") as string) | 99999999999
-            ],
-            km: [
-                parseInt(req.nextUrl.searchParams.get("min_km") as string) | 0,
-                parseInt(req.nextUrl.searchParams.get("max_km") as string) | 99999999999
-            ],
-            features: parseInt(req.nextUrl.searchParams.get("features") as string),
-            year: [
-                parseInt(req.nextUrl.searchParams.get("min_year") as string) | 0,
-                parseInt(req.nextUrl.searchParams.get("max_year") as string) | 99999999999
-            ],
-            weight: [
-                parseInt(req.nextUrl.searchParams.get("min_weight") as string) | 0,
-                parseInt(req.nextUrl.searchParams.get("max_weight") as string) | 99999999999
-            ],
-            hp: [
-                parseInt(req.nextUrl.searchParams.get("min_hp") as string) | 0,
-                parseInt(req.nextUrl.searchParams.get("max_hp") as string) | 99999999999
-            ],
-            cc: [
-                parseInt(req.nextUrl.searchParams.get("min_cc") as string) | 0,
-                parseInt(req.nextUrl.searchParams.get("max_cc") as string) | 99999999999
-            ],
-            wheels: split_wheels,
-            gearbox: (req.nextUrl.searchParams.get("gearbox") as string)?.split(","),
-            passengers: [
-                parseInt(req.nextUrl.searchParams.get("min_passengers") as string) | 0,
-                parseInt(req.nextUrl.searchParams.get("max_passengers") as string) | 99999999999
-            ],
-            door: [
-                parseInt(req.nextUrl.searchParams.get("min_doors") as string) | 0,
-                parseInt(req.nextUrl.searchParams.get("max_doors") as string) | 99999999999
-            ],
-            color: (req.nextUrl.searchParams.get("color") as string)?.split(","),
-            status: (req.nextUrl.searchParams.get("status") as string)?.split(","),
-            limit: parseInt(req.nextUrl.searchParams.get("limit") as string),
-            offset: parseInt(req.nextUrl.searchParams.get("offset") as string)
-        }
+        query
     );
-    let resp = NextResponse.json({"success": true, "data":result}, {"status": 200});
+    const count = await SearchAmountOfResults(query);
+    let resp = NextResponse.json({"success": true, "data":result, "count": count}, {"status": 200});
     return resp;
 }

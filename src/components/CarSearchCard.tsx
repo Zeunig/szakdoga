@@ -9,7 +9,7 @@ import { ModelCB } from "./ModelCB"
 import { get_car_selection, ISortedCarSelection } from "@/app/jobs/carCounter/route"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
 import React, { ChangeEvent } from "react";
-import { ICarListing } from "@/lib/car";
+import { ICarListing, parseCarListing } from "@/lib/car";
 import { CB } from "./CB";
 import axios from 'axios';
 
@@ -31,30 +31,39 @@ export interface searchCondition {
     max_hp?: number,
     wheels?: string[],
     gearbox?: string[],
-    min_doors: number,
-    max_doors: number,
-    min_passengers: number,
-    max_passengers: number
+    min_doors?: number,
+    max_doors?: number,
+    min_passengers?: number,
+    max_passengers?: number
     features?: number,
-    status?: string[]
+    status?: string[],
+    color?: string[]
 }
 
-export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelection[], setSearchResult: React.Dispatch<React.SetStateAction<ICarListing[]>>}) {
+export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount}: {
+    cars: ISortedCarSelection[], 
+    setSearchResult: React.Dispatch<React.SetStateAction<ICarListing[]>>,
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    setResultCount: React.Dispatch<React.SetStateAction<number>>
+}) {
     const [selectedBrand, setSelectedBrand] = React.useState("");
-    const [searchConditions, setSearchConditions] = React.useState<searchCondition>({wheels: [],gearbox: [], passengers: [], doors: [], color: [], status: []});
+    const [searchConditions, setSearchConditions] = React.useState<searchCondition>({wheels: [],gearbox: [], color: [], status: []});
     /*function changeSearchCondition({value}: {value: searchCondition}) {
 
     }*/
     async function search() {
+        setLoading(true);
         let url = new URL("/api/marketplace/search", window.location.origin);
         console.log("hawk");
         for(var i = 0; i < Object.keys(searchConditions).length; i++) {
             if(Array.isArray(Object.values(searchConditions)[i])) {
                 if(Object.values(searchConditions)[i].length != 0) {
                     let value = "";
-                    for(var j = 0; j < Object.values(searchConditions)[i].length; i++) {
+                    for(var j = 0; j < Object.values(searchConditions)[i].length; j++) {
                         value += Object.values(searchConditions)[i][j];
-                        value += ",";
+                        if(j + 1 !== Object.values(searchConditions)[i].length) {
+                            value += ",";
+                        }
                     }
                     url.searchParams.append(Object.keys(searchConditions)[i], value);
                 }
@@ -64,7 +73,15 @@ export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelectio
             }
         }
         console.log(url);
-        axios.get(url.toString()).then((res) => console.log(res.data));
+        axios.get(url.toString()).then((res) => {
+            let cars = [];
+            for(var i = 0; i < res.data["data"].length; i++) {                
+                cars.push(parseCarListing(res.data["data"][i]));
+            }
+            setSearchResult(cars);
+            setResultCount(res.data["count"]);
+            setLoading(false);
+        });
     }
     /*function change(e: ChangeEvent<HTMLInputElement>) {
         if(e.target.id.startsWith("wheels")) {
