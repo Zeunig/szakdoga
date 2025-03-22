@@ -2,15 +2,15 @@
 ---
 ## Frontend
 ---
--Landing <br>
--Keresés frontend <br>
--Responzivitás <br>
--/search undo <br>
--car id page kép felfele kb 15px <br>
+- Keresés frontend <br>
+- Responzivitás <br>
+- car id page kép felfele kb 15px <br>
 <br>
--reklámok <br>
--fizetett kiemelés az uploadra <br>
--Sikeres fizetés oldal
+- upload "Felrszeretség" befejezni
+- upload md
+<br>
+- reklámok <br>
+- Sikeres fizetés oldal
 
 
 ## Backend
