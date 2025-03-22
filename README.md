@@ -5,7 +5,7 @@
 - Keresés frontend <br>
 - Responzivitás <br>
 - car id page kép felfele kb 15px <br>
-<br>
+ 
 - upload "Felrszeretség" befejezni <br>
 - upload md <br>
 - reklámok <br>
@@ -15,11 +15,10 @@
 ## Backend
 ---
 
--profilehoz my cars <br>
+- profilehoz my cars <br>
 
 
-##Fullstack
+## Fullstack
 ---
--my profile<br>
->rendes adaok<br>
-<br>
+- myprofile
+
