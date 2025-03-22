@@ -10,20 +10,17 @@
 <br>
 -reklámok <br>
 -fizetett kiemelés az uploadra <br>
+-Sikeres fizetés oldal
 
 
 ## Backend
 ---
 
 -profilehoz my cars <br>
-<br>
--STRIPE
-<br>
 
 
-## Fullstack
+##Fullstack
 ---
 -my profile<br>
 >rendes adaok<br>
 <br>
--jelszó min 8 karakter Aa1 formátum<br>
