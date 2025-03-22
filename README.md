@@ -8,7 +8,6 @@
 <br>
 - upload "Felrszeretség" befejezni <br>
 - upload md <br>
-
 - reklámok <br>
 - Sikeres fizetés oldal
 
