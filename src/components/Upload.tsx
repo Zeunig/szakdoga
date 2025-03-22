@@ -10,10 +10,11 @@ import { ConditionCB } from "@/components/ConditionCB";
 import { Bug } from "lucide-react";
 import { Textarea } from "@/components/TextArea";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import React from "react";
+import React, { useEffect } from "react";
 import { ISortedCarSelection } from "@/app/jobs/carCounter/route";
+import axios from "axios";
 
-export default function Upload(cars: ISortedCarSelection[]) {
+function Unlocked(cars: ISortedCarSelection[]) {
     const [selectedBrand, setSelectedBrand] = React.useState("");
     return (
         <div className="ml-2 mr-2 lg:h-fit lg:ml-72 lg:mr-72 border-2 border-cyan-500 rounded-xl  mt-14">
@@ -513,5 +514,25 @@ export default function Upload(cars: ISortedCarSelection[]) {
                     </div>
                 </form>
             </div>
+    )
+}
+
+export default function Upload(cars: ISortedCarSelection[]) {
+    const [limitReached, setLimitReached] = React.useState(false);
+    useEffect(() => {
+        axios.get("/api/my_profile").then((res) => {
+            if(((parseInt(res.data["data"]["permissions"]) >>> 2) & 1) == 0) {
+                // nincs végtelen feltöltése
+                console.log(Object.keys(res.data["data"]["car"]));
+                if(Object.values(res.data["data"]["car"]).length > 5) {
+                    setLimitReached(true);
+                }
+            }
+        })
+    }, [setLimitReached]);
+    return (
+        limitReached
+        ? <div>Túl sok autót töltöttél fel, kérjük vásárolj "Végtelen feltöltés"-t 8000 Ft-ért</div>
+        : <Unlocked {...cars}/>
     );
 }

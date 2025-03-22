@@ -32,8 +32,9 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
                             <div className="col-span-3">
                                 <h5>{resultCount == -1 ? "" : `Találatok száma : ${resultCount} db`}</h5>
                                 {
+                                    // ha még nincs kész a request, addig a logónkat mutatjuk
                                     loading ? 
-                                        <video src="logo_rotate.mp4" autoPlay={true}></video>
+                                        <video src="logo_rotate.mp4" autoPlay={true}></video> 
                                     :
                                     searchResult.map((car) => (
                                         <div key={car.id} className="mb-3"><RowCard car={car} /></div>
