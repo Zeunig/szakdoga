@@ -162,7 +162,7 @@ export async function Search(search: ISearch) {
    let prismaquery = Prisma.sql`
    SELECT szakdoga.car.*, szakdoga.user.name AS seller_name FROM szakdoga.car
    JOIN szakdoga.user ON szakdoga.car.seller_id=szakdoga.user.id
-   WHERE 1=1
+   WHERE szakdoga.car.listed = 1
    ${!(Number.isNaN(search.features))
    ? Prisma.sql`AND (${search.features} & features) = ${search.features}`
    : Prisma.empty}
