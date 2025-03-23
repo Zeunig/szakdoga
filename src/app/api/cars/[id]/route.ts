@@ -66,7 +66,7 @@ export async function DELETE(req: NextRequest, context: {params: {id: number}}) 
                 id: auth["payload"]["id"] as unknown as number
             },
         });
-        if((Number(user_query?.permissions) >>> 1 & 1) == 1) {
+        if((Number(user_query?.permissions) >>> 0 & 1) == 1) {
             let query = {
                 where: {
                     id: Number(id),

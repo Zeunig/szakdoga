@@ -108,7 +108,7 @@ export async function POST(req: NextRequest) {
                 },
             }
         });
-        if((Number(query?.permissions) >>> 2 & 1) == 0) {
+        if((Number(query?.permissions) >>> 1 & 1) == 0) {
             if(query.car.length > 5) {
                 var respp = NextResponse.json({"success":false, "error": "Túl sok autót töltöttél fel. Vásárolj végtelen feltöltést"}, {"status": 429});
                 return respp;
