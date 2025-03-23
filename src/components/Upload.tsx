@@ -33,9 +33,8 @@ export default function Upload(cars: ISortedCarSelection[]) {
     const [limitReached, setLimitReached] = React.useState(false);
     useEffect(() => {
         axios.get("/api/my_profile?include_unlisted_cars=true").then((res) => {
-            if(((parseInt(res.data["data"]["permissions"]) >>> 2) & 1) == 0) {
+            if(((parseInt(res.data["data"]["permissions"]) >>> 1) & 1) == 0) {
                 // nincs végtelen feltöltése
-                console.log(Object.keys(res.data["data"]["car"]));
                 if(Object.values(res.data["data"]["car"]).length > 5) {
                     setLimitReached(true);
                 }

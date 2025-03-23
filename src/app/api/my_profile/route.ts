@@ -50,6 +50,7 @@ export async function get_my_profile(user_id: number, include_unlisted_cars: boo
             favorites: true
         }
     });
+    
     return query;
 }
 

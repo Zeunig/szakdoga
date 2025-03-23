@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     try {
         let data = await file.bytes();
         await writeFile(path.join(process.cwd(), "public/car/",file_name),data).catch((err) => {
-            console.log(err);
+            console.error(err);
             return NextResponse.json({"success": false, "error":`Nem működött a fájlfeltöltés. Kérjük, próbálja meg újra később!`},{"status":500});
         });
     }catch(err) {
