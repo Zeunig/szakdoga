@@ -39,13 +39,9 @@ export async function Header() {
     <header className="mt-2 border-b-2 border-slate-300">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <a href="/" className="flex items-center">
-
-
-
-            <img src="/logo.png" className="mr-3 h-6 sm:h-9" alt="KPAK Logo" />
-            <img src="/title.png" className="" alt="KPAK Title" />
-
+          <a href="/" className="flex items-center  hvr-icon-spin hvr-grow">
+            <img src="/logo.png" className="mr-3 h-6 sm:h-9 hvr-icon inline-block" alt="KPAK Logo" />
+            <img src="/title.png" className="inline-block" alt="KPAK Title" />
           </a>
 
 
@@ -55,7 +51,15 @@ export async function Header() {
             <div className="mr-8">
               <Popover>
                 <PopoverTrigger className=""><p className="inline-block text-blue-600 ">Fiókom</p> <ChevronDown className="inline-block size-5 hvr-icon" /> </PopoverTrigger>
-                <PopoverContent>Place content for the popover here.</PopoverContent>
+                <PopoverContent className="w-fit  shadow-none mr-12 rounded-none">
+                  <div className="grid">
+                    <a href="/profil"> Fiókom kezelése</a>
+                    <hr className="w-full h-px mx-auto  mb-2 bg-slate-400 border-0" />
+                    <a href="/auth/logout" className="text-red-500">Kijelentkezés</a>
+                    <hr className="w-full h-px mx-auto  mb-2 bg-slate-400 border-0" />
+                  
+                  </div>
+                </PopoverContent>
               </Popover>
             </div>
             <button className="bg-blue-600 rounded-lg   lg:h-10 lg:w-52 text-white font-bold mr-5 text-center content-center hover:scale-110 hover:transition-transform hover:duration-300 duration-300">

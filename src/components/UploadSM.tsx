@@ -62,13 +62,13 @@ export default function UploadSM(cars: ISortedCarSelection[]) {
                                     Márka:
                                 </div>
                                 <div className="col-2 row-1 -ml-4">
-                                    <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand} />
+                                    {/*Text box*/}
                                 </div>
                                 <div className="col-1 row-2">
                                     Model:
                                 </div>
                                 <div className="col-2 row-2 -ml-4">
-                                    <ModelCB car_selection={cars} selectedBrand={selectedBrand} />
+                                    {/*Text box*/}
                                 </div>
 
                                 {/*benya*/}
