@@ -2,28 +2,23 @@
 ---
 ## Frontend
 ---
--Landing <br>
--Keresés frontend <br>
--Responzivitás <br>
--/search undo <br>
--car id page kép felfele kb 15px <br>
-<br>
--reklámok <br>
--fizetett kiemelés az uploadra <br>
+- Keresés frontend <br>
+- Responzivitás <br>
+- car id page kép felfele kb 15px <br>
+ 
+- upload "Felrszeretség" befejezni <br>
+- upload md <br>
+- reklámok <br>
+- Sikeres fizetés oldal
 
 
 ## Backend
 ---
 
--profilehoz my cars <br>
-<br>
--STRIPE
-<br>
+- profilehoz my cars <br>
 
 
 ## Fullstack
 ---
--my profile<br>
->rendes adaok<br>
-<br>
--jelszó min 8 karakter Aa1 formátum<br>
+- myprofile
+

@@ -13,7 +13,8 @@ import axios from "axios";
 export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
     let [searchResult, setSearchResult] = React.useState<ICarListing[]>([]);
     let [loading, setLoading] = React.useState(false);
-    useEffect(() => {
+    let [resultCount, setResultCount] = React.useState(-1);
+    /*useEffect(() => {
         axios.get("/api/marketplace/search").then((res) => {
             let cars = [];
             for(var i = 0; i < res.data["data"].length; i++) {                
@@ -21,17 +22,22 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
             }
             setSearchResult(cars);
         })
-    }, [setSearchResult]);
+    }, [setSearchResult]);*/
     return (
         <div>
                 <div className="">
                     <div className="mx-5 lg:mx-56 lg:mt-24">
                         <div className="grid grid-cols-1 lg:grid-cols-4">
-                            <div className="h-auto row-span-11 hidden lg:block"><CarSearchCard cars={cars} setSearchResult={setSearchResult}  /></div>
+                            <div className="h-auto row-span-11 hidden lg:block"><CarSearchCard cars={cars} setSearchResult={setSearchResult} setLoading={setLoading} setResultCount={setResultCount} /></div>
                             <div className="col-span-3">
+                                <h5>{resultCount == -1 ? "" : `Találatok száma : ${resultCount} db`}</h5>
                                 {
+                                    // ha még nincs kész a request, addig a logónkat mutatjuk
+                                    loading ? 
+                                        <video src="logo_rotate.mp4" autoPlay={true}></video> 
+                                    :
                                     searchResult.map((car) => (
-                                        <div className="mb-3"><RowCard car={car} /></div>
+                                        <div key={car.id} className="mb-3"><RowCard car={car} /></div>
                                     ))
                                 }
                             </div>

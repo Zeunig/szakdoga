@@ -56,64 +56,98 @@ const GEARBOX_ACCEPTED_VALUES = ["Manuális","Automata","Szekvenciális","Fokoza
 const DESIGN_ACCEPTED_VALUES = ["Pickup","Terepjáró","Buggy","Cabrio","Coupe","Egytérű","Ferdehátú","Hot rod","Kisbusz","Kombi","Lépcsőshátú","Mopedautó","Sedan","Sport","Városi terepjáró (crossover)","Egyéb"];
 
 export async function POST(req: NextRequest) {
-    let json: PublishInterface = await req.json();
-    // validate the data
-    if (json.year < 1900) {
-        return NextResponse.json({"success":false, "message": "Érvénytelen évjárat"},{"status": 400})
+    let auth_cookie = req.cookies.get('auth')?.value;
+    if (!auth_cookie) {
+        return NextResponse.json({"success": false, "error": "Nem vagy bejelentkezve!"}, {"status": 401});
     }
-    if (!CONDITION_ACCEPTED_VALUES.includes(json.condition)) {
-        return NextResponse.json({"success":false, "message": "Érvénytelen állapot"},{"status": 400})
-    }
-    if (!FUEL_TYPE_ACCEPTED_VALUES.includes(json.fuel_type)) {
-        return NextResponse.json({"success":false, "message": "Érvénytelen üzemanyag-típus"},{"status": 400})
-    }
-    if (!GEARBOX_ACCEPTED_VALUES.includes(json.gearbox)) {
-        return NextResponse.json({"success":false, "message": "Érvénytelen sebességváltó"},{"status": 400})
-    }
-    if (!DESIGN_ACCEPTED_VALUES.includes(json.design)) {
-        return NextResponse.json({"success":false, "message": "Érvénytelen kivitel"},{"status": 400})
-    }
-    for(var i = 0; i < json.images.length; i++) {
-        if(!(/[c-z]{4,5}:\/\/(rubyrose.top|listings-prod.tcimg.net)\//.test(json.images[i]))) {
-            return NextResponse.json({"success":false, "message": `Érvénytelen kép URL : ${json.images[i]}`},{"status": 400})
+    let auth = await authentication(auth_cookie);
+    console.log(auth);
+    if (auth["success"] == true) {
+        let json: PublishInterface = await req.json();
+        // validate the data
+        /*if (json.year < 1900) {
+            return NextResponse.json({"success":false, "message": "Érvénytelen évjárat"},{"status": 400})
         }
-    }
-    let create = [];
-    for(var i = 0; i < json.images.length; i++) {
-        create.push({
-            image_url: json.images[i]
-        });
-    }
-    const prisma = new PrismaClient();
-    const car = await prisma.car.create({
-        data: {
-            seller_id: randomInt(17,64),
-            featured: 0,
-            price: json.price,
-            discounted_price: json.price,
-            brand: json.brand,
-            model: json.model,
-            year: json.year,
-            mileage: json.mileage,
-            weight: json.weight,
-            horsepower: json.horsepower,
-            cc: json.cc,
-            fuel_type: json.fuel_type,
-            gearbox: json.gearbox,
-            drive_type: json.drive_type,
-            condition: json.condition,
-            passengers: json.passengers,
-            doors: json.doors,
-            color: json.color,
-            features: json.features,
-            vin: json.vin,
-            design: json.design,
-            car_image_relation: {
-                create: create
+        if (!CONDITION_ACCEPTED_VALUES.includes(json.condition)) {
+            return NextResponse.json({"success":false, "message": "Érvénytelen állapot"},{"status": 400})
+        }
+        if (!FUEL_TYPE_ACCEPTED_VALUES.includes(json.fuel_type)) {
+            return NextResponse.json({"success":false, "message": "Érvénytelen üzemanyag-típus"},{"status": 400})
+        }
+        if (!GEARBOX_ACCEPTED_VALUES.includes(json.gearbox)) {
+            return NextResponse.json({"success":false, "message": "Érvénytelen sebességváltó"},{"status": 400})
+        }
+        if (!DESIGN_ACCEPTED_VALUES.includes(json.design)) {
+            return NextResponse.json({"success":false, "message": "Érvénytelen kivitel"},{"status": 400})
+        }
+        for(var i = 0; i < json.images.length; i++) {
+            if(!(/[c-z]{4,5}:\/\/(rubyrose.top|listings-prod.tcimg.net)\//.test(json.images[i]))) {
+                return NextResponse.json({"success":false, "message": `Érvénytelen kép URL : ${json.images[i]}`},{"status": 400})
             }
-        },
-    });
-    console.log(car);
-    let resp = NextResponse.json({"success":true}, {"status": 200});
-    return resp;
+        }
+        let create = [];
+        for(var i = 0; i < json.images.length; i++) {
+            create.push({
+                image_url: json.images[i]
+            });
+        }*/
+        const prisma = new PrismaClient();
+        // megnézzük hogy elérte-e a limitet
+        let query = await prisma.user.findFirst({
+            where: {
+                id: {
+                    equals: auth["payload"]["id"] as unknown as number
+                }
+            },
+            include: {
+                password: false,
+                car: {
+                    include: {
+                        features: false
+                    }
+                },
+            }
+        });
+        if((Number(query?.permissions) >>> 2 & 1) == 0) {
+            if(query.car.length > 5) {
+                var respp = NextResponse.json({"success":false, "error": "Túl sok autót töltöttél fel. Vásárolj végtelen feltöltést"}, {"status": 429});
+                return respp;
+            }
+        }
+        // minden rendben, feltöltjük az autót
+        const car = await prisma.car.create({
+            data: {
+                seller_id: auth["payload"]["id"] as unknown as number,
+                featured: 0,
+                price: json.price,
+                discounted_price: json.price,
+                brand: json.brand,
+                model: json.model,
+                year: json.year,
+                mileage: json.mileage,
+                weight: json.weight,
+                horsepower: json.horsepower,
+                cc: json.cc,
+                fuel_type: json.fuel_type,
+                gearbox: json.gearbox,
+                drive_type: json.drive_type,
+                condition: json.condition,
+                passengers: json.passengers,
+                doors: json.doors,
+                color: json.color,
+                features: json.features,
+                vin: json.vin,
+                design: json.design,
+                car_image_relation: {
+                    create: create
+                }
+            },
+        });
+        console.log(car);
+        let resp = NextResponse.json({"success":true}, {"status": 200});
+        return resp;
+    }else {
+        return NextResponse.json({"success": false, "error": "Nem vagy bejelentkezve!"}, {"status": 401});
+    }
+    
 }

@@ -22,7 +22,7 @@ declare global {
 
 BigInt.prototype.toJSON = function () { return Number(this) }
 
-export async function get_my_profile(user_id: number) {
+export async function get_my_profile(user_id: number, include_unlisted_cars: boolean) {
     const prisma = new PrismaClient();
     console.log(user_id);
     let query = await prisma.user.findFirst({
@@ -55,13 +55,14 @@ export async function get_my_profile(user_id: number) {
 
 export async function GET(req: NextRequest) {
     let auth_cookie = req.cookies.get('auth')?.value;
+    let include_unlisted_cars = (req.nextUrl.searchParams.get("include_unlisted_cars") as string) == "true" ? true : false;
     if (!auth_cookie) {
         return NextResponse.json({"success": false, "error": "Nem vagy bejelentkezve!"}, {"status": 401});
     }
     let auth = await authentication(auth_cookie);
     console.log(auth);
     if (auth["success"] == true) {
-        const query = await get_my_profile((auth["payload"]["id"] as unknown as number));
+        const query = await get_my_profile((auth["payload"]["id"] as unknown as number), include_unlisted_cars);
         console.log(query);
         return NextResponse.json({"success": true, "data": query}, {"status": 200});
     }else {
