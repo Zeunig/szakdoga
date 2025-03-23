@@ -14,7 +14,7 @@ export default function Page() {
         </div>
 
             <div>
-            <div className="h-fit">
+            <div className="">
                 <AuthTabs/>
             </div>   
             </div>   

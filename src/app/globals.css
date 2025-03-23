@@ -77,20 +77,42 @@
   }
   .hvr-underline-from-center:before{
     background:#155dfc !important;
-    
   }
   .hvr-underline-from-left:before{
     background:#155dfc !important;
+  }
+  .hvr-bounce-to-right:before{
+    background:#155dfc !important;
+  }
+  .upload-group{
+    width: 300px !important;
+    height: 300px !important;
+    
+  }
+  .upload-item{
+    width: 200px !important;
+    height: 100px !important;
+    
     
   }
 
-
-  .hvr-icon-fade 
-  .hvr-icon:hover{color:#155dfc}
-    
-
-
+  .upload-text{
+    font-size: large;
+    margin-left: 3px !important;
+  }
   
+  .upload-button{
+    width: 160px ;
+    height: 50px ;
+    background-color: #8ec5ff !important;
+    color: white !important;
+    font-size: medium !important;
+    font-weight: bold !important;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+   
 }
 
 

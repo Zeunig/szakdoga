@@ -39,28 +39,28 @@ export interface searchCondition {
     status?: string[]
 }
 
-export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelection[], setSearchResult: React.Dispatch<React.SetStateAction<ICarListing[]>>}) {
+export function CarSearchCard({ cars, setSearchResult }: { cars: ISortedCarSelection[], setSearchResult: React.Dispatch<React.SetStateAction<ICarListing[]>> }) {
     const [selectedBrand, setSelectedBrand] = React.useState("");
-    const [searchConditions, setSearchConditions] = React.useState<searchCondition>({wheels: [],gearbox: [], passengers: [], doors: [], color: [], status: []});
+    const [searchConditions, setSearchConditions] = React.useState<searchCondition>({ wheels: [], gearbox: [], passengers: [], doors: [], color: [], status: [] });
     /*function changeSearchCondition({value}: {value: searchCondition}) {
 
     }*/
     async function search() {
         let url = new URL("/api/marketplace/search", window.location.origin);
         console.log("hawk");
-        for(var i = 0; i < Object.keys(searchConditions).length; i++) {
-            if(Array.isArray(Object.values(searchConditions)[i])) {
-                if(Object.values(searchConditions)[i].length != 0) {
+        for (var i = 0; i < Object.keys(searchConditions).length; i++) {
+            if (Array.isArray(Object.values(searchConditions)[i])) {
+                if (Object.values(searchConditions)[i].length != 0) {
                     let value = "";
-                    for(var j = 0; j < Object.values(searchConditions)[i].length; i++) {
+                    for (var j = 0; j < Object.values(searchConditions)[i].length; i++) {
                         value += Object.values(searchConditions)[i][j];
                         value += ",";
                     }
                     url.searchParams.append(Object.keys(searchConditions)[i], value);
                 }
-                
-            }else {
-                url.searchParams.append(Object.keys(searchConditions)[i],Object.values(searchConditions)[i]);
+
+            } else {
+                url.searchParams.append(Object.keys(searchConditions)[i], Object.values(searchConditions)[i]);
             }
         }
         console.log(url);
@@ -99,7 +99,7 @@ export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelectio
         const { name, value, type } = e.target;
         console.log(name);
         const parsedValue = type === 'number' ? parseFloat(value) : value;
-        
+
         setSearchConditions({
             ...searchConditions,
             [name]: parsedValue
@@ -112,23 +112,23 @@ export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelectio
         const category = name.split(".")[0];
         const parsedItem = name.split(".")[1];
         console.log(checked);
-        if(checked) {
+        if (checked) {
             setSearchConditions({
                 ...searchConditions,
                 [category]: [...(searchConditions as any)[category], parsedItem]
             });
-        }else {
+        } else {
             setSearchConditions({
                 ...searchConditions,
                 [category]: ((searchConditions as any)[category] || []).filter((item: string) => item !== parsedItem)
             });
         }
-        
+
         console.log(searchConditions);
     }
     return (
-        <div className="mb-20">
-            <Card className="lg:w-80 lg:h-fit border-dashed border-gray-800">
+        <div className="mb-20 ">
+            <Card className="lg:w-80 lg:h-fit border-dashed bg-blue-100 border-blue-800">
                 <CardHeader>
 
                     <CardTitle className="text-lg font-bold">
@@ -140,85 +140,109 @@ export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelectio
                 <CardContent>
                     <form>
 
-                        <div className="bg--400">
+                        <div className="">
                             <Collapsible className="hidden lg:block">
-                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg hover:text-blue-400">Márka, model, típus</CollapsibleTrigger>
-                                
-                                <CollapsibleContent className="grid grid-rows-4">
-                                <hr className="w-full h-px bg-slate-400 border-0 -mb-40" />
-                                <div>
 
-                                <label htmlFor="" className="">Márka <br /> </label> 
-                                <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand}/>
+                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg w-full"> Márka, model, típus</CollapsibleTrigger>
 
-                                </div>
-                                <div>
+                                <CollapsibleContent className="grid row-auto border-2 border-slate-300 rounded-lg mb-2">
 
-                                <label htmlFor="">Model <br /> </label>
-                                <ModelCB car_selection={cars} selectedBrand={selectedBrand}/>
-                                
-                                </div>
-                                
+                                    <div className="ml-2 mb-2 mt-1">
+
+                                        <label htmlFor="" className="">Márka <br /> </label>
+                                        <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand} />
+
+                                    </div>
+                                    <div className="ml-2 mb-2">
+
+                                        <label htmlFor="">Model <br /> </label>
+                                        <ModelCB car_selection={cars} selectedBrand={selectedBrand} />
+
+                                    </div>
+
                                 </CollapsibleContent>
                             </Collapsible>
                         </div>
-                        
-                        <hr className="w-full h-px bg-slate-400 border-0" />
+
+
 
                         <div>
                             <Collapsible className="hidden lg:block">
-                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg hover:text-blue-400">Alap információk</CollapsibleTrigger>
-                                <CollapsibleContent>
-                                    <label htmlFor="">Ár</label><br></br>
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minprice" name="min_price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxprice" name="max_price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
-                                    <br></br>
-                                    <label htmlFor="">Kilométer</label><br></br>
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minkm" name="min_km" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxkm" name="max_km" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
-                                    <br></br>
-                                    <label htmlFor="">Évjárat</label><br></br>
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minyear" name="min_year" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxyear" name="max_year" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
-                                    <br></br>
-                                    <label htmlFor="">Súly</label><br></br>
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minweight" name="min_weight" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxweight" name="max_weight" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
-                                    <br></br>
-                                    <label htmlFor="">Köbcenti</label><br></br>
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="mincc" name="min_cc" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxcc" name="max_cc" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
-                                    <br></br>
-                                    <label htmlFor="">Lóerő</label><br></br>
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minhp" name="min_hp" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxhp" name="max_hp" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
-                                    <br></br>
-                                    <label htmlFor="">Kerékmeghajtás</label><br></br>
-                                        <input type="checkbox" name="wheels.fwd" id="wheels.fwd" onChange={(e) => {handleCheckbox(e)}}></input>
-                                        <input type="checkbox" name="wheels.rwd" id="wheels.rwd" onChange={(e) => {handleCheckbox(e)}}></input>
-                                        <input type="checkbox" name="wheels.awd" id="wheels.awd" onChange={(e) => {handleCheckbox(e)}}></input> 
-                                        <input type="checkbox" name="wheels.4wd" id="wheels.4wd" onChange={(e) => {handleCheckbox(e)}}></input>
-                                    <br></br>
-                                    <label htmlFor="">Gearbox</label><br></br>
-                                        <input type="checkbox" name="gearbox.manual" id="gearbox.manual" onChange={(e) => {handleCheckbox(e)}}></input>
-                                        <input type="checkbox" name="gearbox.automatic" id="gearbox.automatic" onChange={(e) => {handleCheckbox(e)}}></input>
-                                    <br></br>
-                                    <label htmlFor="">Passengers</label><br></br>
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="minpassengers" name="min_passengers" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxpassengers" name="max_passengers" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
-                                    <br></br>
-                                    <label htmlFor="">Ajtók</label><br></br>
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="mindoors" name="min_doors" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                    <input type="number" onChange={(e) => {handleInputChange(e)}} id="maxdoors" name="max_doors" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
-                                    <br></br>
+
+                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg w-full">Alap információk</CollapsibleTrigger>
+
+                                <CollapsibleContent className="grid row-auto border-2 border-slate-300 rounded-lg mb-2">
+
+                                    <div className="ml-2 mt-2">
+                                        <label htmlFor="">Vételár (-tól, -ig)</label><br></br>
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="minprice" name="min_price" className="border w-[180px] lg:w-[120px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxprice" name="max_price" className="border w-[180px] lg:w-[120px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    </div>
+
+                                    <div className="ml-2">
+                                        <label htmlFor="">Kilométer (-tól, -ig)</label><br></br>
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="minkm" name="min_km" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxkm" name="max_km" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    </div>
+
+
+                                    <div className="ml-2">
+                                        <label htmlFor="">Évjárat</label><br></br>
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="minyear" name="min_year" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxyear" name="max_year" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    </div>
+
+                                    <div className="ml-2">
+                                        <label htmlFor="">Súly</label><br></br>
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="minweight" name="min_weight" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxweight" name="max_weight" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    </div>
+
+                                    <div className="ml-2">
+                                        <label htmlFor="">Köbcenti</label><br></br>
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="mincc" name="min_cc" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxcc" name="max_cc" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    </div>
+
+                                    <div className="ml-2">
+                                        <label htmlFor="">Lóerő</label><br></br>
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="minhp" name="min_hp" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxhp" name="max_hp" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    </div>
+
+                                    <div className="ml-2">
+                                        <label htmlFor="">Kerékmeghajtás</label><br></br>
+                                        <input type="checkbox" name="wheels.fwd" id="wheels.fwd" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="wheels.rwd" id="wheels.rwd" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="wheels.awd" id="wheels.awd" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="wheels.4wd" id="wheels.4wd" onChange={(e) => { handleCheckbox(e) }}></input>
+                                    </div>
+
+                                    <div className="ml-2">
+                                        <label htmlFor="">Gearbox</label><br></br>
+                                        <input type="checkbox" name="gearbox.manual" id="gearbox.manual" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="gearbox.automatic" id="gearbox.automatic" onChange={(e) => { handleCheckbox(e) }}></input>
+                                    </div>
+
+                                    <div className="ml-2">
+                                        <label htmlFor="">Passengers</label><br></br>
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="minpassengers" name="min_passengers" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxpassengers" name="max_passengers" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    </div>
+
+                                    <div className="ml-2">
+                                        <label htmlFor="">Ajtók</label><br></br>
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="mindoors" name="min_doors" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxdoors" name="max_doors" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    </div>   
                                     <label htmlFor="">Állapot</label><br></br>
-                                    
+
                                     <br></br>
                                 </CollapsibleContent>
                             </Collapsible>
                         </div>
 
-                        <div className="bg-green-400">
+                        <div className="">
                             <Collapsible className="hidden lg:block">
                                 <CollapsibleTrigger>Group 03</CollapsibleTrigger>
                                 <CollapsibleContent>
@@ -259,13 +283,13 @@ export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelectio
                                 </CollapsibleContent>
                             </Collapsible>
                         </div>
-                        <input type="submit" value="asdasd" onClick={(e) => {e.preventDefault();console.log(e);}} />
+                        <input type="submit" value="asdasd" onClick={(e) => { e.preventDefault(); console.log(e); }} />
                     </form>
                     {/*lg end*/}
 
 
                     <div className="grid grid-rows-2">
-                        <button type="button" className="bg-slate-300" onClick={async () => {await search();}}>Keresés</button>
+                        <button type="button" className="bg-slate-300" onClick={async () => { await search(); }}>Keresés</button>
                         <div className="row-"></div>
                     </div>
 
@@ -275,7 +299,7 @@ export function CarSearchCard({cars, setSearchResult}: {cars: ISortedCarSelectio
                 </CardFooter>
             </Card>
             <label htmlFor="">Lóerő</label><br></br>
-            <CB selection={[]} setter={setSearchConditions}/>         
+            <CB selection={[]} setter={setSearchConditions} />
             <br></br>
         </div>
     )

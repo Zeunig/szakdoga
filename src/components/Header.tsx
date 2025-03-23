@@ -47,11 +47,14 @@ export async function Header() {
             <img src="/title.png" className="" alt="KPAK Title" />
 
           </a>
+
+
           {/*Logged in users*/}
+
           {headersList.get("cookie")?.toString().includes("auth=") && <div className="flex items-center lg:order-2 ">
             <div className="mr-8">
               <Popover>
-                <PopoverTrigger className="hvr-icon-fade"><p className="inline-block text-blue-600 hvr-icon">Fiókom</p> <ChevronDown className="inline-block size-5 hvr-icon"/> </PopoverTrigger>
+                <PopoverTrigger className=""><p className="inline-block text-blue-600 ">Fiókom</p> <ChevronDown className="inline-block size-5 hvr-icon" /> </PopoverTrigger>
                 <PopoverContent>Place content for the popover here.</PopoverContent>
               </Popover>
             </div>
@@ -92,16 +95,22 @@ export async function Header() {
 
 
           </div>}
+
           {/*Logged in users end*/}
 
+
           {/*Logged out users*/}
+
           {!(headersList.get("cookie")?.toString().includes("auth=")) && <div className="flex items-center lg:order-2">
+
             <a href="/auth" className="hidden lg:block text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800 hvr-underline-from-center hvr-icon-grow"><ArrowRightEndOnRectangleIcon className="size-7 inline-block lg:hidden text-blue-600 hvr-icon" />  <p className="inline-block hidden lg:block">Bejelentkezés/Regisztráció</p></a>
+            
             <button className="bg-blue-600 rounded-lg   lg:h-10 lg:w-52 text-white font-bold mr-5 text-center content-center hvr-glow hvr-icon-grow">
               <a href="/feltoltes">
                 <Plus className="size-7 inline-block hvr-icon" /><p className="hidden lg:inline-block">Hirdetés feltöltése</p>
               </a>
             </button>
+
             <div className="lg:hidden">
               <Sheet>
                 <SheetTrigger><Menu className="size-6" /></SheetTrigger>
