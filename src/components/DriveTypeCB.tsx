@@ -20,10 +20,10 @@ import {
 } from "@/components/ui/popover"
  
 const make = [
-  {value: "fwd",label: "Elsőkerék",},
-  {value: "rwd",label: "Kátsókerés",},
-  {value: "awd",label: "Összkerék",},
-  {value: "4x4",label: "4x4",},
+  {value: "FWD",label: "Elsőkerék",},
+  {value: "RWD",label: "Hátsókerks",},
+  {value: "AWD",label: "Összkerék",},
+  {value: "4WD",label: "4x4",},
 ]
 
  

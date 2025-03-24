@@ -50,10 +50,9 @@ interface PublishInterface {
     images: string[]
 };
 
-const CONDITION_ACCEPTED_VALUES = ["Új","Újszerű","Alig használt","Használt","Megviselt","Hibás","Hiányos","Törött"];
+const CONDITION_ACCEPTED_VALUES = ["Új","Újszerű","Használt","Megviselt","Hibás","Hiányos"];
 const FUEL_TYPE_ACCEPTED_VALUES = ["Benzin","Dízel","Hibrid","Elektromos","Etanol","Biodízel","Gáz"];
-const GEARBOX_ACCEPTED_VALUES = ["Manuális","Automata","Szekvenciális","Fokozatmentes automata","Tiptronic","Félautomata"];
-const DESIGN_ACCEPTED_VALUES = ["Pickup","Terepjáró","Buggy","Cabrio","Coupe","Egytérű","Ferdehátú","Hot rod","Kisbusz","Kombi","Lépcsőshátú","Mopedautó","Sedan","Sport","Városi terepjáró (crossover)","Egyéb"];
+const GEARBOX_ACCEPTED_VALUES = ["FWD", "4WD", "RWD", "AWD"];
 
 export async function POST(req: NextRequest) {
     let auth_cookie = req.cookies.get('auth')?.value;
@@ -65,7 +64,7 @@ export async function POST(req: NextRequest) {
     if (auth["success"] == true) {
         let json: PublishInterface = await req.json();
         // validate the data
-        /*if (json.year < 1900) {
+        if (json.year < 1900) {
             return NextResponse.json({"success":false, "message": "Érvénytelen évjárat"},{"status": 400})
         }
         if (!CONDITION_ACCEPTED_VALUES.includes(json.condition)) {
@@ -77,9 +76,6 @@ export async function POST(req: NextRequest) {
         if (!GEARBOX_ACCEPTED_VALUES.includes(json.gearbox)) {
             return NextResponse.json({"success":false, "message": "Érvénytelen sebességváltó"},{"status": 400})
         }
-        if (!DESIGN_ACCEPTED_VALUES.includes(json.design)) {
-            return NextResponse.json({"success":false, "message": "Érvénytelen kivitel"},{"status": 400})
-        }
         for(var i = 0; i < json.images.length; i++) {
             if(!(/[c-z]{4,5}:\/\/(rubyrose.top|listings-prod.tcimg.net)\//.test(json.images[i]))) {
                 return NextResponse.json({"success":false, "message": `Érvénytelen kép URL : ${json.images[i]}`},{"status": 400})
@@ -90,7 +86,7 @@ export async function POST(req: NextRequest) {
             create.push({
                 image_url: json.images[i]
             });
-        }*/
+        }
         const prisma = new PrismaClient();
         // megnézzük hogy elérte-e a limitet
         let query = await prisma.user.findFirst({

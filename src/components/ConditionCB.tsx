@@ -20,10 +20,12 @@ import {
 } from "@/components/ui/popover"
  
 const make = [
-  {value: "fwd",label: "Ilyen",},
-  {value: "rwd",label: "Olyan",},
-  {value: "awd",label: "Amolany",},
-  {value: "4x4",label: "Megint masmilyen",},
+  {value: "Új",label: "Ilyen",},
+  {value: "Újszerű",label: "Olyan",},
+  {value: "Használt",label: "Használt",},
+  {value: "Megviselt",label: "Megviselt",},
+  {value: "Hibás",label: "Hibás",},
+  {value: "Hiányos",label: "Hiányos",},
 ]
 
  

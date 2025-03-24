@@ -69,10 +69,20 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                                 <h1 className="">Üzemanyag</h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-40 ml-4">
-                                    <input type="radio" name="fuel" id="gas" required />
+                                    <input type="radio" name="fuel" id="gas" value="Benzin" required />
                                     <label htmlFor="gas">Benzin</label>
-                                    <input type="radio" name="fuel" id="diesel" className="ml-5" required />
+                                    <input type="radio" name="fuel" id="gas" value="Dízel" className="ml-5" required />
                                     <label htmlFor="diesel">Dízel</label>
+                                    <input type="radio" name="fuel" id="gas" value="Hibrid" className="ml-5" required />
+                                    <label htmlFor="diesel">Hibrid</label>
+                                    <input type="radio" name="fuel" id="gas" value="Elektromos" className="ml-5" required />
+                                    <label htmlFor="diesel">Elektromos</label>
+                                    <input type="radio" name="fuel" id="gas" value="Etanol" className="ml-5" required />
+                                    <label htmlFor="diesel">Etanol</label>
+                                    <input type="radio" name="fuel" id="gas" value="Biodízel" className="ml-5" required />
+                                    <label htmlFor="diesel">Biodízel</label>
+                                    <input type="radio" name="fuel" id="gas" value="Gáz" className="ml-5" required />
+                                    <label htmlFor="diesel">Gáz</label>
                                 </div>
                             </div>
                             {/*benya vége*/}
