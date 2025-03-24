@@ -33,6 +33,7 @@ model car {
   features           BigInt               @default(0) @db.UnsignedBigInt
   vin                String?              @db.VarChar(100)
   design             String?              @db.VarChar(100)
+  description        String?              @db.Text
   listed             Int?                 @default(1) @db.TinyInt
   user               user                 @relation(fields: [seller_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_car_user")
   car_image_relation car_image_relation[]

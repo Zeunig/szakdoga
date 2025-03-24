@@ -28,7 +28,7 @@ import { NextRequest, NextResponse } from "next/server";
 }
 */
 
-interface PublishInterface {
+export interface PublishInterface {
     brand: string,
     model: string,
     price: number,
@@ -47,6 +47,7 @@ interface PublishInterface {
     features: number,
     vin: string,
     design: string,
+    description: string
     images: string[]
 };
 
@@ -134,6 +135,7 @@ export async function POST(req: NextRequest) {
                 features: json.features,
                 vin: json.vin,
                 design: json.design,
+                description: json.description,
                 car_image_relation: {
                     create: create
                 }
