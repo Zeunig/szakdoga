@@ -30,11 +30,12 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
                         <div className="grid grid-cols-1 lg:grid-cols-4">
                             <div className="h-auto row-span-11 hidden lg:block"><CarSearchCard cars={cars} setSearchResult={setSearchResult} setLoading={setLoading} setResultCount={setResultCount} /></div>
                             <div className="col-span-3">
-                                <h5>{resultCount == -1 ? "" : `Találatok száma : ${resultCount} db`}</h5>
+                                <h5 className="-mt-[33px]">{resultCount == -1 ? "" : `Találatok száma : ${resultCount} db`}</h5>
+                                <hr className="w-full  mb-2  h-px mx-auto bg-slate-400 border-0" />
                                 {
                                     // ha még nincs kész a request, addig a logónkat mutatjuk
                                     loading ? 
-                                        <video src="logo_rotate.mp4" autoPlay={true}></video> 
+                                        <img src="logo.png" className="size-72 animate-spin align-self-center justify-self-center flex my-20"/>
                                     :
                                     searchResult.map((car) => (
                                         <div key={car.id} className="mb-3"><RowCard car={car} /></div>

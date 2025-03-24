@@ -51,6 +51,7 @@ export function parseCarListing(json: object): ICarListing {
         const gearbox = json.gearbox as string;
         const drive_type = json.drive_type as string;
         const condition = json.condition as string;
+        const seller_name = json.seller_name as string;
         const seller_id = Number(json.seller_id);
         const featured = Number(json.featured);
         const price = Number(json.price);

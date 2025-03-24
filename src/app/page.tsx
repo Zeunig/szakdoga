@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger, } from "@/components/ui/collapsible"
+import { Badge } from "lucide-react";
 
 export default function Home() {
 
@@ -137,7 +138,12 @@ export default function Home() {
 
         </div>
         {/*Gyakran keresett márkák vége*/}
-
+        <div className="place-self-center mt-5">
+          <div className=" border-2 size-24 border-blue-600 hvr-grow">
+             <img src="/logos/saab.png" alt="" className="size-20 place-self-center mt-1"/>
+          </div>
+          
+        </div>
       </div>
 
       <div className="mt-5">

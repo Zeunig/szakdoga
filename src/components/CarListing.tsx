@@ -236,7 +236,7 @@ export function CarListing(car: ICarListing) {
                                 <div>Hirdetés létrehozásának dátma: </div>
                                 <div>{car?.creation_date.split("T")[0]}</div>
                             </div>
-                            {/*Eladó info vége*/}
+                            {/*Eladó info vége*/}   
 
                         </div>
                         {/*Infó táblázat vége*/}
