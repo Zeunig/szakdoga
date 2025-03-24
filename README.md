@@ -2,23 +2,25 @@
 
 ## Frontend
 
-- Keresés frontend <br>
+
 ---
-- Responzivitás <br>
-- car id page kép felfele kb 15px <br>
-- fiokom "popover" <br>
-- upload "Felrszeretség" befejezni <br>
-- upload md <br>
-- upload lg-felszeretség <br>
+- !!!! car/id rekostrualas kevesbo hasznaltauto copy  <br>
+- !!!! Responzivitás <br>
+- !!! upload "Felrszeretség" befejezni <br>
+- !!! upload md <br>
+- !!! upload lg-felszeretség <br>
+- !! Sikeres fizetés oldal <br>
+- !! car id page kép felfele kb 15px <br>
 ---
-- reklámok <br>
-- Sikeres fizetés oldal
+- ! fiokom "popover" <br>
+- ! reklámok <br>
+
 
 
 ## Backend
 
-
-- profilehoz my cars <br>
+- !!!! landig-on kereses bekotese <br>
+- !!! profilehoz my cars <br>
 
 
 ## Fullstack
