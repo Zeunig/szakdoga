@@ -9,7 +9,8 @@ import MyCars from "@/components/MyCars";
 import { cookies } from 'next/headers';
 import { authentication } from "@/lib/auth";
 import { get_my_profile } from "../api/my_profile/route";
-import { ICarListing } from "@/lib/car";
+import { ICarListing, parseCarListing } from "@/lib/car";
+import RowCard from "@/components/RowCard";
 
 
 export default async function Page() {
@@ -20,13 +21,15 @@ export default async function Page() {
     }else {
         let auth = await authentication(auth_cookie.value);
         if (auth["success"] == true) {
-            var profile = await get_my_profile(auth["payload"]["id"] as unknown as number);
+            var profile = await get_my_profile(auth["payload"]["id"] as unknown as number, true);
+            console.log(profile);
         }else {
             return;
         }
     }
     var cars = profile["car"] as ICarListing[];
-    console.log(cars);
+    var favorites = profile["favorites"] as ICarListing[];
+    console.log(favorites);
     return (
         <div className="scrollbar-hidden">
             <Header />
@@ -116,7 +119,7 @@ export default async function Page() {
                                     </CardHeader>
                                     <CardContent className="min-h-80 max-h-fit">
                                         <div className="">
-                                            <table className="table-fixed mt-10">
+                                            {/*<table className="table-fixed mt-10">
                                                 <thead>
                                                     <tr className="border-b-2 border-slate-400">
                                                         <th className="w-[130px] ">Márka</th>
@@ -136,7 +139,10 @@ export default async function Page() {
                                                     </tr>
                                     
                                                 </tbody>
-                                            </table>
+                                            </table>*/}
+                                            {favorites.map((car) => (
+                                                <RowCard car={parseCarListing(car["car"]!)} />
+                                            ))}
                                         </div>
                                     </CardContent>
                                 </Card>

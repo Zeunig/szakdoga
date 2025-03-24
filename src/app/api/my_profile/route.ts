@@ -47,7 +47,25 @@ export async function get_my_profile(user_id: number, include_unlisted_cars: boo
                     listed: 1
                 }
             },
-            favorites: true
+            favorites: {
+                include: {
+                    car: {
+                        include: {
+                            car_image_relation: {
+                                include: {
+                                    car_id: false,
+                                    id: false
+                                }
+                            },
+                            features: false
+                        },
+                        where: {
+                            listed: 1
+                        }
+                    },
+                    
+                }
+            }
         }
     });
     
