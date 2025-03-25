@@ -40,7 +40,7 @@ export default function FavoriteButton({car_id}: {car_id: number}) {
             })
             .then(res => {
                 if(res.status != 200) {
-                    console.error(res.text);
+                    console.log(res);
                     setFavorited(true);
                 }
                 setAvailable(true);

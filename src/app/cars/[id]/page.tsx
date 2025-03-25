@@ -19,10 +19,13 @@ import { CarListing } from "@/components/CarListing"
 import { ICarListing,parseCarListing } from "@/lib/car"
 import { get_car_from_db } from "@/app/api/cars/[id]/route"
 import SUC from "@/components/SUC"
+import { headers } from "next/headers"
 
 
 export default async function Page(context: {params: Promise<{id: number}>}) {
     const {id} = await context.params;
+    const headersList = await headers();
+    const isAuthed = headersList.get("cookie")?.toString().includes("auth=") || false;
     let car_data = await get_car_from_db(id) as object;
     var car;
     if(car_data["success"] === false) {
@@ -34,7 +37,7 @@ export default async function Page(context: {params: Promise<{id: number}>}) {
     return (
         <div>
             {
-                (car != null) && <div><Header /><CarListing {...car}/></div>
+                (car != null) && <div><Header /><CarListing car={car} isAuthed={isAuthed}/></div>
             }
             {
                 (car == null) && <div className="mx-96 mt-80"><SUC/></div>
