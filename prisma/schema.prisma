@@ -79,12 +79,12 @@ model user {
 }
 
 model report {
-  id          Int    @id
+  id          Int    @id @default(autoincrement())
   car_id      Int    @db.UnsignedInt
   reason      String @db.Text
   reporter_ip String @default("") @db.VarChar(200)
+  solved      Int?   @default(0) @db.TinyInt
   car         car    @relation(fields: [car_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__car")
 
   @@index([car_id], map: "FK__car")
-  @@index([id], map: "id")
 }
