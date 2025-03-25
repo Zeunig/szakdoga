@@ -19,6 +19,7 @@ import { Prisma, PrismaClient } from "@prisma/client"
 import { useRouter } from "next/navigation"
 import {BigImageViewer} from "./BigImageViewer";
 import FavoriteButton from "./FavoriteButton";
+import axios from "axios";
 
 export function CarListing({car,isAuthed} : {car: ICarListing, isAuthed: boolean}) {
     const [api, setApi] = React.useState<CarouselApi>()
@@ -43,7 +44,7 @@ export function CarListing({car,isAuthed} : {car: ICarListing, isAuthed: boolean
         if(report_reason == null || report_reason == "") {
             return;
         }else {
-            
+            axios.post("/api/report", {"reason": report_reason, "car_id": car.id}).then((res) => console.log(res));
         }
     }
     return (
@@ -57,7 +58,7 @@ export function CarListing({car,isAuthed} : {car: ICarListing, isAuthed: boolean
 
                 {/*Fő adatok*/}
                 <div className="col-span-2  border-2 border-grey-500 rounded-xl">
-                    <button onClick={report}></button>
+                    <button onClick={report}>Report</button>
                     <div className="col-span-2 ml-12 mt-2 -mb-3 text-3xl font-bold inline-flex ">{isAuthed && <FavoriteButton car_id={car?.id} /> } {car?.brand} {car?.model}</div>
                     <div className="grid grid-rows-2 lg:grid-cols-2">
 
