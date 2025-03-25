@@ -5,6 +5,8 @@
 
 ---
 - !!!! car/id rekostrualas kevesbo hasznaltauto copy  <br>
+- !! car/id seller - data hideable cím->maps
+- !! jovobeli feature - elado tovabbi autoi -
 - !!!! Responzivitás <br>
 - !!! upload "Felrszeretség" befejezni <br>
 - !!! upload md <br>
