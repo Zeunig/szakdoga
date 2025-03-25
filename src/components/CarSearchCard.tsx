@@ -73,7 +73,9 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
                 }
 
             } else {
-                url.searchParams.append(Object.keys(searchConditions)[i], Object.values(searchConditions)[i]);
+                if(Object.values(searchConditions)[i] != "") {
+                    url.searchParams.append(Object.keys(searchConditions)[i], Object.values(searchConditions)[i]);
+                }
             }
         }
         console.log(url);
@@ -116,6 +118,21 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
 
         }
     }*/
+    function handleBrandOrModelChange(value: string, type: string) {
+        if(type == "brand") {
+            setSearchConditions({
+                ...searchConditions,
+                [type]: value,
+                "model": ""
+            });
+        }else {
+            setSearchConditions({
+                ...searchConditions,
+                [type]: value,
+            });
+        }
+        console.log(searchConditions);
+    }
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         const { name, value, type } = e.target;
         console.log(name);
@@ -171,13 +188,13 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
                                     <div className="ml-2 mb-2 mt-1">
 
                                         <label htmlFor="" className="">Márka <br /> </label>
-                                        <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand} />
+                                        <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand} onInputChange={handleBrandOrModelChange} />
 
                                     </div>
                                     <div className="ml-2 mb-2">
 
                                         <label htmlFor="">Model <br /> </label>
-                                        <ModelCB car_selection={cars} selectedBrand={selectedBrand} />
+                                        <ModelCB car_selection={cars} selectedBrand={selectedBrand} onInputChange={handleBrandOrModelChange} />
 
                                     </div>
 

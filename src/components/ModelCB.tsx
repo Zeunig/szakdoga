@@ -38,7 +38,7 @@ const ford = [
 ]
 
  
-export function ModelCB({car_selection, selectedBrand}: {car_selection: ISortedCarSelection[], selectedBrand: string}) {
+export function ModelCB({car_selection, selectedBrand, onInputChange}: {car_selection: ISortedCarSelection[], selectedBrand: string, onInputChange: (params: any, param: any) => any}) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
   let cars = Object.values(car_selection);
@@ -73,6 +73,7 @@ export function ModelCB({car_selection, selectedBrand}: {car_selection: ISortedC
                         value={model.model}
                         onSelect={(currentValue) => {
                           console.log(currentValue);
+                          onInputChange(currentValue, "model");
                           setValue(currentValue === value ? "" : currentValue)
                           setOpen(false)
                         }}

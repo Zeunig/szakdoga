@@ -30,7 +30,7 @@ const make = [
 ]
 
 
-export function BrandCB({car_selection, setSelectedBrand}: {car_selection: ISortedCarSelection[], setSelectedBrand: React.Dispatch<React.SetStateAction<string>>}) {
+export function BrandCB({car_selection, setSelectedBrand, onInputChange}: {car_selection: ISortedCarSelection[], setSelectedBrand: React.Dispatch<React.SetStateAction<string>>, onInputChange: (params: any, param: any) => any}) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
   let cars = Object.values(car_selection);
@@ -60,7 +60,8 @@ export function BrandCB({car_selection, setSelectedBrand}: {car_selection: ISort
                   key={car.brand}
                   value={car.brand}
                   onSelect={(currentValue) => {
-                    setSelectedBrand(car.brand)
+                    setSelectedBrand(car.brand);
+                    onInputChange(car.brand, "brand");
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
                   }}

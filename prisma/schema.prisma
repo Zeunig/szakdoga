@@ -38,6 +38,7 @@ model car {
   user               user                 @relation(fields: [seller_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_car_user")
   car_image_relation car_image_relation[]
   favorites          favorites[]
+  report             report[]
 
   @@index([seller_id], map: "FK_car_user")
 }
@@ -70,8 +71,20 @@ model user {
   email        String      @unique(map: "email") @db.VarChar(255)
   password     String      @db.VarChar(600)
   avatar_url   String?     @db.VarChar(600)
+  address      String?     @db.VarChar(255)
   join_date    DateTime?   @default(now()) @db.Timestamp(0)
   permissions  BigInt      @default(0) @db.UnsignedBigInt
   car          car[]
   favorites    favorites[]
+}
+
+model report {
+  id          Int    @id
+  car_id      Int    @db.UnsignedInt
+  reason      String @db.Text
+  reporter_ip String @default("") @db.VarChar(200)
+  car         car    @relation(fields: [car_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK__car")
+
+  @@index([car_id], map: "FK__car")
+  @@index([id], map: "id")
 }
