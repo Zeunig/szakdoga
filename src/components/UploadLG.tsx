@@ -74,6 +74,16 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
 
         console.log(carDetails);
     }
+    function handleRadio(e: ChangeEvent<HTMLInputElement>) {
+        const { name, value, type, checked } = e.target;
+        console.log(checked);
+        setCarDetails({
+            ...carDetails,
+            [name]: e.target.id
+        });
+
+        console.log(carDetails);
+    }
     async function buyFeature() {
         fetch(`${location.protocol}//${window.location.host}/api/pay`, {
             method: "POST",
@@ -231,10 +241,10 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-10">
                                     <div className="w-40 ">
-                                        <input type="radio" name="gb" id="manual" required />
+                                        <input onChange={(e) => { handleRadio(e) }} type="radio" name="gb" id="Manuális" required />
                                         <label htmlFor="manual" className="text-xs">Manuális</label>
-                                        <input type="radio" name="gb" id="auto" className="ml-5" required />
-                                        <label htmlFor="auto" className="text-xs">Autómata</label>
+                                        <input onChange={(e) => { handleRadio(e) }} type="radio" name="gb" id="Automata" className="ml-5" required />
+                                        <label htmlFor="auto" className="text-xs">Automata</label>
                                     </div>
                                 </div>
                             </div>

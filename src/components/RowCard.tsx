@@ -28,7 +28,7 @@ export default function RowCard({car} : {car: ICarListing}) {
                         
                     </div>
                     <button className="bg-rose-200  mt-2 md:w-6/12  h-10 rounded-xl hvr-forward">
-                        <a href="" target="_blank" className=""> Tovább az autó megtekintéséhez</a>
+                        <a href={`/cars/${car.id}`} target="_blank" className=""> Tovább az autó megtekintéséhez</a>
                             
                         
                     </button>
