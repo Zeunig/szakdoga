@@ -22,7 +22,7 @@ export interface ISortedCarSelection {
 async function sortCarSelection(unsorted: IUnsortedCarSelection[]) {
     let sorted: ISortedCarSelection[] = [];
     var unsorted = unsorted.sort((a,b) => a.brand.toLowerCase() > b.brand.toLowerCase() ? 1 : -1);
-    var last_brand = "";
+    var last_brand: string | undefined = undefined;
     unsorted.forEach((car) => {
         if(last_brand != car.brand) {
             sorted.push({
