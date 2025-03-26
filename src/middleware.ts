@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import * as jose from 'jose';
 import { authentication } from './lib/auth';
+import { PrismaClient } from '@prisma/client';
 export const config = {
     matcher: [
       // Match /api/ paths but exclude /api/car/
@@ -10,6 +11,7 @@ export const config = {
       // Match /profile/ paths
       '/profil/:path*',
       '/feltoltes',
+      '/reports'
     ]
   }
 
