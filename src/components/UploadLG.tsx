@@ -16,6 +16,7 @@ import { ISortedCarSelection } from "@/app/jobs/carCounter/route";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger, } from "@/components/ui/collapsible"
 import { PublishInterface } from "@/app/api/marketplace/publish/route";
 import { Card } from "./ui/card";
+import axios from "axios";
 
 export default function UploadLG(cars: ISortedCarSelection[]) {
 
@@ -74,12 +75,18 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
 
         console.log(carDetails);
     }
+    function handleChange(value: string, type: string) {
+        setCarDetails({
+            ...carDetails,
+            [type]: value
+        });
+    }
     function handleRadio(e: ChangeEvent<HTMLInputElement>) {
         const { name, value, type, checked } = e.target;
         console.log(checked);
         setCarDetails({
             ...carDetails,
-            [name]: e.target.id
+            [name]: value
         });
 
         console.log(carDetails);
@@ -99,7 +106,13 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
     }
     async function upload(e: BaseSyntheticEvent) {
         e.preventDefault();
-        console.log(carDetails);
+        axios.post("/api/marketplace/publish", carDetails).then((res) => {
+            if(res.status == 200) {
+                window.location.href = `/cars/${res.data["car_id"]}`
+            }else {
+                alert('Valami hiba történt'); // TODO 
+            }
+        });
     }
     return (
         <div className="hidden md:block md:mx-2 h-fit w-fit border-2 border-blue-600 rounded-xl  mt-14 place-self-center mb-20">
@@ -137,19 +150,19 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                                 <h1 className="">Üzemanyag</h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-40 ml-4">
-                                    <input type="radio" name="fuel" id="gas" value="Benzin" required />
+                                    <input onChange={(e) => { handleRadio(e) }} type="radio" name="fuel_type" id="gas" value="Benzin" hidden={false/*required*/} />
                                     <label htmlFor="gas">Benzin</label>
-                                    <input type="radio" name="fuel" id="gas" value="Dízel" className="ml-5" required />
+                                    <input onChange={(e) => { handleRadio(e) }} type="radio" name="fuel_type" id="gas" value="Dízel" className="ml-5" hidden={false/*required*/} />
                                     <label htmlFor="diesel">Dízel</label>
-                                    <input type="radio" name="fuel" id="gas" value="Hibrid" className="ml-5" required />
+                                    <input onChange={(e) => { handleRadio(e) }} type="radio" name="fuel_type" id="gas" value="Hibrid" className="ml-5" hidden={false/*required*/} />
                                     <label htmlFor="diesel">Hibrid</label>
-                                    <input type="radio" name="fuel" id="gas" value="Elektromos" className="ml-5" required />
+                                    <input onChange={(e) => { handleRadio(e) }} type="radio" name="fuel_type" id="gas" value="Elektromos" className="ml-5" hidden={false/*required*/} />
                                     <label htmlFor="diesel">Elektromos</label>
-                                    <input type="radio" name="fuel" id="gas" value="Etanol" className="ml-5" required />
+                                    <input onChange={(e) => { handleRadio(e) }} type="radio" name="fuel_type" id="gas" value="Etanol" className="ml-5" hidden={false/*required*/} />
                                     <label htmlFor="diesel">Etanol</label>
-                                    <input type="radio" name="fuel" id="gas" value="Biodízel" className="ml-5" required />
+                                    <input onChange={(e) => { handleRadio(e) }} type="radio" name="fuel_type" id="gas" value="Biodízel" className="ml-5" hidden={false/*required*/} />
                                     <label htmlFor="diesel">Biodízel</label>
-                                    <input type="radio" name="fuel" id="gas" value="Gáz" className="ml-5" required />
+                                    <input onChange={(e) => { handleRadio(e) }} type="radio" name="fuel_type" id="gas" value="Gáz" className="ml-5" hidden={false/*required*/} />
                                     <label htmlFor="diesel">Gáz</label>
                                 </div>
                             </div>
@@ -160,7 +173,7 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                                 <h1 className="display: inline font-semibold">Kilóméter </h1><h1 className="display: inline">óra állás</h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-10">
-                                    <input onChange={(e) => { handleInputChange(e) }} type="number" name="mileage" className="mt-1 w-32 border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" required />
+                                    <input onChange={(e) => { handleInputChange(e) }} type="number" name="mileage" className="mt-1 w-32 border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" hidden={false/*required*/} />
                                 </div>
                             </div>
                             {/*km vége*/}
@@ -170,7 +183,7 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                                 <h1 className="display: inline">Kívánt ár </h1><h1 className="display inline font-semibold">(Ft)</h1>
                                 <hr className="w-96 h-px bg-slate-400 border-0" />
                                 <div className="w-fit">
-                                    <input onChange={(e) => { handleInputChange(e) }} type="text" name="price" className="mt-1 ml-5 w-[312px] border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" required />
+                                    <input onChange={(e) => { handleInputChange(e) }} type="number" name="price" className="mt-1 ml-5 w-[312px] border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" hidden={false/*required*/} />
                                 </div>
                             </div>
                             {/*ár vége*/}
@@ -200,7 +213,7 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                                 <h1 className="display: inline ">Gyártási </h1><h1 className="display: inline font-semibold">év</h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-10">
-                                    <input onChange={(e) => { handleInputChange(e) }} type="number" name="year" className="mt-1 w-32 border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" required />
+                                    <input onChange={(e) => { handleInputChange(e) }} type="number" name="year" className="mt-1 w-32 border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" hidden={false/*required*/} />
                                 </div>
                             </div>
                             {/*év vége*/}
@@ -210,7 +223,7 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                                 <h1 className="display: inline ">Autó állapota</h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-9" >
-                                    <ConditionCB />
+                                    <ConditionCB onInputChange={handleChange}/>
                                 </div>
                             </div>
                             {/*allapot vége*/}
@@ -230,7 +243,7 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                                 <h1 className="display: inline ">Hajtás </h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-10">
-                                    <DrivetypeCB />
+                                    <DrivetypeCB onInputChange={handleChange}/>
                                 </div>
                             </div>
                             {/*hajtás vége*/}
@@ -241,9 +254,9 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-10">
                                     <div className="w-40 ">
-                                        <input onChange={(e) => { handleRadio(e) }} type="radio" name="gb" id="Manuális" required />
+                                        <input onChange={(e) => { handleRadio(e) }} type="radio" name="gearbox" id="Manuális" value="Manuális" hidden={false/*required*/} />
                                         <label htmlFor="manual" className="text-xs">Manuális</label>
-                                        <input onChange={(e) => { handleRadio(e) }} type="radio" name="gb" id="Automata" className="ml-5" required />
+                                        <input onChange={(e) => { handleRadio(e) }} type="radio" name="gearbox" id="Automata" value="Automata" className="ml-5" hidden={false/*required*/} />
                                         <label htmlFor="auto" className="text-xs">Automata</label>
                                     </div>
                                 </div>

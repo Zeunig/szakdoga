@@ -27,7 +27,7 @@ const make = [
 ]
 
  
-export function DrivetypeCB() {
+export function DrivetypeCB({onInputChange}: {onInputChange: (params: any, param: any) => any}) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
  
@@ -57,6 +57,7 @@ export function DrivetypeCB() {
                   key={make.value}
                   value={make.value}
                   onSelect={(currentValue) => {
+                    onInputChange(currentValue, "drive_type");
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
                   }}

@@ -20,8 +20,8 @@ import {
 } from "@/components/ui/popover"
  
 const make = [
-  {value: "Új",label: "Ilyen",},
-  {value: "Újszerű",label: "Olyan",},
+  {value: "Új",label: "Új",},
+  {value: "Újszerű",label: "Újszerű",},
   {value: "Használt",label: "Használt",},
   {value: "Megviselt",label: "Megviselt",},
   {value: "Hibás",label: "Hibás",},
@@ -29,7 +29,7 @@ const make = [
 ]
 
  
-export function ConditionCB() {
+export function ConditionCB({onInputChange}: {onInputChange: (params: any, param: any) => any}) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
  
@@ -59,6 +59,7 @@ export function ConditionCB() {
                   key={make.value}
                   value={make.value}
                   onSelect={(currentValue) => {
+                    onInputChange(currentValue, "condition");
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
                   }}

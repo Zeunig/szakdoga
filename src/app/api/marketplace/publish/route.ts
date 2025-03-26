@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({"success":false, "message": "Érvénytelen adat"},{"status": 400})
         }
         for(var i = 0; i < json.images.length; i++) {
-            if(!(/[c-z]{4,5}:\/\/(rubyrose.top|listings-prod.tcimg.net)\//.test(json.images[i]))) {
+            if(!(/([c-z]{4,5}:\/\/(rubyrose.top|listings-prod.tcimg.net)\/)|\/cars\/(.*?)/.test(json.images[i]))) {
                 return NextResponse.json({"success":false, "message": `Érvénytelen kép URL : ${json.images[i]}`},{"status": 400})
             }
         }
@@ -146,7 +146,7 @@ export async function POST(req: NextRequest) {
             },
         });
         console.log(car);
-        let resp = NextResponse.json({"success":true}, {"status": 200});
+        let resp = NextResponse.json({"success":true, "car_id": car.id}, {"status": 200});
         return resp;
     }else {
         return NextResponse.json({"success": false, "error": "Nem vagy bejelentkezve!"}, {"status": 401});
