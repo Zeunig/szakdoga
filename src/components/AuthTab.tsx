@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label"
 import {Tabs,TabsContent,TabsList,TabsTrigger,} from "@/components/ui/tabs"
 import { useState } from "react";
 import Alert from "./Alert";
+import { NextRequest } from "next/server";
+import { useSearchParams } from "next/navigation";
 export interface IAlert {
     alert_type: string,
     title: string,
@@ -30,7 +32,7 @@ export default function AuthTabs() {
             .then(res => res.json()).then(json => {
                 setRegisterAlert([{alert_type: "success", title: "Sikeres regisztráció", message: "Hamarosan átirányítunk a főoldalra"}])
                 setTimeout(() => {
-                    window.location.href = `${location.protocol}//${window.location.host}`;
+                    history.back();
                 },2000);
             });
             
