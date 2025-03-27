@@ -73,7 +73,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
                 {/* Nagy képnézegető vége */}
 
                 {/*Képnézegető*/}
-                <div className=" mx-auto  place-self-center">
+                <div className=" mx-auto  place-self-center mt-5">
                     <Carousel setApi={setApi} className="w-[659px] place-self-center mt-3 bg-slate-900 bg-opacity-20 rounded-2xl"
                         plugins={[plugin.current]}
                         onMouseEnter={plugin.current.stop}
