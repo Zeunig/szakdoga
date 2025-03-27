@@ -46,7 +46,11 @@ export default function AuthTabs() {
         if(json["success"] === true) {
             setLoginAlert([{alert_type: "success", title: "Sikeres bejelentkezés", message: "Hamarosan átirányítunk a főoldalra"}])
             setTimeout(() => {
-                window.location.href = `${location.protocol}//${window.location.host}`;
+                if(document.referrer.includes(window.location.host)) {
+                    history.back();
+                }else {
+                    window.location.href = `${location.protocol}//${window.location.host}`;
+                }
             },2000);
         }else {
             setLoginAlert([{alert_type: "danger", title: "Hiba", message: json["message"] as string}]);
