@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
                 car: false
             }
         });
-        if((Number(query?.permissions) >>> 2 & 1) == 0) {
+        if((Number(query?.permissions) >>> 0 & 1) == 0) {
             let resp = NextResponse.json({"success":false, "error": "Nincs admin jogosultságod"}, {"status": 401});
             return resp;
         }
@@ -69,7 +69,7 @@ export async function DELETE(req: NextRequest) {
                 car: false
             }
         });
-        if((Number(query?.permissions) >>> 2 & 1) == 0) {
+        if((Number(query?.permissions) >>> 0 & 1) == 0) {
             let resp = NextResponse.json({"success":false, "error": "Nincs admin jogosultságod"}, {"status": 401});
             return resp;
         }

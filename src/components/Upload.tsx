@@ -40,7 +40,7 @@ export default function Upload(cars: ISortedCarSelection[]) {
                     setLimitReached(true);
                 }
             }
-            if(((parseInt(res.data["data"]["permissions"]) >>> 2) & 1) == 0) {
+            if(((parseInt(res.data["data"]["permissions"]) >>> 2) & 1) == 1) {
                 // ki van tiltva
                 setBanned(true);
             }

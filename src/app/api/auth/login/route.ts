@@ -34,7 +34,7 @@ export async function POST(req: Request) {
         let resp = NextResponse.json({"success":false, "message": `Érvénytelen e-mail és/vagy jelszó`}, {"status": 400});
         return resp;
     }
-    if((Number(db_result.permissions) >>> 2 & 1) == 0) {
+    if((Number(db_result.permissions) >>> 2 & 1) == 1) {
         let resp = NextResponse.json({"success":false, "message": `Ez a fiók ki van tiltva az oldalról`}, {"status": 401});
         return resp;
     }
