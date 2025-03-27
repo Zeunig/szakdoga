@@ -7,7 +7,7 @@ import { ModelCB } from "@/components/ModelCB";
 import { Input } from "@/components/ui/input";
 import { DrivetypeCB } from "@/components/DriveTypeCB";
 import { ConditionCB } from "@/components/ConditionCB";
-import { Bug } from "lucide-react";
+import { Bug, Divide } from "lucide-react";
 import { Textarea } from "@/components/TextArea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import React, { useEffect } from "react";
@@ -31,6 +31,7 @@ function Unlocked(cars: ISortedCarSelection[]) {
 
 export default function Upload(cars: ISortedCarSelection[]) {
     const [limitReached, setLimitReached] = React.useState(false);
+    const [banned, setBanned] = React.useState(false);
     useEffect(() => {
         axios.get("/api/my_profile?include_unlisted_cars=true").then((res) => {
             if(((parseInt(res.data["data"]["permissions"]) >>> 1) & 1) == 0) {
@@ -39,12 +40,16 @@ export default function Upload(cars: ISortedCarSelection[]) {
                     setLimitReached(true);
                 }
             }
+            if(((parseInt(res.data["data"]["permissions"]) >>> 2) & 1) == 0) {
+                // ki van tiltva
+                setBanned(true);
+            }
         })
-    }, [setLimitReached]);
+    }, [setLimitReached, setBanned]);
     return (
         limitReached
         ? <div>Túl sok autót töltöttél fel, kérjük vásárolj "Végtelen feltöltés"-t 8000 Ft-ért</div>
-        : <Unlocked {...cars}/>
+        : (banned ? <div>Ki vagy tiltva az oldalról</div> : <Unlocked {...cars}/>)
 
     );
 }

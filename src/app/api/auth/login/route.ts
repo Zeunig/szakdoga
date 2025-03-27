@@ -34,6 +34,10 @@ export async function POST(req: Request) {
         let resp = NextResponse.json({"success":false, "message": `Érvénytelen e-mail és/vagy jelszó`}, {"status": 400});
         return resp;
     }
+    if((Number(db_result.permissions) >>> 2 & 1) == 0) {
+        let resp = NextResponse.json({"success":false, "message": `Ez a fiók ki van tiltva az oldalról`}, {"status": 401});
+        return resp;
+    }
     var a = await bcrypt.compare(password, db_result.password);
     if (a) {
         const token = await new jose.SignJWT(
