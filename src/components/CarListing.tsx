@@ -13,15 +13,22 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/h
 import { CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Collapsible } from "@radix-ui/react-collapsible"
 import { Button } from "@/components/ui/button"
-import { ChevronRight, ChevronsDownUp, ChevronsDownUpIcon, ChevronsUpDown } from "lucide-react"
+import { AlertTriangleIcon, ChevronDown, ChevronDownCircle, ChevronRight, ChevronsDownUp, ChevronsDownUpIcon, ChevronsUpDown, Divide, Heart, Mail, MapIcon, Phone } from "lucide-react"
 import { ICarListing, parseCarListing } from "@/lib/car"
 import { Prisma, PrismaClient } from "@prisma/client"
 import { useRouter } from "next/navigation"
-import {BigImageViewer} from "./BigImageViewer";
+import { BigImageViewer } from "./BigImageViewer";
 import FavoriteButton from "./FavoriteButton";
 import axios from "axios";
+import Autoplay from "embla-carousel-autoplay";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
+import { Textarea } from "./TextArea";
+import { useToast } from "@/hooks/use-toast"
 
-export function CarListing({car,isAuthed} : {car: ICarListing, isAuthed: boolean}) {
+import { ToastAction } from "@/components/ui/toast"
+
+export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: boolean }) {
+    const { toast } = useToast()
     const [api, setApi] = React.useState<CarouselApi>()
     const [current, setCurrent] = React.useState(0)
     const [count, setCount] = React.useState(car.images.length);
@@ -41,220 +48,286 @@ export function CarListing({car,isAuthed} : {car: ICarListing, isAuthed: boolean
     }, [api])
     function report() {
         let report_reason = prompt("Írd le a jelentés indokát");
-        if(report_reason == null || report_reason == "") {
+        if (report_reason == null || report_reason == "") {
             return;
-        }else {
-            axios.post("/api/report", {"reason": report_reason, "car_id": car.id}).then((res) => console.log(res));
+        } else {
+            axios.post("/api/report", { "reason": report_reason, "car_id": car.id }).then((res) => console.log(res));
         }
     }
+
+    const plugin = React.useRef(
+        Autoplay({ delay: 3000, stopOnInteraction: true })
+    )
+
+
     return (
-        <div>
-            {/* Nagy képnézegető */}
-            {
-                showImageViewer != "" && <div onClick={() => {setShowImageViewer("")}}><BigImageViewer imagePath={showImageViewer}/></div>
-            }
-            {/* Nagy képnézegető vége */}
-            <div className="lg:grid grid-cols-3 grid-row-2 ml-2 mr-2 lg:ml-64 lg:mr-64 mt-20 ">
+        <div className="grid grid-cols-12 gap-10 grid-rows-2 w-full mt-20">
 
-                {/*Fő adatok*/}
-                <div className="col-span-2  border-2 border-grey-500 rounded-xl">
-                    <button onClick={report}>Report</button>
-                    <div className="col-span-2 ml-12 mt-2 -mb-3 text-3xl font-bold inline-flex ">{isAuthed && <FavoriteButton car_id={car?.id} /> } {car?.brand} {car?.model}</div>
-                    <div className="grid grid-rows-2 lg:grid-cols-2">
+            {/*Main card*/}
+            <div className="col-span-5 col-start-3 row-start-1 row-span-1 bg-blue-200  border-2 border-blue-600 rounded-lg inline-block place-items-center">
 
-                        {/*Képnézegető*/}
-                        <div className="row-end-2 h-fit mx-auto  ml-8 lg:ml-14 lg:mb-24 mt-5 lg:col-span-1 ">
-                            <Carousel setApi={setApi} className="mt-20 h-[200px] w-[400px]  ">
-                                <CarouselContent className="">
-                                    {Array.from({ length: count }).map((_, index) => (
-                                        <CarouselItem key={index} className="h-fit w-fit " onClick={() => {setShowImageViewer(car?.images[index])}}>
-                                            <Image src={car?.images[index] || "/r8.jpg"} width={800} height={800} alt="Picture of the author" className="flex  items-center justify-center p-6 " />
-                                        </CarouselItem>
-                                    ))}
-                                </CarouselContent>
-                                <CarouselPrevious className="ml-5 mt-[23px] bg-slate-300" />
-                                <CarouselNext className="mr-5 mt-[23px] bg-slate-300" />
-                            </Carousel>
+                {/* Nagy képnézegető */}
+                {
+                    showImageViewer != "" && <div className="absolute left-0" onClick={() => { setShowImageViewer("") }}><BigImageViewer imagePath={showImageViewer} /></div>
+                }
+                {/* Nagy képnézegető vége */}
 
-                            <div className="mt-5 py-2 text-center text-sm text-muted-foreground ">
-                                {current}/{count}
-                            </div>
+                {/*Képnézegető*/}
+                <div className=" mx-auto  place-self-center">
+                    <Carousel setApi={setApi} className="w-[659px] place-self-center mt-3 bg-slate-900 bg-opacity-20 rounded-2xl"
+                        plugins={[plugin.current]}
+                        onMouseEnter={plugin.current.stop}
+                        onMouseLeave={plugin.current.reset}>
+                        <CarouselContent className="">
+                            {Array.from({ length: count }).map((_, index) => (
+                                <CarouselItem key={index} className="h-[500px] w-[800px] " onClick={() => { setShowImageViewer(car?.images[index]) }}>
+                                    <Image src={car?.images[index]} width={800} height={800} alt="Hiba a kép betöltése bözben" className="flex  items-center justify-center p-6 " />
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="ml-2 bg-blue-300 hover:text-blue-600 hover:border-blue-600 hover:border-2" />
+                        <CarouselNext className="mr-2 bg-blue-300 hover:text-blue-600 hover:border-blue-600 hover:border-2" />
+                        <div className=" text-center text-sm text-blue-600 mb-5 font-bold">
+                            {current}/{count}
                         </div>
-                        {/*Képnézegető vége*/}
-                        
-                        {/*Infó táblázat */}
-                        <div className="-mt-52  ml-5 row-start-2 lg:col-start-2 lg:row-start-1 lg:mt-14 lg:ml-20">
+                    </Carousel>
 
-                            {/*Árak*/}
-                            <h1 className="font-bold">Ár és Költségek</h1>
-                            <hr className="w-64 h-px bg-slate-400 border-0" />
 
-                            <div className="ml-5 mr-40 grid grid-cols2 text-sm ">
-
-                                <div className="col-start-1 col-end-2">Ár:</div>
-                                <div className="col-start-2 font-bold proportional-nums">{car?.price.toLocaleString(undefined)} Ft</div>
-
-                                <div className="col-start-1 col-end-2">Akciós ár:</div>
-                                <div className="col-start-2 font-bold text-blue-600 proportional-nums">{(car?.discounted_price*0.8).toLocaleString(undefined)} Ft</div>
-
-                                
-
-                            </div>
-                            {/*Árak vége*/}
-
-                            {/*Általános adatok*/}
-                            <h1 className="font-bold">Általános adatok</h1>
-                            <hr className="w-64 h-px bg-slate-400 border-0" />
-
-                            <div className="ml-5 mr-40 grid grid-cols2 text-sm">
-
-                                <div className="col-start-1 col-end-2 mb-1">Állapot:</div>
-                                <div className="col-start-2">{car?.condition}</div>
-
-                                <div className="col-start-1 col-end-2 mb-1">Évjárat:</div>
-                                <div className="col-start-2">{car?.year}</div>
-
-                                <div className="col-start-1 col-end-2 mb-1">Kivitel:</div>
-                                <div className="col-start-2">{car?.design}</div>
-
-                            </div>
-                            {/*Általános adatok vége*/}
-
-                            {/*Jármű adatok*/}
-                            <h1 className="font-bold mt-5">Jármű adatai</h1>
-                            <hr className="w-64 h-px bg-slate-400 border-0" />
-
-                            <div className="ml-5 mr-40 grid grid-cols2 text-sm">
-
-                                <div className="col-start-1 col-end-2 mb-1">Km. óra állás:</div>
-                                <div className="col-start-2 proportional-nums">{car?.mileage.toLocaleString(undefined)} km</div>
-
-                                <div className="col-start-1 col-end-2 mb-1">Ajtók száma:</div>
-                                <div className="col-start-2 proportional-nums">{car?.doors}</div>
-
-                                <div className="col-start-1 col-end-2 mb-1">Ülések:</div>
-                                <div className="col-start-2 proportional-nums">{car?.passengers}</div>
-
-                                <div className="col-start-1 col-end-2 mb-1">Súly:</div>
-                                <div className="col-start-2 proportional-nums">{car?.weight}kg</div>
-
-                                <div className="col-start-1 col-end-2 mb-1">Szín:</div>
-                                <div className="col-start-2">{car?.color}</div>
-
-                            </div>
-                            {/*Jármű adatok vége*/}
-
-                            {/*Motor adatok*/}
-                            <h1 className="font-bold">Motor adatai</h1>
-                            <hr className="w-64 h-px bg-slate-400 border-0" />
-
-                            <div className="ml-5 mr-40 grid grid-cols2 text-sm">
-
-                                <div className="col-start-1 col-end-2 mb-1">Üzemanyag</div>
-                                <div className="col-start-2">{car?.fuel_type}</div>
-
-                                <div className="col-start-1 col-end-2 mb-1">Köbcenti:</div>
-                                <div className="col-start-2 proportional-nums">{car?.cc} cm³</div>
-
-                                <div className="col-start-1 col-end-2 mb-1">Teljesítmény:</div>
-                                <div className="col-start-2">
-                                    <HoverCard openDelay={0}>
-                                        <HoverCardTrigger className="underline proportional-nums">{Math.floor(car?.horsepower/1.3)} kw</HoverCardTrigger>
-                                        <HoverCardContent className="w-44 proportional-nums">Ez átváltva {Math.floor(car?.horsepower)} Lóerő</HoverCardContent>
-                                    </HoverCard>
-                                </div>
-
-                                <div className="col-start-1 col-end-2 mb-1">Hajtás:</div>
-                                <div className="col-start-2">{car?.drive_type}</div>
-
-                                <div className="col-start-1 col-end-2 mb-1">Sebességváltó:</div>
-                                <div className="col-start-2">{car?.gearbox}</div>
-
-                            </div>
-                            {/*Motor adatok vége*/}
-
-                            {/*Felszereltség*/}
-                            <h1 className="font-bold">Felszereltség</h1>
-                            <hr className="w-64 h-px bg-slate-400 border-0" />
-
-                            <div className="ml-5 mr-40 text-sm">
-                                <Collapsible>
-                                    <CollapsibleTrigger><ChevronsUpDown className="display: inline" />Biztonsági Felszeretség   </CollapsibleTrigger>
-                                    <hr className="ml-5 w-36 h-px bg-slate-400 border-0" />
-                                    <CollapsibleContent>
-                                        <div className="ml-7 grid grid-cols-1">
-                                            <ol className="list-disc">
-                                                {car.features.safety.map((feature) => (
-                                                    <li key={feature}>{feature}</li>
-                                                ))}
-                                            </ol>
-                                        </div>
-                                    </CollapsibleContent>
-                                </Collapsible>
-
-                                <Collapsible>
-                                    <CollapsibleTrigger ><ChevronsUpDown className="display: inline" />Belső Felszeretség</CollapsibleTrigger>
-                                    <hr className="ml-5 w-36 h-px bg-slate-400 border-0" />
-                                    <CollapsibleContent>
-                                        <div className="ml-7 grid grid-cols-1">
-                                            <ol className="list-disc">
-                                                {car.features.interior.map((feature) => (
-                                                    <li key={feature}>{feature}</li>
-                                                ))}
-                                            </ol>
-                                        </div>
-                                    </CollapsibleContent>
-                                </Collapsible>
-
-                                <Collapsible>
-                                    <CollapsibleTrigger ><ChevronsUpDown className="display: inline" />  Külső Felszeretség</CollapsibleTrigger>
-                                    <hr className="ml-5 w-36 h-px bg-slate-400 border-0" />
-                                    <CollapsibleContent>
-                                        <div className="ml-7 grid grid-cols-1">
-                                            <ol className="list-disc">
-                                                {car.features.exterior.map((feature) => (
-                                                    <li key={feature}>{feature}</li>
-                                                ))}
-                                            </ol>
-                                        </div>
-                                    </CollapsibleContent>
-                                </Collapsible>
-                            </div>
-                            {/*Felszereltség vége*/}
-
-                            {/*Leírás*/}
-                            <h1 className="font-bold mt-5">Leírás</h1>
-                            <hr className="w-64 h-px bg-slate-400 border-0" />
-
-                            <div className="ml-2 mr-28 text-sm text-pretty">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Recusandae nobis soluta aliquid, illo tempore reprehenderit!
-                            Hic impedit sit, voluptatem facere repellendus sunt dolorem, dicta odit voluptates nesciunt ipsam dignissimos commodi.
-                            </div>
-                            {/*Leírás vége */}
-
-                            {/*Eladó info*/}
-                            <h1 className="font-bold mt-5">Eladó adatai</h1>
-                            <hr className="w-64 h-px bg-slate-400 border-0"/>
-
-                            <div>
-                                <div>Név: {car?.seller_name}</div>
-                                <div>Cím: Budapest, 1234 Budapesti út 12.</div>
-                                <div>Telefon: +36 70 123 456 789</div>
-                                <div>E-mail: nagylaszlo@szakdoga.hu</div>
-                                <div>Hirdetés létrehozásának dátma: </div>
-                                <div>{car?.creation_date.split("T")[0]}</div>
-                            </div>
-                            {/*Eladó info vége*/}   
-
-                        </div>
-                        {/*Infó táblázat vége*/}
-                    </div>
                 </div>
-                {/*Fő adatok*/}
+
+                {/*Képnézegető vége*/}
+
+                {/* Infó táblázat */}
+                <div className="grid grid-rows-2  bg-slate-900 bg-opacity-20 rounded-lg mx-5 mb-5 ">
+
+                    <div className="row-start-1 grid grid-cols-4 font-semibold text-blue-600 text-center text-lg " >
+                        <div className="place-content-center">
+                            <p>Futott kilóméterek:</p>
+                        </div>
+                        <div className="place-content-center">
+                            <p>Teljesítmény:</p>
+                        </div>
+                        <div className="place-content-center">
+                            <p>Hajtóanyag fajtálya:</p>
+                        </div>
+                        <div className="place-content-center">
+                            <p>Váltó fajtálya:</p>
+                        </div>
+                    </div>
+                    <div className="row-start-2 grid grid-cols-4 text-center text-base font-semibold">
+                        <div className="">
+                            <p>{(car?.mileage).toLocaleString()} km</p>
+                        </div>
+                        <div className="">
+                            <p>{Math.floor(car?.horsepower * 0.7457)} kW  ({car?.horsepower} le)</p>
+                        </div>
+                        <div className="">
+                            <p>{car?.fuel_type}</p>
+                        </div>
+                        <div className="">
+                            <p>{car?.gearbox}</p>
+                        </div>
+                    </div>
+
+                </div>
+                {/* Infó táblázat vége*/}
+
 
             </div>
-            <Footer />
+            {/*Main card end*/}
+
+
+            <div className="col-span-5 col-start-3 mx-auto ">
+                {/*Info card*/}
+                <div className="bg-blue-200  border-2 border-blue-600 rounded-lg inline-block  w-full">
+                    <div className="mt-5 mx-5 mb-10">
+                        <p className="text-3xl font-semibold text-blue-600 ">Alapvető adatok</p>
+                        <hr className="w-full h-px mx-auto  mb-2 bg-slate-400 border-0" />
+                        <div className="jutify-center w-full  bg-slate-900 bg-opacity-20 rounded-lg ">
+                            <div className="grid grid-cols-5 mt-5 text-center">
+                                <div className="col-start-1 mb-3">
+                                    <p className="text-base font-semibold text-blue-600 ">Jármű állapota</p>
+                                    <p className="text-lg font-semibold text-gray-700">{car.condition}</p>
+                                </div>
+                                <div className="col-start-2">
+                                    <p className="text-base font-semibold text-blue-600 ">Karosszériatípus</p>
+                                    <p className="text-lg font-semibold text-gray-700">{car.design}</p>
+                                </div>
+                                <div className="col-start-3">
+                                    <p className="text-base font-semibold text-blue-600 ">Színe</p>
+                                    <p className="text-lg font-semibold text-gray-700">{car.color}</p>
+                                </div>
+                                <div className="col-start-4">
+                                    <p className="text-base font-semibold text-blue-600 ">Ülések</p>
+                                    <p className="text-lg font-semibold text-gray-700">{car.passengers}</p>
+                                </div>
+
+                                <div className="col-start-5">
+                                    <p className="text-base font-semibold text-blue-600 ">Ajtók</p>
+                                    <p className="text-lg font-semibold text-gray-700">{car.doors}</p>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <p className="text-3xl font-semibold text-blue-600 ">Műszaki adatok</p>
+                        <hr className="w-full h-px mx-auto  mb-2 bg-slate-400 border-0" />
+                        <div className="jutify-center w-full bg-slate-900 bg-opacity-20 rounded-lg">
+                            <div className="grid grid-cols-5 mt-5 text-center">
+                                <div className="col-start-1 mb-3">
+                                    <p className="text-base font-semibold text-blue-600 ">Évjárat</p>
+                                    <p className="text-lg font-semibold text-gray-700">{car.year}</p>
+                                </div>
+                                <div className="col-start-2">
+                                    <p className="text-base font-semibold text-blue-600 ">Meghajtás típusa</p>
+                                    <p className="text-lg font-semibold text-gray-700">{car.drive_type}</p>
+                                </div>
+                                <div className="col-start-3">
+                                    <p className="text-base font-semibold text-blue-600 ">Hengerűrtartalom</p>
+                                    <p className="text-lg font-semibold text-gray-700">{(car.cc).toLocaleString()} cm³</p>
+                                </div>
+                                <div className="col-start-4">
+                                    <p className="text-base font-semibold text-blue-600 ">Tömege</p>
+                                    <p className="text-lg font-semibold text-gray-700">{car.year}</p>
+                                </div>
+                                <div className="col-start-5">
+                                    <p className="text-base font-semibold text-blue-600 ">Kilométeróra állása</p>
+                                    <p className="text-lg  font-semibold text-gray-700">{car.color}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/*Info card end*/}
+
+                {/*Features card*/}
+                <div className="bg-blue-200  border-2 border-blue-600 rounded-lg inline-block w-full mt-10 mb-5">
+                    <div className="mt-5 mx-5">
+                        <p className="text-2xl font-semibold text-blue-600 ">Felszereltség</p>
+                        <hr className="w-full h-px mx-auto  mb-2 bg-slate-400 border-0" />
+                        <div className="grid grid-rows-3 mx-5 mt-5 mb-3">
+
+                            <div className="">
+                                <p className="text-lg font-bold text-blue-600">Biztonsági Felszereltség</p>
+                                <hr className="w-full h-px mx-auto  mb-2 bg-slate-400 border-0" />
+                                <div className="grid grid-flow-col grid-flow-col-dense bg-slate-900 bg-opacity-20 rounded-lg ">
+                                    {car.features.safety.map((feature) => (
+                                        <div key={feature} className="w-full mx-2 h-8 mt-2" >{feature}</div>
+                                    ))}
+                                </div>
+
+                            </div>
+
+                            <div className="">
+                                <p className="text-lg font-bold text-blue-600">Belső Felszereltség</p>
+                                <hr className="w-full h-px mx-auto  mb-2 bg-slate-400 border-0" />
+                                <div className="grid grid-flow-col bg-slate-900 bg-opacity-20 rounded-lg">
+                                    {car.features.interior.map((feature) => (
+                                        <div key={feature} className="w-full mx-2 h-8 mt-2" >{feature}</div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="">
+                                <p className="text-lg font-bold text-blue-600">Külcső  Felszereltség</p>
+                                <hr className="w-full h-px mx-auto  mb-2 bg-slate-400 border-0 text-start" />
+                                <div className="grid grid-flow-col bg-slate-900 bg-opacity-20 rounded-lg">
+                                    {car.features.exterior.map((feature) => (
+                                        <div key={feature} className="w-full mx-2 h-8 mt-2" >{feature}</div>
+                                    ))}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {/*Features card end*/}
+            </div>
+
+
+            {/*Price card*/}
+            <div className="sticky top-0 col-start-8 -mt-8 row-start-1">
+                <div className=" border-2 border-blue-600 rounded-lg inline-block w-80 mt-8">
+                    <Card className="h-full rounded-lg">
+                        <CardHeader>
+                            <p className="text-3xl font-bold">{car?.brand} {car?.model}</p>
+                        </CardHeader>
+                        <CardContent>
+                            <hr className="w-full h-px mx-auto -mt-4  mb-2 bg-slate-400 border-0" />
+                            <p className="text-xl" >Brutto ár: {car.price.toLocaleString()} Ft</p>
+                            <p className="text-2xl text-blue-600 font-bold">Akciós ár: {(car.price * 0.8).toLocaleString()} Ft</p>
+                            <hr className="w-full h-px mx-auto mt-3  mb-2 bg-slate-400 border-0" />
+
+                            <Collapsible>
+                                <CollapsibleTrigger className=""><p className="text-xl inline-block" >Eladó adatai <ChevronDown className="inline-block" /></p></CollapsibleTrigger>
+                                <CollapsibleContent>
+                                    <hr className="w-full h-px mx-auto mt-3  mb-2 bg-slate-400 border-0" />
+
+                                    <p className="font-bold ml-3"> <Mail className="inline-block text-blue-600" />:         { }  </p>
+                                    <p className="font-bold ml-3"> <Phone className="inline-block text-blue-600" />:    { }  </p>
+                                    <p className="font-bold ml-3"> <MapIcon className="inline-block text-blue-600" />:  { }  </p>
+
+                                </CollapsibleContent>
+                            </Collapsible>
+                            <hr className="w-full h-px mx-auto mt-3  mb-2 bg-slate-400 border-0" />
+
+                            <div className="grid grid-cols-2 gap-2">
+
+                                <div className="forced-colors:bg-slate-950">
+                                    <div className="col-span-1 w-full ">
+                                        {!isAuthed && <button className="w-full" onClick={() => {
+                                            toast({
+                                                variant: "kpak",
+                                                title: "Jelentkezz be!",
+                                                description: "Ahhoz hogy kedvelni tudd, be kell hogy jelentkezz!",
+                                                action: <ToastAction altText="Katt ide!" className="border-2 border-blue-600 hvr-glow hvr-grow bg-white"><a href="/auth" >Katt ide!</a></ToastAction>,
+                                            });
+                                        }}
+                                        >
+                                            <button className='bg-slate-300 rounded-lg border-2 w-full border-slate-400 h-12  font-semibold'>
+                                                <Heart fill="black" className='inline-block ' /> <p className='inline-block'>Kedvelés</p>
+                                            </button>
+
+                                        </button>}
+
+                                        {isAuthed && <FavoriteButton car_id={car?.id} />}
+
+                                    </div>
+                                </div>
+
+                                <div className="col-span-1">
+                                    <Dialog>
+                                        <DialogTrigger className="w-full h-full">
+
+                                            <button className="bg-rose-300 w-full h-full inline-block border-2 rounded-lg font-semibold">
+                                                <AlertTriangleIcon className="inline-block" />
+                                                <p className="inline-block ml-2 aling-center">Jeletés</p>
+                                            </button>
+
+                                        </DialogTrigger>
+                                        <DialogContent className="border-red-600 border-4">
+                                            <DialogHeader>
+                                                <DialogTitle className="text-red-600 text-2xl">Hibajelentés írása</DialogTitle>
+                                                <hr className="w-full h-px mx-auto mt-3  mb-2 bg-red-600 border-0" />
+                                            </DialogHeader>
+                                            <Textarea className="mb-8" />
+                                        </DialogContent>
+                                    </Dialog>
+
+
+                                </div>
+
+
+                            </div>
+                        </CardContent>
+                    </Card>
+
+
+
+                </div>
+            </div>
+            {/*Price card end*/}
         </div>
     )
 }

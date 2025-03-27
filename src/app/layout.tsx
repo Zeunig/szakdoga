@@ -1,6 +1,7 @@
 import "./globals.css";
 import "./index.css";
 import "../components/css/hover-min.css";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function RootLayout({
     children,
@@ -14,7 +15,7 @@ export default function RootLayout({
           <title>Körpörgő Autó Kereskedés</title>
           
         </head>
-        <body>{children}</body>
+        <body>{children}<Toaster /></body> 
         <link rel="icon" href="/logo.png"/>
         
       </html>

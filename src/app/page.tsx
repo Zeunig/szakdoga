@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay"
 import { Header } from "@/components/Header";
 
 import { Footer } from "@/components/Footer";
@@ -6,6 +7,8 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger, } from "@/components/ui/collapsible"
 import { Badge } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { plugin } from "postcss";
 
 export default function Home() {
 
@@ -18,16 +21,13 @@ export default function Home() {
 
       <div className="mb-5">
 
-        <div className="bg-blue-200 mx-auto border-2 border-slate-300 rounded-lg mt-5 min-w-11/12 max-h-[500px] min-h-44 w-min h-max lg:h-min lg:w-[1200px] lg:min-h-[500px]">
+        <div className="bg-blue-200 mx-auto border-2 border-slate-300 rounded-lg mt-5 min-w-11/12 max-h-[500px] min-h-44 w-min  lg:w-[1200px] lg:h-fit">
           <div className="">
-
-
-
 
             {/*Autó kereső*/}
             <div className="justify-center place-self-center">
               <div className=" ">
-                <div className="grid grid-rows-7 lg:gap-3 lg:grid-cols-5 mt-5">
+                <div className="grid grid-rows-7 lg:gap-3 lg:grid-cols-5 mt-5 lg:grid-rows-3">
 
                   <div className="place-self-center">
                     <label htmlFor="brand">Márka: <br /> </label>
@@ -61,17 +61,40 @@ export default function Home() {
                     <input type="number" id="price" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-block" placeholder="-tól" />
                     <input type="number" id="price" name="price" className="border w-[180px]  lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-block" placeholder="-ig" />
                   </div>
-                  
-                </div>
-                
-                <div>
-                  
+                  <button className="bg-blue-600 rounded-lg  place-self-end col-span-5     h-10 w-52 text-white font-bold mr-5 text-center content-center  hvr-gwrow hvr-glow">
+                    <a href="">
+                      Keresés
+                    </a>
+                  </button>
                 </div>
               </div>
             </div>
             {/*Autó kereső vége*/}
+
           </div>
         </div>
+
+        {/*Kiemelt hírdetések*/}
+        <div className="flex justify-center ">
+          <div className=" w-[1200px] mt-20">
+            <div className=" text-center text-3xl lg:text-4xl font-bold text-blue-600 mb-4">
+              Kiemelt hírdetésel
+            </div>
+
+            <div className="col bg-rose-400 grid grid-cols-4 grid-rows-2 gap-4">
+
+              <div className="col-span-2 row-span-2 bg-blue-400"> 0</div>
+              <div className=" bg-blue-400"> 1</div>
+              <div className=" bg-blue-400"> 2</div>
+              <div className=" bg-blue-400"> 3</div>
+              <div className=" bg-blue-400"> 4</div>
+            </div>
+
+          </div>
+
+        </div>
+        {/*Kiemelt hyrdetések vége*/}
+
         {/*Gyakran keresett márkák*/}
         <div className="flex justify-center ">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3  w-[1200px] mt-20">
@@ -138,12 +161,6 @@ export default function Home() {
 
         </div>
         {/*Gyakran keresett márkák vége*/}
-        <div className="place-self-center mt-5">
-          <div className=" border-2 size-24 border-blue-600 hvr-grow">
-             <img src="/logos/saab.png" alt="" className="size-20 place-self-center mt-1"/>
-          </div>
-          
-        </div>
       </div>
 
       <div className="mt-5">

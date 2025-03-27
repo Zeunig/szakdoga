@@ -13,8 +13,8 @@ export default function Page(req: NextRequest) {
         const urlParams = new URLSearchParams(window.location.search);
         const redirect = urlParams.get('redirect_to');
         setTimeout(() => {
-                 window.location.href = redirect ?? "/";
-        }, 500);
+          //       window.location.href = redirect ?? "/";
+        }, 3000);
     })
     return (
         <div className="flex h-screen items-center justify-center ">
@@ -29,9 +29,10 @@ export default function Page(req: NextRequest) {
                 <div>
                     <CardContent className="text-center">
                         <CardTitle className="text-3xl font-bold">
-                            Sikeresen Fizetés!
+                            Sikeres Fizetés!
                         </CardTitle>
-                        <p className="text-sm">A tranzakciót feldolgoztuk és hamarosan átiránítjuk a főoldalra</p>
+                        <p className="text-base mt-3 mb-3 font-medium">Köszönjuk vásárlásod!</p>
+                        <p className="text-sm font-medium">A tranzakciót feldolgoztuk és hamarosan átiránítjuk a főoldalra.</p>
                     </CardContent>
                     <div className="flex justify-center">
                         

@@ -13,7 +13,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 
 export function Footer() {
     return (
-        <div className=" border-t-2 border-slate-300">
+        <div className=" border-t-2 border-slate-300 my-auto">
             <footer className="bg-white dark:bg-gray-900">
                 <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                     <div className="md:flex md:justify-between">

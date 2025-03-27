@@ -15,15 +15,15 @@ import RowCard from "@/components/RowCard";
 
 export default async function Page() {
     const auth_cookie = (await cookies()).get("auth");
-    if(auth_cookie === undefined) {
+    if (auth_cookie === undefined) {
         console.error("TODO: redirect /auth");
         return;
-    }else {
+    } else {
         let auth = await authentication(auth_cookie.value);
         if (auth["success"] == true) {
             var profile = await get_my_profile(auth["payload"]["id"] as unknown as number, true);
             console.log(profile);
-        }else {
+        } else {
             return;
         }
     }
@@ -31,9 +31,13 @@ export default async function Page() {
     var favorites = profile["favorites"] as ICarListing[];
     console.log(favorites);
     return (
-        <div className="scrollbar-hidden">
-            <Header />
-            <div className="">
+        <div className="flex flex-col h-screen  ">
+
+            <div>
+                <Header />
+            </div>
+            <div className="mb-20">
+
                 <div>
                     <div className="">
 
@@ -93,16 +97,16 @@ export default async function Page() {
 
                                     </CardHeader>
                                     <CardContent className="min-h-80 max-h-fit">
-                                        <ScrollArea className="h-[550px]">
-                                        <div className="grid grid-cols-1 ml-14 lg:ml-0 lg:grid-cols-4">
-                                        <ScrollBar orientation="vertical"/>
-                                            {
-                                                cars.map((car) => (
-                                                    <div className="mb-3"> <MyCars car={car}/> </div>
-                                                ))
-                                            }
+                                        <ScrollArea className="">
+                                            <div className="grid grid-cols-1 ml-14 lg:ml-0 lg:grid-cols-4">
+                                                <ScrollBar orientation="vertical" />
+                                                {
+                                                    cars.map((car) => (
+                                                        <div className="mb-3"> <MyCars car={car} /> </div>
+                                                    ))
+                                                }
                                             </div>
-                                        </ScrollArea >  
+                                        </ScrollArea >
                                     </CardContent>
                                 </Card>
                             </TabsContent>
@@ -117,29 +121,8 @@ export default async function Page() {
                                         <hr className="w-80 h-px bg-slate-400 border-0" />
 
                                     </CardHeader>
-                                    <CardContent className="min-h-80 max-h-fit">
+                                    <CardContent className="min-h-80 max-h-fit ">
                                         <div className="">
-                                            {/*<table className="table-fixed mt-10">
-                                                <thead>
-                                                    <tr className="border-b-2 border-slate-400">
-                                                        <th className="w-[130px] ">Márka</th>
-                                                        <th className="w-[130px] ">Model</th>
-                                                        <th className="w-[130px] ">Kívánt ár</th>
-                                                        <th className="w-[130px] ">Akcíós ár</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-
-                                                    <tr className="border-b-2 border-slate-400">
-                                                        <td className="text-center">Mercedes-Benz</td>
-                                                        <td className="text-center">Golf</td>
-                                                        <td className="text-center ">888 888 888Ft</td>
-                                                        <td className="text-center text-blue-600 font-bold">888 888 888Ft</td>
-                                                    </tr>
-                                    
-                                                </tbody>
-                                            </table>*/}
                                             {favorites.map((car) => (
                                                 <RowCard car={parseCarListing(car["car"]!)} />
                                             ))}
@@ -152,8 +135,9 @@ export default async function Page() {
                     </div>
                 </div>
             </div>
+
             <div className="mt-auto">
-            <Footer />
+                <Footer />
             </div>
         </div>
 

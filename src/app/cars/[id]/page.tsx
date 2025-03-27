@@ -16,31 +16,41 @@ import { ChevronRight, ChevronsDownUp, ChevronsDownUpIcon, ChevronsUpDown } from
 import { Prisma, PrismaClient } from "@prisma/client"
 import { useRouter } from "next/navigation"
 import { CarListing } from "@/components/CarListing"
-import { ICarListing,parseCarListing } from "@/lib/car"
+import { ICarListing, parseCarListing } from "@/lib/car"
 import { get_car_from_db } from "@/app/api/cars/[id]/route"
 import SUC from "@/components/SUC"
 import { headers } from "next/headers"
 
 
-export default async function Page(context: {params: Promise<{id: number}>}) {
-    const {id} = await context.params;
+export default async function Page(context: { params: Promise<{ id: number }> }) {
+    const { id } = await context.params;
     const headersList = await headers();
     const isAuthed = headersList.get("cookie")?.toString().includes("auth=") || false;
     let car_data = await get_car_from_db(id) as object;
     var car;
-    if(car_data["success"] === false) {
+    if (car_data["success"] === false) {
         car = null;
-    }else {
+    } else {
         car = parseCarListing(car_data);
     }
     console.log(car == null);
     return (
-        <div>
+        <div className="">
             {
-                (car != null) && <div><Header /><CarListing car={car} isAuthed={isAuthed}/></div>
+                (car != null) && <div className="flex flex-col h-screen">
+                    <div>
+                        <Header />
+                    </div>
+                    <div className="justify-items-center">
+                        <CarListing car={car} isAuthed={isAuthed}/>
+                    </div>
+                    <div className="">
+                        <Footer/>
+                    </div>
+                </div>
             }
             {
-                (car == null) && <div className="mx-96 mt-80"><SUC/></div>
+                (car == null) && <div className="mx-96 mt-80"><SUC /></div>
             }
         </div>
     )
