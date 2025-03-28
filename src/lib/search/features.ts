@@ -46,7 +46,7 @@ export const TPMS = 34359738368
 export const ABS = 68719476736
 export const ESP = 137438953472
 
-export const FEATURES = ['Keyless Entry', 'Premium Wheels', 'Roof Rack', 'Trailer Hitch', 'Dual Rear Wheels', 'Disability Equipped', 'Android Auto', 'Apple Carplay', 'Bluetooth Hands Free', 'Cruise Control', 'Dvd Player', 'Navigation', 'Portable Audio Connection', 'Premium Audio', 'Satellite Radio', 'Steering Wheel Controls', 'Remote Engine Start', 'Adaptive Cruise Control', 'Head Up Display', 'Rain Sensing Wipers', 'Keyless Start', 'Automatic Parking', 'Wifi Hotspot', '3Rd Row Seats', 'Heated Seats', 'Leather Seats', 'Sunroof', 'Backup Camera', 'Night Vision', 'Lane Departure Warning', 'Blind Spot Monitor', 'Cross Traffic Alert', 'Brake Assist', 'Security System', 'Lane Keeping Assist', 'Tpms', 'Abs', 'Esp']
+export const FEATURES = ['Kulcsmentes belépés', 'Prémium kerekek', 'Tetőcsomagtartó', 'Utánfutó vonószerelvény', 'Dupla hátsó kerék', 'Mozgássérült-barát', 'Android Auto', 'Apple Carplay', 'Kézmentes Bluetooth-vezérlés', 'Tempomat', 'DVD lejátszó', 'GPS', 'Hordozható audiocsatlakozás', 'Prémium Hang', 'Műholdas rádió', 'Kormánykerék vezérlése', 'Távindítható motor', 'Adaptív tempomat', 'Head-up Display', 'Esőérzékelős ablaktörlők', 'Kulcs nélküli indítás', 'Automata parkolás', 'Wi-Fi Hotspot', '3 soros ülések', 'Ülés-fűtés', 'Bőrülés', 'Napfénytető', 'Tolatókamera', 'Éjszakai látás', 'Sávelhagyás figyelmeztető', 'Holttérfigyelő', 'Keresztforgalmi figyelmeztető', 'Fékasszisztens', 'Biztonsági rendszer', 'Sávtartó asszisztens', 'TPMS', 'ABS', 'ESP']
 
 function dec2bin(dec: number) {
     return (dec >>> 0).toString(2);

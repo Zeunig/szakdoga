@@ -21,7 +21,7 @@ import axios from "axios";
 export default function UploadLG(cars: ISortedCarSelection[]) {
 
     const [selectedBrand, setSelectedBrand] = React.useState("");
-
+    const [images, setImages] = React.useState([new File([],""), new File([],""),new File([],""),new File([],""),new File([],""),new File([],"")]);
     const [carDetails, setCarDetails] = React.useState<PublishInterface>({
         brand: "",
         model: "",
@@ -91,6 +91,17 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
 
         console.log(carDetails);
     }
+    function handleImage(e: ChangeEvent<HTMLInputElement>) {
+        let index = parseInt(e.target.id.split("file")[1]);
+        const nextImages = images.map((c, i) => {
+            if(i === index) {
+                return e.target.files![0]
+            }else {
+                return c
+            }
+        });
+        setImages(nextImages);
+    }
     async function buyFeature() {
         fetch(`${location.protocol}//${window.location.host}/api/pay`, {
             method: "POST",
@@ -106,6 +117,20 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
     }
     async function upload(e: BaseSyntheticEvent) {
         e.preventDefault();
+        console.log(images);
+        images.forEach((file) => {
+            if(file.size !== 0) {
+                var form_data = new FormData();
+                form_data.append("file",file);
+                axios.post("/api/marketplace/image", form_data).then((res) => {
+                    if(res.status === 200) {
+                        var newImages = carDetails.images;
+                        newImages.push(`/car/${res.data["image_id"]}`);
+                        setCarDetails({...carDetails, ["images"]: newImages});
+                    }
+                })
+            }
+        });
         axios.post("/api/marketplace/publish", carDetails).then((res) => {
             if(res.status == 200) {
                 window.location.href = `/cars/${res.data["car_id"]}`
@@ -195,7 +220,13 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                         <h1 className="font-bold mt-5">Kép Feltöltése</h1>
                         <hr className="w-96 h-px bg-slate-400 border-0" />
                         <div className="w-92 ml-5 mt-3 mr-7">
-                            <input className="block w-full text-sm text-gray-900 border-2 border-gray-400 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" />
+                            <input onChange={handleImage} className="block w-full text-sm text-gray-900 border-2 border-gray-400 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file0" type="file" />
+                            <input onChange={handleImage} className="block w-full text-sm text-gray-900 border-2 border-gray-400 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file1" type="file" />
+                            <input onChange={handleImage} className="block w-full text-sm text-gray-900 border-2 border-gray-400 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file2" type="file" />
+                            <input onChange={handleImage} className="block w-full text-sm text-gray-900 border-2 border-gray-400 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file3" type="file" />
+                            <input onChange={handleImage} className="block w-full text-sm text-gray-900 border-2 border-gray-400 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file4" type="file" />
+                            <input onChange={handleImage} className="block w-full text-sm text-gray-900 border-2 border-gray-400 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file5" type="file" />
+                            
                         </div>
                         {/*kép vége*/}
 

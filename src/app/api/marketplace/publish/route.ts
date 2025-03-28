@@ -140,11 +140,9 @@ export async function POST(req: NextRequest) {
                 vin: json.vin,
                 design: json.design,
                 description: json.description,
-                car_image_relation: {
-                    create: create
-                }
             },
         });
+        for
         console.log(car);
         let resp = NextResponse.json({"success":true, "car_id": car.id}, {"status": 200});
         return resp;
