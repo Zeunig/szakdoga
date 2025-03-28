@@ -60,11 +60,11 @@ export async function POST(req: Request) {
     }
     // megnézzük h jó-e az email meg a jelszó tuah
     if(!validateEmail(email)) {
-        let resp = NextResponse.json({"success":false, "message": `Érvénytelen e-mail`}, {"status": 400});
+        let resp = NextResponse.json({"success":false, "message": `Hibás e-mail!`}, {"status": 400});
         return resp;
     }
     if(!validatePassword(password)) {
-        let resp = NextResponse.json({"success":false, "message": `Érvénytelen jelszó`}, {"status": 400});
+        let resp = NextResponse.json({"success":false, "message": `A jelszónak tartalmaznia kell számit kis- és nagybetűt, illetve speciális karaktert!`}, {"status": 400});
         return resp;
     }
     // verifying captcha answer

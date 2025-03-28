@@ -64,7 +64,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
         <div className="grid grid-cols-12 gap-10 grid-rows-2 w-full mt-20">
 
             {/*Main card*/}
-            <div className="col-span-5 col-start-3 row-start-1 row-span-1 bg-blue-200  border-2 border-blue-600 rounded-lg inline-block place-items-center">
+            <div className="relative col-span-5 col-start-3 row-start-1 row-span-1 bg-blue-200  border-2 border-blue-600 rounded-lg inline-block place-items-center">
 
                 {/* Nagy képnézegető */}
                 {
@@ -73,7 +73,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
                 {/* Nagy képnézegető vége */}
 
                 {/*Képnézegető*/}
-                <div className=" mx-auto  place-self-center mt-5">
+                <div className="absolute left-0 right-0">
                     <Carousel setApi={setApi} className="w-[659px] place-self-center mt-3 bg-slate-900 bg-opacity-20 rounded-2xl"
                         plugins={[plugin.current]}
                         onMouseEnter={plugin.current.stop}
@@ -98,7 +98,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
                 {/*Képnézegető vége*/}
 
                 {/* Infó táblázat */}
-                <div className="grid grid-rows-2  bg-slate-900 bg-opacity-20 rounded-lg mx-5 mb-5 ">
+                <div className="absolute bottom-0 left-0 right-0 grid grid-rows-2  bg-slate-900 bg-opacity-20 rounded-lg mx-5 mb-5 ">
 
                     <div className="row-start-1 grid grid-cols-4 font-semibold text-blue-600 text-center text-lg " >
                         <div className="place-content-center">

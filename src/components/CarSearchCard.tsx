@@ -123,7 +123,7 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
             setSearchConditions({
                 ...searchConditions,
                 [type]: value,
-                "model": ""
+                "model": " "
             });
         }else {
             setSearchConditions({
@@ -207,73 +207,52 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
                         <div>
                             <Collapsible className="hidden lg:block">
 
-                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg w-full">Alap információk</CollapsibleTrigger>
+                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg w-full">Általános információk</CollapsibleTrigger>
 
-                                <CollapsibleContent className="grid row-auto border-2 border-slate-300 rounded-lg mb-2">
+                                <CollapsibleContent className="grid row-auto border-2 border-slate-300 rounded-lg mb-2 ">
 
-                                    <div className="ml-2 mt-2">
+                                    <div className="ml-2 mt-3">
                                         <label htmlFor="">Vételár (-tól, -ig)</label><br></br>
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="minprice" name="min_price" className="border w-[180px] lg:w-[120px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxprice" name="max_price" className="border w-[180px] lg:w-[120px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     </div>
+                                    <div className="ml-2 mt-3">
+                                        <label htmlFor="">Állapot </label><br></br>
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="minprice" name="min_price" className="border w-[180px] lg:w-[120px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxprice" name="max_price" className="border w-[180px] lg:w-[120px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    </div>
 
-                                    <div className="ml-2">
+                                    <div className="ml-2 mt-3">
                                         <label htmlFor="">Kilométer (-tól, -ig)</label><br></br>
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="minkm" name="min_km" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxkm" name="max_km" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     </div>
 
 
-                                    <div className="ml-2">
+                                    <div className="ml-2 mt-3">
                                         <label htmlFor="">Évjárat</label><br></br>
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="minyear" name="min_year" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxyear" name="max_year" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     </div>
 
-                                    <div className="ml-2">
+                                    <div className="ml-2 mt-3">
                                         <label htmlFor="">Súly</label><br></br>
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="minweight" name="min_weight" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxweight" name="max_weight" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     </div>
 
-                                    <div className="ml-2">
-                                        <label htmlFor="">Köbcenti</label><br></br>
-                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="mincc" name="min_cc" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxcc" name="max_cc" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
-                                    </div>
-
-                                    <div className="ml-2">
-                                        <label htmlFor="">Lóerő</label><br></br>
-                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="minhp" name="min_hp" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxhp" name="max_hp" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
-                                    </div>
-
-                                    <div className="ml-2">
-                                        <label htmlFor="">Kerékmeghajtás</label><br></br>
-                                        <input type="checkbox" name="wheels.fwd" id="wheels.fwd" onChange={(e) => { handleCheckbox(e) }}></input>
-                                        <input type="checkbox" name="wheels.rwd" id="wheels.rwd" onChange={(e) => { handleCheckbox(e) }}></input>
-                                        <input type="checkbox" name="wheels.awd" id="wheels.awd" onChange={(e) => { handleCheckbox(e) }}></input>
-                                        <input type="checkbox" name="wheels.4wd" id="wheels.4wd" onChange={(e) => { handleCheckbox(e) }}></input>
-                                    </div>
-
-                                    <div className="ml-2">
-                                        <label htmlFor="">Gearbox</label><br></br>
-                                        <input type="checkbox" name="gearbox.manual" id="gearbox.manual" onChange={(e) => { handleCheckbox(e) }}></input>
-                                        <input type="checkbox" name="gearbox.automatic" id="gearbox.automatic" onChange={(e) => { handleCheckbox(e) }}></input>
-                                    </div>
-
-                                    <div className="ml-2">
-                                        <label htmlFor="">Passengers</label><br></br>
+                                    <div className="ml-2 mt-3">
+                                        <label htmlFor="">Szálítható utasok száma</label><br></br>
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="minpassengers" name="min_passengers" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxpassengers" name="max_passengers" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     </div>
 
-                                    <div className="ml-2">
-                                        <label htmlFor="">Ajtók</label><br></br>
+                                    <div className="ml-2 mt-3">
+                                        <label htmlFor="">Ajtók száma</label><br></br>
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="mindoors" name="min_doors" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxdoors" name="max_doors" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     </div>   
-                                    <label htmlFor="">Állapot</label><br></br>
+                                    
 
                                     <br></br>
                                 </CollapsibleContent>
@@ -282,46 +261,46 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
 
                         <div className="">
                             <Collapsible className="hidden lg:block">
-                                <CollapsibleTrigger>Group 03</CollapsibleTrigger>
-                                <CollapsibleContent>
-                                    ------Content #1 <br />
-                                    ------Content #2 <br />
-                                    ------Content #3 <br />
-                                    ------Content #4 <br />
-                                    ------Content #5 <br />
-                                    ------Content #6 <br />
+
+                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg w-full">Műszaki adtok</CollapsibleTrigger>
+
+                                <CollapsibleContent className="grid row-auto border-2 border-slate-300 rounded-lg mb-2">
+
+                                    
+
+                                <div className="ml-2 mt-3">
+                                        <label htmlFor="">Köbcenti</label><br></br>
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="mincc" name="min_cc" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxcc" name="max_cc" className="border lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    </div>
+
+                                    
+                                    <div className="ml-2 mt-3">
+                                        <label htmlFor="">Kerékmeghajtás</label><br></br>
+                                        <input type="checkbox" name="wheels.fwd" id="wheels.fwd" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="wheels.rwd" id="wheels.rwd" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="wheels.awd" id="wheels.awd" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="wheels.4wd" id="wheels.4wd" onChange={(e) => { handleCheckbox(e) }}></input>
+                                    </div>
+
+                                    <div className="ml-2 mt-3">
+                                        <label htmlFor="">Gearbox</label><br></br>
+                                        <input type="checkbox" name="gearbox.manual" id="gearbox.manual" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="gearbox.automatic" id="gearbox.automatic" onChange={(e) => { handleCheckbox(e) }}></input>
+                                    </div>
+
+                                    <div className="ml-2 mt-3">
+                                        <label htmlFor="">Lóerő</label><br></br>
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="minhp" name="min_hp" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
+                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxhp" name="max_hp" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
+                                    </div>
+                                    
                                 </CollapsibleContent>
                             </Collapsible>
                         </div>
 
-                        <div className="bg-yellow-400">
-                            <Collapsible className="hidden lg:block">
-                                <CollapsibleTrigger>Group 04</CollapsibleTrigger>
-                                <CollapsibleContent>
-                                    ------Content #1 <br />
-                                    ------Content #2 <br />
-                                    ------Content #3 <br />
-                                    ------Content #4 <br />
-                                    ------Content #5 <br />
-                                    ------Content #6 <br />
-                                </CollapsibleContent>
-                            </Collapsible>
-                        </div>
 
-                        <div className="bg-cyan-400">
-                            <Collapsible className="hidden lg:block">
-                                <CollapsibleTrigger>Group 05</CollapsibleTrigger>
-                                <CollapsibleContent>
-                                    ------Content #1 <br />
-                                    ------Content #2 <br />
-                                    ------Content #3 <br />
-                                    ------Content #4 <br />
-                                    ------Content #5 <br />
-                                    ------Content #6 <br />
-                                </CollapsibleContent>
-                            </Collapsible>
-                        </div>
-                        <input type="submit" value="asdasd" onClick={(e) => { e.preventDefault(); console.log(e); }} />
+                        <button type="submit"  value="dww" onClick={(e) => { e.preventDefault(); console.log(e); }}>wds</button>
                     </form>
                     {/*lg end*/}
 
