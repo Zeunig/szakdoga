@@ -43,6 +43,15 @@ export async function POST(req: NextRequest) {
                 permissions: new_permissions
             }
         });
+        let query_3 = await prisma.car.updateMany({
+            where: {
+                seller_id: json.user_id,
+                listed: 1
+            },
+            data: {
+                listed: 2 // 2 = törölve van mert a felhasználót kibannolták
+            }
+        });
         let resp = NextResponse.json({"success":true}, {"status": 200});
         return resp;
     }else {
@@ -86,6 +95,15 @@ export async function DELETE(req: NextRequest) {
             },
             data: {
                 permissions: new_permissions
+            }
+        });
+        let query_3 = await prisma.car.updateMany({
+            where: {
+                seller_id: json.user_id,
+                listed: 2
+            },
+            data: {
+                listed: 1
             }
         });
         let resp = NextResponse.json({"success":true}, {"status": 200});
