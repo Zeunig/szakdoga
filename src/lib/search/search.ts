@@ -39,8 +39,8 @@ export async function SearchAmountOfResults(search: ISearch) {
     ? Prisma.sql`AND model LIKE ${search.model}` 
     : Prisma.empty}
   AND price BETWEEN ${search.price[0]} AND ${search.price[1]}
-  ${search.fuel_type !== undefined 
-    ? Prisma.sql`AND fuel_type IN ${search.fuel_type}` 
+  ${Array.isArray(search.fuel_type) && search.fuel_type.length > 0
+    ? Prisma.sql`AND fuel_type IN (${Prisma.join(search.fuel_type)})` 
     : Prisma.empty}
   ${search.km && search.km[0] !== null && search.km[1] !== null
     ? Prisma.sql`AND mileage BETWEEN ${search.km[0]} AND ${search.km[1]}` 
@@ -57,10 +57,10 @@ export async function SearchAmountOfResults(search: ISearch) {
   ${search.cc && search.cc[0] !== null && search.cc[1] !== null
     ? Prisma.sql`AND cc BETWEEN ${search.cc[0]} AND ${search.cc[1]}` 
     : Prisma.empty}
-  ${search.wheels !== undefined 
+  ${Array.isArray(search.wheels) && search.wheels.length > 0 
     ? Prisma.sql`AND drive_type IN (${Prisma.join(search.wheels)})` 
     : Prisma.empty}
-  ${search.gearbox !== undefined 
+  ${Array.isArray(search.gearbox) && search.gearbox.length > 0 
     ? Prisma.sql`AND gearbox IN (${Prisma.join(search.gearbox)})` 
     : Prisma.empty}
     ${search.passengers && search.passengers[0] !== null && search.passengers[1] !== null
@@ -69,10 +69,10 @@ export async function SearchAmountOfResults(search: ISearch) {
     ${search.door && search.door[0] !== null && search.door[1] !== null
     ? Prisma.sql`AND doors BETWEEN ${search.door[0]} AND ${search.door[1]}` 
     : Prisma.empty}
-  ${search.color !== undefined 
+  ${Array.isArray(search.color) && search.color.length > 0 
     ? Prisma.sql`AND color IN (${Prisma.join(search.color)})` 
     : Prisma.empty}
-  ${search.status !== undefined 
+  ${Array.isArray(search.status) && search.status.length > 0 
     ? Prisma.sql`AND design IN (${Prisma.join(search.status)})` 
     : Prisma.empty}
     ${!(Number.isNaN(search.limit))
@@ -159,8 +159,8 @@ export async function Search(search: ISearch) {
     }else {
         return searchResult;
     }*/
-   let prismaquery = Prisma.sql`
-   SELECT szakdoga.car.*, szakdoga.user.name AS seller_name FROM szakdoga.car
+   console.log(`FUEL TYPE : ${search.fuel_type} || LENGTH : ${search.fuel_type?.length} || TYPE : ${typeof(search.fuel_type)}`);
+   let prismaquery = Prisma.sql`SELECT szakdoga.car.*, szakdoga.user.name AS seller_name FROM szakdoga.car
    JOIN szakdoga.user ON szakdoga.car.seller_id=szakdoga.user.id
    WHERE szakdoga.car.listed = 1
    ${!(Number.isNaN(search.features))
@@ -173,8 +173,8 @@ export async function Search(search: ISearch) {
     ? Prisma.sql`AND model LIKE ${search.model}` 
     : Prisma.empty}
   AND price BETWEEN ${search.price[0]} AND ${search.price[1]}
-  ${search.fuel_type !== undefined 
-    ? Prisma.sql`AND fuel_type IN ${search.fuel_type}` 
+  ${Array.isArray(search.fuel_type) && search.fuel_type.length > 0
+    ? Prisma.sql`AND fuel_type IN (${Prisma.join(search.fuel_type)})` 
     : Prisma.empty}
   ${search.km && search.km[0] !== null && search.km[1] !== null
     ? Prisma.sql`AND mileage BETWEEN ${search.km[0]} AND ${search.km[1]}` 
@@ -191,10 +191,10 @@ export async function Search(search: ISearch) {
   ${search.cc && search.cc[0] !== null && search.cc[1] !== null
     ? Prisma.sql`AND cc BETWEEN ${search.cc[0]} AND ${search.cc[1]}` 
     : Prisma.empty}
-  ${search.wheels !== undefined 
+  ${Array.isArray(search.wheels) && search.wheels.length > 0 
     ? Prisma.sql`AND drive_type IN (${Prisma.join(search.wheels)})` 
     : Prisma.empty}
-  ${search.gearbox !== undefined 
+  ${Array.isArray(search.gearbox) && search.gearbox.length > 0 
     ? Prisma.sql`AND gearbox IN (${Prisma.join(search.gearbox)})` 
     : Prisma.empty}
     ${search.passengers && search.passengers[0] !== null && search.passengers[1] !== null
@@ -203,10 +203,10 @@ export async function Search(search: ISearch) {
     ${search.door && search.door[0] !== null && search.door[1] !== null
     ? Prisma.sql`AND doors BETWEEN ${search.door[0]} AND ${search.door[1]}` 
     : Prisma.empty}
-  ${search.color !== undefined 
+  ${Array.isArray(search.color) && search.color.length > 0 
     ? Prisma.sql`AND color IN (${Prisma.join(search.color)})` 
     : Prisma.empty}
-  ${search.status !== undefined 
+  ${Array.isArray(search.status) && search.status.length > 0 
     ? Prisma.sql`AND design IN (${Prisma.join(search.status)})` 
     : Prisma.empty}
     ${!(Number.isNaN(search.limit))
@@ -216,6 +216,7 @@ export async function Search(search: ISearch) {
     ? Prisma.sql`OFFSET ${search.offset}`
     : Prisma.empty}
    `;
+   console.log(prismaquery);
    let query: object[] = await prisma.$queryRaw(prismaquery);
    for(var i = 0; i < query.length; i++) {
     // todo : ez vszeg optimalizálható xd

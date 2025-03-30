@@ -12,6 +12,7 @@ import React, { ChangeEvent } from "react";
 import { ICarListing, parseCarListing } from "@/lib/car";
 import { CB } from "./CB";
 import axios from 'axios';
+import { useSearchParams } from "next/navigation";
 
 export interface searchCondition {
     brand?: string,
@@ -47,8 +48,35 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
     setLoading: React.Dispatch<React.SetStateAction<boolean>>,
     setResultCount: React.Dispatch<React.SetStateAction<number>>
 }) {
+    const searchParams = useSearchParams();
     const [selectedBrand, setSelectedBrand] = React.useState("");
-    const [searchConditions, setSearchConditions] = React.useState<searchCondition>({wheels: [],gearbox: [], color: [], status: []});
+    var fuel_type: string[] = [];
+    if(searchParams.get("fuel") === undefined || searchParams.get("fuel") === "") {
+        fuel_type = [];
+    }else {
+        fuel_type = [searchParams.get("fuel") || ""];
+    }
+    const [searchConditions, setSearchConditions] = React.useState<searchCondition>({
+        brand: searchParams.get("brand") || "", 
+        model: searchParams.get("model") || "", 
+        fuel_type: fuel_type, 
+        min_year: parseInt(searchParams.get("min_year") || "0"),
+        max_year: parseInt(searchParams.get("max_year") || "0") ,
+        min_price: parseInt(searchParams.get("min_price") || "0"),
+        max_price: parseInt(searchParams.get("max_price") || "0"),
+        min_km: 0,
+        max_km: 999999,
+        min_weight: 0,
+        max_weight: 999999,
+        min_cc: 0,
+        max_cc: 999999,
+        min_hp: 0,
+        max_hp: 999999,
+        min_doors: 0,
+        max_doors: 999999,
+        min_passengers: 0,
+        max_passengers: 999999,
+        wheels: [],gearbox: [], color: [], status: []});
 
     /*function changeSearchCondition({value}: {value: searchCondition}) {
 
@@ -73,7 +101,9 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
                 }
 
             } else {
-                if(Object.values(searchConditions)[i] != "") {
+                console.log(`${Object.keys(searchConditions)[i]} ${Object.values(searchConditions)[i]}`);
+                if(Object.values(searchConditions)[i] !== "") {
+                    console.log("swag");
                     url.searchParams.append(Object.keys(searchConditions)[i], Object.values(searchConditions)[i]);
                 }
             }
@@ -123,7 +153,7 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
             setSearchConditions({
                 ...searchConditions,
                 [type]: value,
-                "model": " "
+                "model": ""
             });
         }else {
             setSearchConditions({

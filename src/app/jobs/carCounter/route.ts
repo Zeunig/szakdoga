@@ -1,5 +1,6 @@
 "use server";
 import { Prisma, PrismaClient } from "@prisma/client";
+import axios from "axios";
 import { NextResponse } from "next/server";
 
 interface IUnsortedCarSelection {
@@ -91,5 +92,11 @@ export async function DELETE(req: Request) {
 const car_selection: ISortedCarSelection[] = [];
 
 export async function get_car_selection(): Promise<ISortedCarSelection[]> {
+    let meow = await GET(new Request(new URL("https://youtube.com")));
+    console.log(meow);
+    return car_selection;
+}
+
+export async function _get_car_selection_old(): Promise<ISortedCarSelection[]> {
     return car_selection;
 }
