@@ -49,12 +49,13 @@ export function Footer() {
                             <div>
                                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
                                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                                    <li className="mb-4">
-                                        <a href="#" className="hover:underline">Privacy Policy</a>
+                                <li className="mb-4">
+                                        <a href="/term-and-conditions" className="hover:underline">ÁSZF</a>
                                     </li>
-                                    <li>
-                                        <a href="#" className="hover:underline">Terms &amp; Conditions</a>
+                                    <li >
+                                        <a href="/privacy-policy" className="hover:underline">Adatvédelem</a>
                                     </li>
+                                    
                                 </ul>
                             </div>
                         </div>

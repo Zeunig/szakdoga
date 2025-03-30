@@ -21,22 +21,22 @@ export default function Home() {
 
       <div className="mb-5">
 
-        <div className="bg-blue-200 mx-auto border-2 border-slate-300 rounded-lg mt-5 min-w-11/12 max-h-[500px] min-h-44 w-min  lg:w-[1200px] lg:h-fit">
+        <div className="bg-blue-200 mx-auto border-2 border-blue-600 rounded-lg mt-5 w-11/12 md: lg:w-[1200px]">
           <div className="">
 
             {/*Autó kereső*/}
-            <div className="justify-center place-self-center">
-              <div className=" ">
-                <div className="grid grid-rows-7 lg:gap-3 lg:grid-cols-5 mt-5 lg:grid-rows-3">
+            <div className="w-fit">
+              <div className="w-fit">
+                <div className="mx-3 my-3 lg:grid lg:grid-cols-5">
 
-                  <div className="place-self-center">
+                  <div className="place-self-center row-span-1">
                     <label htmlFor="brand">Márka: <br /> </label>
                     <select id="brand" name="brand" className="border w-[360px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg lg:w-36">
-
+                    
                     </select>
                   </div>
 
-                  <div className="place-self-center">
+                  <div className="place-self-center row-span-1">
                     <label htmlFor="model">Modell: <br /> </label>
                     <select id="model" name="model" className="border w-[360px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg lg:w-36">
 
@@ -61,7 +61,7 @@ export default function Home() {
                     <input type="number" id="price" name="price" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-block" placeholder="-tól" />
                     <input type="number" id="price" name="price" className="border w-[180px]  lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-block" placeholder="-ig" />
                   </div>
-                  <button className="bg-blue-600 rounded-lg  place-self-end col-span-5     h-10 w-52 text-white font-bold mr-5 text-center content-center  hvr-gwrow hvr-glow">
+                  <button className="bg-blue-600 rounded-lg  place-self-end col-span-5 h-10 mt-5 w-full lg:w-52 text-white font-bold mr-5 text-center content-center  hvr-gwrow hvr-glow">
                     <a href="">
                       Keresés
                     </a>
@@ -97,17 +97,17 @@ export default function Home() {
 
         {/*Gyakran keresett márkák*/}
         <div className="flex justify-center ">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3  w-[1200px] mt-20">
+          <div className="grid grid-cols-2 lg:grid-cols-4  mt-20">
             <div className="col-span-2 lg:col-span-4 text-center text-3xl lg:text-4xl font-bold text-blue-600 mb-4">
               Gyakran keresett márkák
             </div>
 
-            <div className="col-span-2 grid grid-cols-2 lg:col-span-4 lg:grid-cols-4 place-self-center gap-3">
+            <div className="col-span-2 grid grid-cols-2 gap-3 lg:col-span-4 md:grid-cols-4 place-self-center lg:gap-5 md:w-11/12 lg:w-full">
 
               <div className="col-span-1">
                 <button>
                   <a href="">
-                    <Card className="w-44 h-52 lg:w-[285px] lg:h-[228px] border-none hvr-outline-out ">
+                    <Card className="w-44 h-52 md:w-56 md:h-56 lg:w-[285px] lg:h-[228px] border-none hvr-outline-out ">
                       <CardHeader >
                         <Image src={"/logos/vw.png"} alt={"vw logo"} width={150} height={150} className="place-self-center hvr-icon" />
                         <CardTitle className="text-center text-lg lg:text-xl">Volkswagen</CardTitle>
@@ -120,7 +120,7 @@ export default function Home() {
               <div className="col-span-1">
                 <button>
                   <a href="">
-                    <Card className="w-44 h-52 lg:w-[285px] lg:h-[228px] border-none hvr-outline-out">
+                    <Card className="w-44 h-52 md:w-56 md:h-56 lg:w-[285px] lg:h-[228px] border-none hvr-outline-out ">
                       <CardHeader className="">
                         <Image src={"/logos/audi.png"} alt={"audi logo"} width={150} height={150} className="place-self-center hvr-icon" />
                         <CardTitle className="text-center text-lg lg:text-xl">Audi</CardTitle>
@@ -133,7 +133,7 @@ export default function Home() {
               <div className="col-span-1">
                 <button>
                   <a href="">
-                    <Card className="w-44 h-52 lg:w-[285px] lg:h-[228px] border-none hvr-outline-out ">
+                    <Card className="w-44 h-52 md:w-56 md:h-56 lg:w-[285px] lg:h-[228px] border-none hvr-outline-out ">
                       <CardHeader >
                         <Image src={"/logos/bmw.png"} alt={"bmw logo"} width={150} height={150} className="place-self-center hvr-icon" />
                         <CardTitle className="text-center text-lg lg:text-xl">BMW</CardTitle>
@@ -146,7 +146,7 @@ export default function Home() {
               <div className="col-span-1">
                 <button>
                   <a href="">
-                    <Card className="w-44 h-52 lg:w-[285px] lg:h-[228px] border-none hvr-outline-out ">
+                    <Card className="w-44 h-52  md:w-56 md:h-56 lg:w-[285px] lg:h-[228px] border-none hvr-outline-out ">
                       <CardHeader className="">
                         <Image src={"/logos/mercedes.png"} alt={"mercedes logo"} width={150} height={150} className="place-self-center hvr-icon" />
                         <CardTitle className="text-center text-lg lg:text-xl">Mercedes-Benz</CardTitle>

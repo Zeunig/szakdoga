@@ -62,14 +62,14 @@ export default function FavoriteButton({ car_id }: { car_id: number }) {
     function render() {
         if (favorited) {
             return (
-                <button className='bg-blue-200 rounded-lg border-2 w-full border-blue-600 h-12  font-semibold'>
-                    <Heart fill="red" className='inline-block ' /> <p className='inline-block'>Kedvelés</p>
+                <button className='bg-blue-200 md:rounded-lg rounded-full border-2 lg:w-full w-20 h-20 lg:h-12 border-blue-600 font-semibold'>
+                    <Heart fill="red" className='inline-block size-12 lg:size-6' /> <p className=' hidden lg:inline-block'>Kedvelés</p>
                 </button>
             )
         } else {
             return (
-                <button className='bg-blue-200 rounded-lg border-2 w-full border-blue-600 h-12 font-semibold'>
-                    <Heart fill="none" className='inline-block' /> <p className='inline-block'>Kedvelés</p>
+                <button className='bg-blue-200 md:rounded-lg rounded-full border-2 lg:w-full w-20 h-20 lg:h-12 border-blue-600 font-semibold'>
+                    <Heart fill="none" className='inline-block size-12 lg:size-6' /> <p className='hidden lg:inline-block'>Kedvelés</p>
                 </button>
 
 

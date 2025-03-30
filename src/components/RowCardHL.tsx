@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function RowCardHL() {
     return (
         <div className="">
-            <div className="lg:flex gap-3 bg-white border border-4  border-orange-400 rounded-xl overflow-hidden items-center justify-start">
+            <div className="lg:flex gap-3 bg-white border-4  border-orange-400 rounded-xl overflow-hidden items-center justify-start">
             <div className="mt-1 relative w-60 h-32 flex-shrink-0">
                     <img className="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="../hplaceholder.jpg" alt="car placeholder img" />
                 </div>
