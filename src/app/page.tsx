@@ -17,18 +17,22 @@ import HomePage from "@/components/HomePage";
 import { get_car_selection } from "./jobs/carCounter/route";
 
 export default async function Home() {
-    let cars = await get_car_selection();
-    console.log(cars);
-    return (
-      <div className="flex flex-col h-screen">
-  
-        <div>
-          <Header />
+  let cars = await get_car_selection();
+  console.log(cars);
+  return (
+    <div className="flex flex-col h-screen">
+
+      <div>
+        <Header />
+      </div>
+
+      <div className="mb-5">
+
+        
         </div>
-        <HomePage cars={cars}/>
+        <HomePage cars={cars} />
 
       </div>
-    )
+
+      )
 }
-
-

@@ -69,10 +69,10 @@ export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
                     <div className="place-self-center row-span-1">
                       <label htmlFor="brand">Márka: <br /> </label>
                         <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand} onInputChange={handleBrandOrModelChange} />
-                        <input type="text" id="brand" name="brand" value={searchConditions.brand || ""} hidden readOnly />
+                        <input className="" type="text" id="brand" name="brand" value={searchConditions.brand || ""} hidden readOnly />
                     </div>
   
-                    <div className="place-self-center row-span-1">
+                    <div className="place-self-center row-span-1 w-full ml-3 mb-2">
                       <label htmlFor="model">Modell: <br /> </label>
                         <ModelCB car_selection={cars} selectedBrand={selectedBrand} onInputChange={handleBrandOrModelChange} />
                         <input type="text" id="model" name="model" value={searchConditions.model || ""} hidden readOnly />
