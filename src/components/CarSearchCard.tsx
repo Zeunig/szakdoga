@@ -8,7 +8,7 @@ import { SearchIcon } from "lucide-react"
 import { ModelCB } from "./ModelCB"
 import { get_car_selection, ISortedCarSelection } from "@/app/jobs/carCounter/route"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 import { ICarListing, parseCarListing } from "@/lib/car";
 import { CB } from "./CB";
 import axios from 'axios';
@@ -49,6 +49,7 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
     setResultCount: React.Dispatch<React.SetStateAction<number>>
 }) {
     const searchParams = useSearchParams();
+    
     const [selectedBrand, setSelectedBrand] = React.useState("");
     var fuel_type: string[] = [];
     if(searchParams.get("fuel") === undefined || searchParams.get("fuel") === "") {
@@ -119,6 +120,12 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
             setLoading(false);
         });
     }
+    useEffect(() => {
+        if(searchParams.get("search") == '1') {
+            search().then(() => {console.log("search complete")});
+            return;
+        }
+    }, [setSearchConditions, setResultCount, setLoading, setSearchResult]);
     /*function change(e: ChangeEvent<HTMLInputElement>) {
         if(e.target.id.startsWith("wheels")) {
             let value = e.target.id.split(".")[-1].toUpperCase();
