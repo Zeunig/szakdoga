@@ -62,11 +62,11 @@ export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
             <div className="">
   
               {/*Autó kereső*/}
-              <form action="/cars" method="get" className="w-full">
-                <div className="w-full">
-                  <div className="w-full my-3 lg:grid lg:grid-cols-5 ">
-  
-                    <div className="place-self-center row-span-1 w-full ml-3">
+              <form action="/cars" method="get" className="w-fit">
+                <div className="w-fit">
+                  <div className="mx-3 my-3 lg:grid lg:grid-cols-5">
+                    <input type="text" id="search" name="search" value={1} hidden readOnly />
+                    <div className="place-self-center row-span-1">
                       <label htmlFor="brand">Márka: <br /> </label>
                         <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand} onInputChange={handleBrandOrModelChange} />
                         <input className="" type="text" id="brand" name="brand" value={searchConditions.brand || ""} hidden readOnly />
