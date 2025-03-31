@@ -23,7 +23,7 @@ export default async function Page() {
         <div>
             <SearchPage cars={cars}/>
         </div>
-        <div>
+        <div className="my-auto mt-5">
             <Footer />
         </div>
         </div>

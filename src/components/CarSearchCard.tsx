@@ -209,9 +209,9 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
                     <form>
 
                         <div className="">
-                            <Collapsible className="hidden lg:block">
+                            <Collapsible className="">
 
-                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg w-full"> Márka, model, típus</CollapsibleTrigger>
+                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg w-full"> Márka, model</CollapsibleTrigger>
 
                                 <CollapsibleContent className="grid row-auto border-2 border-slate-300 rounded-lg mb-2">
 
@@ -235,7 +235,7 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
 
 
                         <div>
-                            <Collapsible className="hidden lg:block">
+                            <Collapsible className="">
 
                                 <CollapsibleTrigger className="text-blue-600 font-bold text-lg w-full">Általános információk</CollapsibleTrigger>
 
@@ -290,7 +290,7 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
                         </div>
 
                         <div className="">
-                            <Collapsible className="hidden lg:block">
+                            <Collapsible className="">
 
                                 <CollapsibleTrigger className="text-blue-600 font-bold text-lg w-full">Műszaki adtok</CollapsibleTrigger>
 
@@ -345,9 +345,7 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
                     <p>© 2025 Körpörgő Autókereskedés™.</p>
                 </CardFooter>
             </Card>
-            <label htmlFor="">Lóerő</label><br></br>
-            <CB selection={[]} setter={setSearchConditions} />
-            <br></br>
+            
         </div>
     )
 }
