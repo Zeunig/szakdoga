@@ -41,7 +41,7 @@ export function BrandCB({car_selection, setSelectedBrand, onInputChange}: {car_s
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-[360px] lg:w-[200px] justify-between"
         >
           {value
             ? cars.find((car) => car.brand === value)?.brand
@@ -49,7 +49,7 @@ export function BrandCB({car_selection, setSelectedBrand, onInputChange}: {car_s
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-full lg:w-[200px] p-0">
         <Command>
           <CommandInput placeholder="Írja ide..." />
           <CommandList>
