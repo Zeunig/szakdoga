@@ -59,7 +59,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
         Autoplay({ delay: 3000, stopOnInteraction: true })
     )
 
-
+    console.log(car);
     return (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:grid-rows-2 lg:w-full lg:mt-20 w-11/12 my-10">
             
@@ -71,7 +71,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
                         <CardContent>
                             <p className="text-2xl font-bold text-center mt-3">{car?.brand} {car?.model}</p>
                             <hr className="w-full h-px mx-auto  mb-2 bg-slate-400 border-0" />
-                            <p className="text-2xl text-blue-600 font-bold">Akciós ár: {(car.price * 0.8).toLocaleString()} Ft</p>
+                            <p className="text-2xl text-blue-600 font-bold">{car.seller_name} Akciós ár: {(car.price * 0.8).toLocaleString()} Ft</p>
                             <p className="text-xl" >Brutto ár: {car.price.toLocaleString()} Ft</p>
                         </CardContent>
                     </Card>
