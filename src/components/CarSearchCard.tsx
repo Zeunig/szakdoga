@@ -202,7 +202,7 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
         console.log(searchConditions);
     }
     return (
-        <div className="mb-20 ">
+        <div className="mb-16">
             <Card className="lg:w-80 lg:h-fit border-dashed bg-blue-100 border-blue-800">
                 <CardHeader>
 
@@ -337,20 +337,21 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
                         </div>
 
 
-                        <button type="submit"  value="dww" onClick={(e) => { e.preventDefault(); console.log(e); }}>wds</button>
+                        <button type="submit"  value="delete" className="my-4 bg-blue-600 w-full rounded-lg text-lg text-white h-10" onClick={(e) => { e.preventDefault(); console.log(e); }}>Keresési kritériumok törlése</button>
+
+                        
                     </form>
                     {/*lg end*/}
 
+                    <button className="h-10 rounded-lg bg-white w-full border-2 font-bold text-lg border-blue-600 duration-300 hover:bg-blue-600 hover:text-white hover:scale-110" onClick={async () => { await search(); }}>Keresés</button>
+                    
 
-                    <div className="grid grid-rows-2">
-                        <button type="button" className="bg-slate-300" onClick={async () => { await search(); }}>Keresés</button>
-                        <div className="row-"></div>
-                    </div>
+                        
+                        
+                    
 
                 </CardContent>
-                <CardFooter className="text-xs text-muted-foreground" >
-                    <p>© 2025 Körpörgő Autókereskedés™.</p>
-                </CardFooter>
+
             </Card>
             
         </div>

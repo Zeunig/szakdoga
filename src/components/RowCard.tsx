@@ -1,5 +1,5 @@
 import { ICarListing } from "@/lib/car";  //   date fuel 
-import { LucideArrowRight } from "lucide-react";
+import { Divide, ImageIcon, ImageOff, LucideArrowRight } from "lucide-react";
 import Image from "next/image";
 export default function RowCard({ car }: { car: ICarListing }) {
     return (
@@ -9,8 +9,10 @@ export default function RowCard({ car }: { car: ICarListing }) {
             <div className="mx-5 hvr-icon  transition-all duration-300 bg-white lg:bg-gradient-to-l to-white via-white from-blue-300 bg-size-200 bg-pos-0 hover:bg-pos-100  
                             border-2 border-blue-400 rounded-xl grid grid-flow-row lg:grid-cols-3 lg:h-52">
 
-                <div className=" bg-red-700 col-span-1 flex mt-1 mb-1 relative w-fit h-fit flex-shrink-0  place-self-center lg:ml-5 lg:place-self-start ">
-                    <img className="w-full lg:w-64 object-cover object-center " loading="lazy" src={car.images[0]} alt="A hírdetett autó képe" />
+                <div className=" col-span-1 flex mt-1 mb-1 relative w-fit h-fit flex-shrink-0  place-self-center lg:ml-5  ">
+                    {car.images.length == 0 && <ImageIcon className="size-44 place-self-center text-blue-300 "/>}
+                    {car.images.length > 0 && <img className="w-full lg:w-64 object-cover object-center place-self-start" loading="lazy" src={car.images[0]} alt="" />}
+                    
                 </div>
 
                 <div className="py-4 w-full lg:col-span-2 h-full grid lg:grid-rows-3  lg:row-span-3 ">

@@ -64,7 +64,7 @@ export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
               {/*Autó kereső*/}
               <form action="/cars" method="get" className="w-fit">
                 <div className="w-fit">
-                  <div className="mx-3 my-3 lg:grid lg:grid-cols-5">
+                  <div className="my-3 lg:grid lg:grid-cols-5">
                     <input type="text" id="search" name="search" value={1} hidden readOnly />
                     <div className="place-self-center row-span-1">
                       <label htmlFor="brand">Márka: <br /> </label>

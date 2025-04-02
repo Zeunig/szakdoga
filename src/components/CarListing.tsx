@@ -13,7 +13,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/h
 import { CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Collapsible } from "@radix-ui/react-collapsible"
 import { Button } from "@/components/ui/button"
-import { AlertTriangleIcon, ChevronDown, ChevronDownCircle, ChevronRight, ChevronsDownUp, ChevronsDownUpIcon, ChevronsUpDown, Divide, Heart, Mail, MapIcon, Phone } from "lucide-react"
+import { AlertTriangleIcon, ChevronDown, ChevronDownCircle, ChevronRight, ChevronsDownUp, ChevronsDownUpIcon, ChevronsUpDown, Divide, Heart, ImageIcon, ImageOff, Mail, MapIcon, Phone } from "lucide-react"
 import { ICarListing, parseCarListing } from "@/lib/car"
 import { Prisma, PrismaClient } from "@prisma/client"
 import { useRouter } from "next/navigation"
@@ -54,7 +54,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
             axios.post("/api/report", { "reason": report_reason, "car_id": car.id }).then((res) => console.log(res));
         }
     }
-    
+
     const plugin = React.useRef(
         Autoplay({ delay: 3000, stopOnInteraction: true })
     )
@@ -62,7 +62,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:grid-rows-2 lg:w-full lg:mt-20 w-11/12 my-10">
-            
+
             {/*Price card sm*/}
             <div className="sticky top-2  lg:hidden ">
                 <div className="border-2 border-blue-600 rounded-lg inline-block w-full" >
@@ -93,10 +93,12 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
                         onMouseEnter={plugin.current.stop}
                         onMouseLeave={plugin.current.reset}>
                         <CarouselContent className="">
+                        {car.images.length == 0 && <div className=" lg:h-[500px] lg:w-[800px] w-[400] h-[300px] place-content-center text-slate-500"><ImageIcon className=" size-40  place-self-center"/></div>}
                             {Array.from({ length: count }).map((_, index) => (
+                                
                                 <CarouselItem key={index} className="lg:h-[500px] lg:w-[800px] " onClick={() => { setShowImageViewer(car?.images[index]) }}>
-                                    <Image src={car?.images[index]} width={800} height={500} alt="Hiba a kép betöltése bözben" className="items-center justify-center p-6 hidden lg:flex" />
-                                    <Image src={car?.images[index]} width={400} height={300} alt="Hiba a kép betöltése bözben" className="flex  items-center justify-center p-6 lg:hidden " />
+                                            <Image src={car?.images[index]} width={800} height={500} alt="Hiba a kép betöltése bözben" className="items-center justify-center p-6 hidden lg:flex" />
+                                            <Image src={car?.images[index]} width={400} height={300} alt="Hiba a kép betöltése bözben" className="flex  items-center justify-center p-6 lg:hidden " />                                  
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
@@ -141,7 +143,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
 
             </div>
             {/*Main card end*/}
-            
+
 
             <div className="lg:col-span-5 lg:col-start-3  lg:row-start-2  ">
                 {/*Info card*/}
@@ -327,7 +329,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
             </div>
             {/*Price card lg end*/}
 
-            
+
         </div>
     )
 }

@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label"
 import SUC from "@/components/SUC";
 import { AdsGrid } from "@/components/ADS/AdsGrid";
 import { ImageViewer } from "@/components/ImageViewer";
-
+import Image from "next/image";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
     Sheet,
@@ -23,6 +23,7 @@ import {
   } from "@/components/ui/sheet"
 
 import React, { useRef } from "react";
+
 
 
 export default function Page() {
@@ -54,7 +55,11 @@ export default function Page() {
         .then(res => res.json()).then(json => window.location.href = json["redirect"]);
     }
     return (
+
         <div>
+            <div>
+            <Image src="/17-512.webp" width={800} height={500} alt="Hiba a kép betöltése bözben" className="items-center justify-center p-6 hidden lg:flex"/>
+            </div>
             <div>
                 <Input type="number" name="carid" id="carid" />
                 <button onClick={buyFeature}>Vásárlás: Kiemelés</button>
