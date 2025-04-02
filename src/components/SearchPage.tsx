@@ -63,7 +63,8 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
                 <div className="">
                     <div className="mx-5 lg:mx-56 lg:mt-24">
                         <div className="grid grid-cols-1 lg:grid-cols-4">
-                            <div className="h-auto lg:row-span-11 mt-5 lg:mt-0"><CarSearchCard searchConditions={searchConditions} setSearchConditions={setSearchConditions} cars={cars} setSearchResult={setSearchResult} setLoading={setLoading} setResultCount={setResultCount} /></div>
+                            <div className="h-auto lg:row-span-11"><CarSearchCard searchConditions={searchConditions} setSearchConditions={setSearchConditions} cars={cars} setSearchResult={setSearchResult} setLoading={setLoading} setResultCount={setResultCount} /></div>
+
                             <div className="col-span-3 bg-blue-200 rounded-lg border-2 border-blue-400">
                                 <h5 className="-mt-[33px]">{resultCount == -1 ? "" : `Találatok száma : ${resultCount} db`}</h5>
                                 <hr className="w-full  mb-2  h-px mx-auto bg-slate-400 border-0" />
@@ -73,7 +74,7 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
                                         <img src="logo.png" className="size-72 animate-spin align-self-center justify-self-center flex my-20"/>
                                     :
                                     searchResult.map((car) => (
-                                        <div key={car.id} className="w-full h-fit my-5 hvr-icon-forward"><RowCard car={car} /></div>
+                                        <div key={car.id} className="w-full h-fit my-5 hvr-icon-forward"> {car.featured==0 && <RowCard car={car}  />}{car.featured==1 && <RowCardHL  car={car}  />} </div>
                                     ))
                                 }   
                             </div>
