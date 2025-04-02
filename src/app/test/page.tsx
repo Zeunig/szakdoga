@@ -23,6 +23,7 @@ import {
   } from "@/components/ui/sheet"
 
 import React, { useRef } from "react";
+import ToTopBtn from "@/components/ToTopBtn";
 
 
 
@@ -58,6 +59,7 @@ export default function Page() {
 
         <div>
             <div>
+                <ToTopBtn/>
             <Image src="/17-512.webp" width={800} height={500} alt="Hiba a kép betöltése bözben" className="items-center justify-center p-6 hidden lg:flex"/>
             </div>
             <div>

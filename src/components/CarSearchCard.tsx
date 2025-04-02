@@ -310,7 +310,7 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
                         </div>
 
 
-                        <button type="submit"  value="delete" className="my-4 bg-blue-600 w-full rounded-lg text-lg text-white h-10" onClick={(e) => { e.preventDefault(); console.log(e); }}>Keresési kritériumok törlése</button>
+                        <button type="submit"  value="delete" className="my-4 bg-blue-600 w-full rounded-lg text-sm text-white h-7" onClick={(e) => { e.preventDefault(); console.log(e); }}>Keresési kritériumok törlése</button>
 
                         
                     </form>

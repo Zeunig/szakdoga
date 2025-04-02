@@ -66,7 +66,6 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
             {/*Price card sm*/}
             <div className="sticky top-5  md:hidden ">
                 <div className="border-2 border-blue-600 rounded-lg inline-block w-full" >
-
                     <Card className="h-fit rounded-lg bg-opacity-80 bg-white">
                         <CardContent defaultValue={"open"}>
                             <Collapsible className="collapsible">
@@ -84,7 +83,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
                 </div>
             </div>
             {/*Price card sm end*/}
-            <div className="relative w-full min-h-[500px] lg:max-h-[900px] col-span-1 lg:col-span-5 lg:col-start-3 row-span-1 bg-blue-200  border-2 border-blue-600 rounded-lg inline-block place-items-center">
+            <div className="relative w-full min-h-[500px] lg:h-[700px] col-span-1 lg:col-span-5 lg:col-start-3 row-span-1 bg-blue-200  border-2 border-blue-600 rounded-lg inline-block place-items-center">
 
                 {/* Nagy képnézegető */}
                 {
@@ -93,7 +92,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
                 {/* Nagy képnézegető vége */}
 
                 {/*Képnézegető*/}
-                <div className="absolute left-0 right-0">
+                <div className="absolute top-0 left-0 right-0">
                     <Carousel setApi={setApi} className="lg:w-[659px] w-10/12 place-self-center mt-3 bg-slate-900 bg-opacity-20 rounded-2xl"
                         plugins={[plugin.current]}
                         onMouseEnter={plugin.current.stop}
