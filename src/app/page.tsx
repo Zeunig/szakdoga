@@ -15,8 +15,10 @@ import React from "react";
 import { searchCondition } from "@/components/CarSearchCard";
 import HomePage from "@/components/HomePage";
 import { get_car_selection } from "./jobs/carCounter/route";
+import { ICarListing } from "@/lib/car";
 
 export default async function Home() {
+
   let cars = await get_car_selection();
   console.log(cars);
   return (

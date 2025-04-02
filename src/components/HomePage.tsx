@@ -16,8 +16,11 @@ import { searchCondition } from "@/components/CarSearchCard";
 import { ISortedCarSelection } from "@/app/jobs/carCounter/route";
 import { BrandCB } from "./BrandCB";
 import { ModelCB } from "./ModelCB";
+import RowCard from "./RowCard";
+import { ICarListing } from "@/lib/car";
 
 export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
+  let [searchResult, setSearchResult] = React.useState<ICarListing[]>([]);
     const [selectedBrand, setSelectedBrand] = React.useState("");
     const [searchConditions, setSearchConditions] = React.useState<searchCondition>({wheels: [],gearbox: [], color: [], status: []});
     function handleBrandOrModelChange(value: string, type: string) {
@@ -122,12 +125,8 @@ export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
               </div>
   
               <div className="col bg-rose-400 grid grid-cols-4 grid-rows-2 gap-4">
-  
-                <div className="col-span-2 row-span-2 bg-blue-400"> 0</div>
-                <div className=" bg-blue-400"> 1</div>
-                <div className=" bg-blue-400"> 2</div>
-                <div className=" bg-blue-400"> 3</div>
-                <div className=" bg-blue-400"> 4</div>
+              
+             
               </div>
   
             </div>

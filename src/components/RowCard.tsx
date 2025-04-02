@@ -6,14 +6,15 @@ export default function RowCard({ car }: { car: ICarListing }) {
 
 
         <a href={`/cars/${car.id}`} target="_blank" className="">
-
+                       
             <div className="mx-5 hvr-icon  transition-all duration-300 bg-white lg:bg-gradient-to-l to-white via-white from-blue-300 bg-size-200 bg-pos-0 hover:bg-pos-100  
                             border-2 border-blue-400 rounded-xl grid grid-flow-row lg:grid-cols-3 lg:h-52">
 
+
                 <div className=" col-span-1 flex mt-1 mb-1 relative w-fit h-fit flex-shrink-0  place-self-center lg:ml-5  ">
-                    {car.images.length == 0 && <ImageIcon className="size-44 place-self-center text-blue-300 "/>}
+                    {car.images.length == 0 && <ImageIcon className="size-44 place-self-center text-blue-300 " />}
                     {car.images.length > 0 && <img className="w-full lg:w-64 object-cover object-center place-self-start" loading="lazy" src={car.images[0]} alt="" />}
-                    
+
                 </div>
 
                 <div className="py-4 w-full lg:col-span-2 h-full grid lg:grid-rows-3  lg:row-span-3 ">
@@ -21,10 +22,10 @@ export default function RowCard({ car }: { car: ICarListing }) {
                     <div className="grid grid-flow-row lg:grid-cols-2 lg:grid-rows-2 row-span-2 ">
                         <div className="lg:row-start-2 row-start-1 col-start-1 text-3xl lg:text-2xl font-bold ml-10 lg:ml-0 inline-block w-fit  hvr-icon  ">
 
-                            {car.brand} {car.model}
-                            
+                            {car.brand} {car.model} 
+
                         </div>
-                        
+
 
                         <div className=" text-base lg:col-start-2 row-start-4 lg:row-start-1 font-bold  mr-5 tabular-nums inline-block w-fit place-self-end">Eredeti ár: {car.price.toLocaleString()} Ft</div>
                         <div className="text-2xl lg:col-start-2 lg:row-start-3 row-start-3 font-bold  mr-5 tabular-nums inline-block w-fit place-self-end text-blue-600 "><p className="inline-block font-normal text-base text-black">Akciós ár:</p>  {(car.price * 0.8).toLocaleString()} Ft</div>
@@ -58,8 +59,8 @@ export default function RowCard({ car }: { car: ICarListing }) {
 
                 </div>
 
-            </div>
-
+                </div>
+            
         </a>
 
     )

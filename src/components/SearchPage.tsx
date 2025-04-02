@@ -39,7 +39,7 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
                                         <img src="logo.png" className="size-72 animate-spin align-self-center justify-self-center flex my-20"/>
                                     :
                                     searchResult.map((car) => (
-                                        <div key={car.id} className="w-full h-fit my-5 hvr-icon-forward"><RowCard car={car} /></div>
+                                        <div key={car.id} className="w-full h-fit my-5 hvr-icon-forward"> {car.featured==0 && <RowCard car={car}  />}{car.featured==1 && <RowCardHL  car={car}  />} </div>
                                     ))
                                 }   
                             </div>
