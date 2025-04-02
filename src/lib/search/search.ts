@@ -78,9 +78,6 @@ export async function SearchAmountOfResults(search: ISearch) {
     ${!(Number.isNaN(search.limit))
     ? Prisma.sql`LIMIT ${search.limit}`
     : Prisma.sql`LIMIT 10`}
-    ${!(Number.isNaN(search.offset))
-    ? Prisma.sql`OFFSET ${search.offset}`
-    : Prisma.empty}
    `;
    let query = await prisma.$queryRaw(prismaquery);
    return Number(query[0]["COUNT(szakdoga.car.id)"]);

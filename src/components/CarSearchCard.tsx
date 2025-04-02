@@ -38,8 +38,7 @@ export interface searchCondition {
     max_passengers?: number
     features?: number,
     status?: string[],
-    color?: string[],
-    offset: number
+    color?: string[]
 }
 
 

@@ -43,9 +43,9 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
         max_doors: 999999,
         min_passengers: 0,
         max_passengers: 999999,
-        wheels: [],gearbox: [], color: [], status: [], offset: 0
+        wheels: [],gearbox: [], color: [], status: []
     });
-    const result_per_search = 20;
+    const result_per_search = 10;
     /*useEffect(() => {
         axios.get("/api/marketplace/search").then((res) => {
             let cars = [];
@@ -55,8 +55,44 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
             setSearchResult(cars);
         })
     }, [setSearchResult]);*/
-    async function goToPage(page: number) {
-        
+    async function search(page: number) {
+        console.log(page);
+        setLoading(true);
+        let url = new URL("/api/marketplace/search", window.location.origin);
+        for (var i = 0; i < Object.keys(searchConditions).length; i++) {
+            if (Array.isArray(Object.values(searchConditions)[i])) {
+                if (Object.values(searchConditions)[i].length != 0) {
+                    let value = "";
+
+                    for(var j = 0; j < Object.values(searchConditions)[i].length; j++) {
+
+                        value += Object.values(searchConditions)[i][j];
+                        if(j + 1 !== Object.values(searchConditions)[i].length) {
+                            value += ",";
+                        }
+                    }
+                    url.searchParams.append(Object.keys(searchConditions)[i], value);
+                }
+
+            } else {
+                console.log(`${Object.keys(searchConditions)[i]} ${Object.values(searchConditions)[i]}`);
+                if(Object.values(searchConditions)[i] !== "") {
+                    console.log("swag");
+                    url.searchParams.append(Object.keys(searchConditions)[i], Object.values(searchConditions)[i]);
+                }
+            }
+        }
+        url.searchParams.append("offset", ((page-1)*10).toString());
+        console.log(url);
+        axios.get(url.toString()).then((res) => {
+            let cars = [];
+            for(var i = 0; i < res.data["data"].length; i++) {                
+                cars.push(parseCarListing(res.data["data"][i]));
+            }
+            setSearchResult(cars);
+            setResultCount(res.data["count"]);
+            setLoading(false);
+        });
     }
     return (
         <div>
@@ -77,6 +113,10 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
                                         <div key={car.id} className="w-full h-fit my-5 hvr-icon-forward"> {car.featured==0 && <RowCard car={car}  />}{car.featured==1 && <RowCardHL  car={car}  />} </div>
                                     ))
                                 }   
+                                <button onClick={async () =>  {setPage(page-1);console.log(page);await search(page-1);}}>Vissza</button>
+                                <button onClick={async () =>  {setPage(page+1);console.log(page);await search(page+1);}}>Kövi</button>
+                                <input onChange={(e) => {setPage(parseInt(e.target.value) | 1)}} type="number" name="" id="" min={1} value={page} />
+                                <button onClick={async () => {await search(page)}}>Ugrás</button>
                             </div>
                         </div>
                     </div>
