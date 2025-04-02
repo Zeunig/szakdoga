@@ -52,11 +52,13 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
     
     const [selectedBrand, setSelectedBrand] = React.useState("");
     var fuel_type: string[] = [];
-    if(searchParams.get("fuel") === undefined || searchParams.get("fuel") === "") {
-        fuel_type = [];
+    if(searchParams.get("fuel") === undefined || searchParams.get("fuel") === null || searchParams.get("fuel") === "") {
+        fuel_type = ["Benzin","Dízel","Hibrid","Elektromos","Etanol","Biodízel","Gáz"];
     }else {
         fuel_type = [searchParams.get("fuel") || ""];
     }
+    console.log(fuel_type);
+    console.log(searchParams.get("fuel"));
     const [searchConditions, setSearchConditions] = React.useState<searchCondition>({
         brand: searchParams.get("brand") || "", 
         model: searchParams.get("model") || "", 

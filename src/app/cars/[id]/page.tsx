@@ -27,13 +27,14 @@ export default async function Page(context: { params: Promise<{ id: number }> })
     const headersList = await headers();
     const isAuthed = headersList.get("cookie")?.toString().includes("auth=") || false;
     let car_data = await get_car_from_db(id) as object;
+    console.log(car_data);
     var car;
     if (car_data["success"] === false) {
         car = null;
     } else {
         car = parseCarListing(car_data);
     }
-    console.log(car == null);
+    console.log(car?.listed);
     return (
         <div className="">
             {
@@ -42,7 +43,8 @@ export default async function Page(context: { params: Promise<{ id: number }> })
                         <Header />
                     </div>
                     <div className="justify-items-center">
-                        <CarListing car={car} isAuthed={isAuthed}/>
+                        {car.listed == 1 ? <CarListing car={car} isAuthed={isAuthed}/> : <h1 className="m-32">Ez az autó jelenleg nem elérhető</h1>}
+                        
                     </div>
                     <div className="">
                         <Footer/>

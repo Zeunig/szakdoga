@@ -159,7 +159,7 @@ export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
   
                 <div className="col-span-1">
                   <button>
-                    <a href="">
+                    <a href="/cars?search=1&brand=Audi">
                       <Card className="w-44 h-52 md:w-56 md:h-56 lg:w-[285px] lg:h-[228px] border-none hvr-outline-out ">
                         <CardHeader className="">
                           <Image src={"/logos/audi.png"} alt={"audi logo"} width={150} height={150} className="place-self-center hvr-icon" />
@@ -172,7 +172,7 @@ export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
   
                 <div className="col-span-1">
                   <button>
-                    <a href="">
+                    <a href="/cars?search=1&brand=BMW">
                       <Card className="w-44 h-52 md:w-56 md:h-56 lg:w-[285px] lg:h-[228px] border-none hvr-outline-out ">
                         <CardHeader >
                           <Image src={"/logos/bmw.png"} alt={"bmw logo"} width={150} height={150} className="place-self-center hvr-icon" />
@@ -185,7 +185,7 @@ export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
   
                 <div className="col-span-1">
                   <button>
-                    <a href="">
+                    <a href="/cars?search=1&brand=Mercedes-Benz">
                       <Card className="w-44 h-52  md:w-56 md:h-56 lg:w-[285px] lg:h-[228px] border-none hvr-outline-out ">
                         <CardHeader className="">
                           <Image src={"/logos/mercedes.png"} alt={"mercedes logo"} width={150} height={150} className="place-self-center hvr-icon" />
