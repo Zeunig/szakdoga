@@ -28,7 +28,9 @@ export default async function Home() {
 
       <div className="mb-5">
 
-        
+
+ 
+
         </div>
         <HomePage cars={cars} />
 

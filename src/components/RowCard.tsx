@@ -4,6 +4,7 @@ import Image from "next/image";
 export default function RowCard({ car }: { car: ICarListing }) {
     return (
 
+
         <a href={`/cars/${car.id}`} target="_blank" className="">
 
             <div className="mx-5 hvr-icon  transition-all duration-300 bg-white lg:bg-gradient-to-l to-white via-white from-blue-300 bg-size-200 bg-pos-0 hover:bg-pos-100  
@@ -19,6 +20,7 @@ export default function RowCard({ car }: { car: ICarListing }) {
 
                     <div className="grid grid-flow-row lg:grid-cols-2 lg:grid-rows-2 row-span-2 ">
                         <div className="lg:row-start-2 row-start-1 col-start-1 text-3xl lg:text-2xl font-bold ml-10 lg:ml-0 inline-block w-fit  hvr-icon  ">
+
                             {car.brand} {car.model}
                             
                         </div>
@@ -29,6 +31,7 @@ export default function RowCard({ car }: { car: ICarListing }) {
 
                         <hr className="w-full col-span-2  mb-2  h-px mx-auto bg-slate-400 border-0" />
                     </div>
+
 
                     <div className="text-gray-500 w-fit ml-5 lg:ml-0 tabular-nums grid grid-rows-2 text-center">
 
@@ -49,6 +52,7 @@ export default function RowCard({ car }: { car: ICarListing }) {
                         </div>
 
                     </div>
+
 
 
 
