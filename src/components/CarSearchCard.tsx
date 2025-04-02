@@ -38,49 +38,21 @@ export interface searchCondition {
     max_passengers?: number
     features?: number,
     status?: string[],
-    color?: string[]
+    color?: string[],
+    offset: number
 }
 
 
-export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount}: {
+export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount, searchConditions, setSearchConditions}: {
     cars: ISortedCarSelection[], 
     setSearchResult: React.Dispatch<React.SetStateAction<ICarListing[]>>,
     setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-    setResultCount: React.Dispatch<React.SetStateAction<number>>
+    setResultCount: React.Dispatch<React.SetStateAction<number>>,
+    searchConditions: searchCondition,
+    setSearchConditions: React.Dispatch<React.SetStateAction<searchCondition>>
 }) {
     const searchParams = useSearchParams();
-    
     const [selectedBrand, setSelectedBrand] = React.useState("");
-    var fuel_type: string[] = [];
-    if(searchParams.get("fuel") === undefined || searchParams.get("fuel") === null || searchParams.get("fuel") === "") {
-        fuel_type = ["Benzin","Dízel","Hibrid","Elektromos","Etanol","Biodízel","Gáz"];
-    }else {
-        fuel_type = [searchParams.get("fuel") || ""];
-    }
-    console.log(fuel_type);
-    console.log(searchParams.get("fuel"));
-    const [searchConditions, setSearchConditions] = React.useState<searchCondition>({
-        brand: searchParams.get("brand") || "", 
-        model: searchParams.get("model") || "", 
-        fuel_type: fuel_type, 
-        min_year: parseInt(searchParams.get("min_year") || "0"),
-        max_year: parseInt(searchParams.get("max_year") || "0") ,
-        min_price: parseInt(searchParams.get("min_price") || "0"),
-        max_price: parseInt(searchParams.get("max_price") || "0"),
-        min_km: 0,
-        max_km: 999999,
-        min_weight: 0,
-        max_weight: 999999,
-        min_cc: 0,
-        max_cc: 999999,
-        min_hp: 0,
-        max_hp: 999999,
-        min_doors: 0,
-        max_doors: 999999,
-        min_passengers: 0,
-        max_passengers: 999999,
-        wheels: [],gearbox: [], color: [], status: []});
-
     /*function changeSearchCondition({value}: {value: searchCondition}) {
 
     }*/
