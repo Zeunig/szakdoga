@@ -6,7 +6,7 @@ export default function Ads() {
         <div>
 
             {ad <= 3 &&
-                <div className=" place-self-center bg-blue-100 border-2 border-blue-300 rounded-lg h-32 w-[1000px]">
+                <div className="hidden lg:block place-self-center bg-blue-100 border-2 border-blue-300 rounded-lg h-32 w-[1000px]">
                     <div className="grid grid-cols-3  h-full mx-5">
 
                         <div className="content-center col-span-2">
@@ -25,7 +25,7 @@ export default function Ads() {
                 </div>
             }
             {ad >= 7 &&
-                <div className=" place-self-center bg-blue-100 border-2 border-blue-300 rounded-lg h-32 w-[1000px]">
+                <div className="hidden lg:block place-self-center bg-blue-100 border-2 border-blue-300 rounded-lg h-32 w-[1000px]">
                     <div className="grid grid-cols-3  h-full mx-5">
 
                         <div className="content-center col-span-2">
