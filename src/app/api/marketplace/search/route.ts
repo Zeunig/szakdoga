@@ -113,7 +113,8 @@ export async function GET(req: NextRequest) {
         color: (req.nextUrl.searchParams.get("color") as string)?.split(","),
         status: (req.nextUrl.searchParams.get("status") as string)?.split(","),
         limit: parseInt(req.nextUrl.searchParams.get("limit") as string),
-        offset: parseInt(req.nextUrl.searchParams.get("offset") as string)
+        offset: parseInt(req.nextUrl.searchParams.get("offset") as string),
+        featured_only: parseInt(req.nextUrl.searchParams.get("offset") as string) == 1
     };
     const result = await Search(
         query

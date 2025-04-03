@@ -19,7 +19,8 @@ export interface ISearch {
     status: string[] | undefined,
 
     limit: number | 10,
-    offset: number | 0
+    offset: number | 0,
+    featured_only: boolean | false
 }
 
 export async function SearchAmountOfResults(search: ISearch) {
@@ -78,6 +79,9 @@ export async function SearchAmountOfResults(search: ISearch) {
     ${!(Number.isNaN(search.limit))
     ? Prisma.sql`LIMIT ${search.limit}`
     : Prisma.sql`LIMIT 10`}
+    ${search.featured_only
+    ? Prisma.sql`AND featured = 1`
+    : Prisma.empty}
    `;
    let query = await prisma.$queryRaw(prismaquery);
    return Number(query[0]["COUNT(szakdoga.car.id)"]);
@@ -211,6 +215,9 @@ export async function Search(search: ISearch) {
     : Prisma.sql`LIMIT 10`}
     ${!(Number.isNaN(search.offset))
     ? Prisma.sql`OFFSET ${search.offset}`
+    : Prisma.empty}
+    ${search.featured_only
+    ? Prisma.sql`AND featured = 1`
     : Prisma.empty}
    `;
    console.log(prismaquery);

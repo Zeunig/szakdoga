@@ -7,6 +7,7 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
 export interface Report {
+    id: number,
     reason: string,
     reporter_ip: string,
     solved: number | null,
@@ -29,7 +30,7 @@ export default async function Page() {
     }
     let reports: Report[] = await prisma.report.findMany({
         where: {
-            solved: 1
+            solved: 0
         },
         include: {
             car: {

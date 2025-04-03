@@ -26,7 +26,7 @@ export default function ReportOverviewPage({reports} : {reports: Report[]}) {
                     <td>{report.reason}</td>
                     <td>{report.reporter_ip}</td>
                     <td>
-                        <button onClick={() => {axios.delete(`/api/cars/${report.car.id}`);reports.map((r) => {report.car.id !== r.car.id})}}>Hirdetés törlése</button>
+                        <button onClick={() => {axios.delete(`/api/cars/${report.car.id}`);axios.post("/api/report/solve", {"reason_id": report.id});reports.map((r) => {report.id !== r.id})}}>Hirdetés törlése</button>
                     <button onClick={() => {axios.post(`/api/admin/ban`, {"user_id": report.car.seller_id});reports.map((r) => {report.car.id !== r.car.id})}}>Hirdetés törlése és felhasználó kitiltása</button></td>
                 </tr>
             ))}

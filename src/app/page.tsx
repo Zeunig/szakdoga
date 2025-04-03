@@ -15,7 +15,8 @@ import React from "react";
 import { searchCondition } from "@/components/CarSearchCard";
 import HomePage from "@/components/HomePage";
 import { get_car_selection } from "./jobs/carCounter/route";
-import { ICarListing } from "@/lib/car";
+import { ICarListing, parseCarListing } from "@/lib/car";
+import axios from "axios";
 
 export default async function Home() {
 

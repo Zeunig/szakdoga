@@ -42,8 +42,6 @@ export function ModelCB({car_selection, selectedBrand, onInputChange}: {car_sele
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
   let cars = Object.values(car_selection);
-  console.log(selectedBrand);
-  console.log(cars);
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -72,7 +70,6 @@ export function ModelCB({car_selection, selectedBrand, onInputChange}: {car_sele
                         key={`${model.model.toLowerCase().trim()}${model.count}`}
                         value={model.model}
                         onSelect={(currentValue) => {
-                          console.log(currentValue);
                           onInputChange(currentValue, "model");
                           setValue(currentValue === value ? "" : currentValue)
                           setOpen(false)
