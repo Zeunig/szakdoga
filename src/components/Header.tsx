@@ -48,9 +48,9 @@ export async function Header() {
           {/*Logged in users*/}
 
           {headersList.get("cookie")?.toString().includes("auth=") && <div className="flex items-center lg:order-2 ">
-            <div className="mr-8">
+            <div className="mr-8  h-10 content-center w-24 text-center bg-blue-100 rounded-lg hvr-icon-fade">
               <Popover>
-                <PopoverTrigger className=""><p className="inline-block text-blue-600 ">Fiókom</p> <ChevronDown className="inline-block size-5 hvr-icon" /> </PopoverTrigger>
+                <PopoverTrigger className=""><p className="inline-block text-blue-600 hvr-icon">Fiókom</p> <ChevronDown className="inline-block size-5 hvr-icon" /> </PopoverTrigger>
                 <PopoverContent className="w-fit  shadow-none mr-12 rounded-none">
                   <div className="grid">
                     <a href="/profil"> Fiókom kezelése</a>
@@ -64,10 +64,10 @@ export async function Header() {
             </div>
             <button className="bg-blue-600 rounded-lg   lg:h-10 lg:w-52 text-white font-bold mr-5 text-center content-center hover:scale-110 hover:transition-transform hover:duration-300 duration-300">
               <a href="/feltoltes">
-                <Plus className="size-7 inline-block" /><p className="hidden lg:inline-block">Hirdetés feltöltése</p>
+                <Plus className="size-7  hidden lg:inline-block" /><p className="hidden lg:inline-block">Hirdetés feltöltése</p>
               </a>
             </button>
-
+            
             <div className="lg:hidden">
               <Sheet >
                 <SheetTrigger><Menu className="size-6" /></SheetTrigger>
@@ -146,21 +146,7 @@ export async function Header() {
 
           <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-              <li>
-                <a href="/" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">HOME</a>
-              </li>
-              <li>
-                <a href="/" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">Marketplace</a>
-              </li>
-              <li>
-                <a href="/feltoltes" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">UPLOAD</a>
-              </li>
-              <li>
-                <a href="/cars" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">CARS</a>
-              </li>
-              <li>
-                <a href="/test" className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">TEST</a>
-              </li>
+              
             </ul>
           </div>
         </div>

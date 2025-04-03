@@ -8,7 +8,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { type CarouselApi } from "@/components/ui/carousel"
 import Image from "next/image";
 import { CarCardHL } from "@/components/CarCardHL"
-import { AdsGrid } from "@/components/ADS/AdsGrid"
+import { AdsGrid } from "@/components/0A_unused/ADS/AdsGrid"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
 import { CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Collapsible } from "@radix-ui/react-collapsible"

@@ -8,7 +8,7 @@ import { Footer } from "@/components/Footer";
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger, } from "@/components/ui/collapsible"
-import { Badge } from "lucide-react";
+import { Badge, Divide, FileVideo } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { plugin } from "postcss";
 import React, { ChangeEvent, SetStateAction, useEffect, useLayoutEffect } from "react";
@@ -21,8 +21,10 @@ import { ICarListing, parseCarListing } from "@/lib/car";
 import axios from "axios";
 import { CarCardHL } from "./CarCardHL";
 import { CarCard } from "./CarCard";
+import MainCars from "./MainCars";
+import MainCarsHL from "./MainCarsHL";
 
-export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
+export default function HomePage({ cars }: { cars: ISortedCarSelection[] }) {
   let [featuredCars, setFeaturedCars] = React.useState<ICarListing[]>([]);
   let [searchResult, setSearchResult] = React.useState<ICarListing[]>([]);
   useEffect(() => {
@@ -31,56 +33,56 @@ export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
     console.log(url);
     axios.get(url).then((res) => {
       console.log(res.data);
-        for(var i = 0; i < res.data["data"].length; i++) {       
-          setFeaturedCars([...featured_cars,
-          parseCarListing(res.data["data"][i])
-          ]);         
-          featured_cars.push(parseCarListing(res.data["data"][i]));
-        }
+      for (var i = 0; i < res.data["data"].length; i++) {
+        setFeaturedCars([...featured_cars,
+        parseCarListing(res.data["data"][i])
+        ]);
+        featured_cars.push(parseCarListing(res.data["data"][i]));
+      }
     });
     console.log(featured_cars);
-    
+
   }, []);
   const [selectedBrand, setSelectedBrand] = React.useState("");
-  const [searchConditions, setSearchConditions] = React.useState<searchCondition>({wheels: [],gearbox: [], color: [], status: []});
+  const [searchConditions, setSearchConditions] = React.useState<searchCondition>({ wheels: [], gearbox: [], color: [], status: [] });
   function handleBrandOrModelChange(value: string, type: string) {
-      if(type == "brand") {
-          setSearchConditions({
-              ...searchConditions,
-              [type]: value,
-              "model": ""
-          });
-      }else {
-          setSearchConditions({
-              ...searchConditions,
-              [type]: value,
-          });
-      }
-      console.log(searchConditions);
+    if (type == "brand") {
+      setSearchConditions({
+        ...searchConditions,
+        [type]: value,
+        "model": ""
+      });
+    } else {
+      setSearchConditions({
+        ...searchConditions,
+        [type]: value,
+      });
+    }
+    console.log(searchConditions);
   }
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
-      const { name, value, type } = e.target;
-      console.log(name);
-      const parsedValue = type === 'number' ? parseFloat(value) : value;
+    const { name, value, type } = e.target;
+    console.log(name);
+    const parsedValue = type === 'number' ? parseFloat(value) : value;
 
-      setSearchConditions({
-          ...searchConditions,
-          [name]: parsedValue
-      });
-      console.log(searchConditions);
+    setSearchConditions({
+      ...searchConditions,
+      [name]: parsedValue
+    });
+    console.log(searchConditions);
   }
   function handleSelectChange(e: ChangeEvent<HTMLSelectElement>) {
-      const { name, value } = e.target;
-      console.log(e);
-      setSearchConditions({
-          ...searchConditions,
-          [name]: value
-      });
+    const { name, value } = e.target;
+    console.log(e);
+    setSearchConditions({
+      ...searchConditions,
+      [name]: value
+    });
   }
   return (
-      <>
+    <>
       <div className="mb-5">
-
+        
         <div className="bg-blue-200 mx-auto border-2 border-blue-600 rounded-lg mt-5 w-11/12 md: lg:w-[1200px]">
           <div className="">
 
@@ -91,14 +93,14 @@ export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
                   <input type="text" id="search" name="search" value={1} hidden readOnly />
                   <div className="place-self-center row-span-1">
                     <label htmlFor="brand">Márka: <br /> </label>
-                      <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand} onInputChange={handleBrandOrModelChange} />
-                      <input className="" type="text" id="brand" name="brand" value={searchConditions.brand || ""} hidden readOnly />
+                    <BrandCB car_selection={cars} setSelectedBrand={setSelectedBrand} onInputChange={handleBrandOrModelChange} />
+                    <input className="" type="text" id="brand" name="brand" value={searchConditions.brand || ""} hidden readOnly />
                   </div>
 
                   <div className="place-self-center row-span-1 w-full ml-3 mb-2">
                     <label htmlFor="model">Modell: <br /> </label>
-                      <ModelCB car_selection={cars} selectedBrand={selectedBrand} onInputChange={handleBrandOrModelChange} />
-                      <input type="text" id="model" name="model" value={searchConditions.model || ""} hidden readOnly />
+                    <ModelCB car_selection={cars} selectedBrand={selectedBrand} onInputChange={handleBrandOrModelChange} />
+                    <input type="text" id="model" name="model" value={searchConditions.model || ""} hidden readOnly />
                   </div>
 
                   <div className="place-self-center">
@@ -127,7 +129,7 @@ export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
                     <input type="number" id="price" name="max_price" onChange={(e) => { handleInputChange(e) }} className="border w-[180px]  lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-lg inline-block" placeholder="-ig" />
                   </div>
                   <button className="bg-blue-600 rounded-lg  place-self-end col-span-5 h-10 mt-5 w-full lg:w-52 text-white font-bold mr-5 text-center content-center  hvr-gwrow hvr-glow">
-                      Keresés
+                    Keresés
                   </button>
                 </div>
               </div>
@@ -144,13 +146,19 @@ export default function HomePage({cars} : {cars: ISortedCarSelection[]}) {
               Kiemelt hirdetések
             </div>
 
-            <div className="col bg-rose-400 grid grid-cols-4 grid-rows-2 gap-4">
-              {
-                featuredCars.map((car) => (
-                  <RowCard car={car}/>
-                ))
-              }
-            
+            <div className="  grid-flow-row grid lg:grid-cols-2 gap-4">
+ 
+                {
+                  featuredCars.map((car) => (
+
+                    <div>
+                      {car.featured == 0 && <MainCars car={car} />}{car.featured == 1 && <MainCarsHL car={car} />}
+                    </div>
+                    
+                  ))
+                }
+
+
             </div>
 
           </div>
