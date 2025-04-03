@@ -14,7 +14,7 @@ export default function Page() {
         </div>
 
             <div>
-            <div className="mb-20">
+            <div className="h-[700px] bg-blue-50">
                 <AuthTabs/>
             </div>   
             </div>   
