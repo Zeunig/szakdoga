@@ -13,7 +13,7 @@ import { ICarListing, parseCarListing } from "@/lib/car";
 import RowCard from "@/components/RowCard";
 import { Badge } from "@/components/ui/badge";
 import { Cog8ToothIcon } from "@heroicons/react/24/outline";
-import { ArrowUpFromLineIcon, Cog, Heart, MoveDown, User, UserCircle, UserCogIcon } from "lucide-react";
+import { ArrowUpFromLineIcon, Cog, Heart, MoveDown, TriangleAlert, User, UserCircle, UserCogIcon } from "lucide-react";
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 
 
@@ -64,7 +64,14 @@ export default async function Page() {
 
                                         <CardTitle className="font-bold text-3xl grid grid-flow-col w-80 ">
                                             <div>{profile?.name}</div>
-                                            <div className="text-center">{profile?.name && profile.permissions > 0 && <Badge className="inline-block size-fit  bg-blue-600"><Cog6ToothIcon className="size-7" /></Badge>}</div>
+                                            <div className="text-center">{profile?.name && profile.permissions > 0 && <a href="/reports">
+                                                <Badge className="inline-block size-fit  bg-red-600 content-center">
+                                                    <TriangleAlert className="size-7 inline-block" />
+                                                    <p className="inline-block text-base">Jelentett Hírdetések</p>
+                                                </Badge>
+                                            </a>}
+                                                    
+                                            </div>
                                         </CardTitle>
 
 

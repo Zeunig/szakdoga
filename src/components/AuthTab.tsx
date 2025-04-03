@@ -89,7 +89,7 @@ export default function AuthTabs() {
         .then(res => res.json()).then(json => parseResponse(json, formData.get("email") as string, formData.get("password") as string));
     }
     return (
-        <div className="h-[500px] flex justify-center mx-auto w-12/12  p-4 py-6 lg:py-8 bg-blue-50">
+        <div className="h-[500px] flex justify-center mx-auto w-12/12  p-4 py-6 lg:py-8 ">
             
             <Tabs defaultValue="login" className="w-[400px] ">
 
@@ -101,7 +101,7 @@ export default function AuthTabs() {
 
                 <TabsContent value="login" >
 
-                    <Card className="border-2 border-slate-300 hover:border-blue-400 duration-500">
+                    <Card className="border-2 border-blue-300 hover:border-blue-400 duration-500">
                         {
                             loginAlert.map(alert => (
                                 <Alert alert_type={alert.alert_type} title={alert.title} message={alert.message}></Alert>
@@ -132,7 +132,7 @@ export default function AuthTabs() {
 
 
                             <CardFooter>
-                                <Button>Bejelentkezés</Button>
+                            <Button className="hvr-grow bg-blue-300 text-black hover:bg-blue-500 hover:text-white">Bejelentkezés</Button>
                             </CardFooter>
                         </form>
 
@@ -141,8 +141,8 @@ export default function AuthTabs() {
                 </TabsContent>
 
                 
-                <TabsContent value="register">
-                    <Card className="border-2 border-slate-300 hover:border-blue-400 duration-500">
+                <TabsContent value="register" className="">
+                    <Card className="border-2 border-blue-300 hover:border-blue-400 duration-500">
                         {
                             registerAlert.map(alert => (
                                 <Alert alert_type={alert.alert_type} title={alert.title} message={alert.message}></Alert>
@@ -174,7 +174,7 @@ export default function AuthTabs() {
                             </CardContent>
 
                             <CardFooter>
-                            <Button type="submit" className="hvr-grow">Fiók létrehozása</Button>
+                            <Button type="submit" className="hvr-grow bg-blue-300 text-black hover:bg-blue-500 hover:text-white">Fiók létrehozása</Button>
                             </CardFooter>
                         </form>         
 

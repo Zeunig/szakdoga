@@ -9,10 +9,10 @@ export default function Page() {
                 <Header />
             </div>
 
-            <div className="my-10 place-self-center w-[1300px]" >
+            <div className="my-10 place-self-center lg:w-8/12 w-11/12"  >
 
-                <div className="border-2 border-blue-600 bg-blue-100 rounded-lg h-14 w-fit">
-                    <span className="inline-block align-middle ml-5 mr-20 text-3xl font-bold">A lapunk tartalma</span>
+                <div className="border-2 border-blue-600 bg-blue-100 rounded-lg h-14 w-fit content-center">
+                    <span className="inline-block w-96 text-center text-3xl font-bold">Adatvédelmi nyilatkozat</span>
                 </div>
 
                 <div className="border-2 border-blue-600 bg-blue-100 rounded-lg mt-5">

@@ -10,25 +10,26 @@ import { ICarListing, parseCarListing } from "@/lib/car";
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
-export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
+export default function SearchPage({ cars }: { cars: ISortedCarSelection[] }) {
     let [searchResult, setSearchResult] = React.useState<ICarListing[]>([]);
     let [loading, setLoading] = React.useState(false);
     let [resultCount, setResultCount] = React.useState(-1);
     let [page, setPage] = React.useState(1);
     var fuel_type: string[] = [];
     const searchParams = useSearchParams();
-    if(searchParams.get("fuel") === undefined || searchParams.get("fuel") === null || searchParams.get("fuel") === "") {
-        fuel_type = ["Benzin","Dízel","Hibrid","Elektromos","Etanol","Biodízel","Gáz"];
-    }else {
+    if (searchParams.get("fuel") === undefined || searchParams.get("fuel") === null || searchParams.get("fuel") === "") {
+        fuel_type = ["Benzin", "Dízel", "Hibrid", "Elektromos", "Etanol", "Biodízel", "Gáz"];
+    } else {
         fuel_type = [searchParams.get("fuel") || ""];
     }
     const [searchConditions, setSearchConditions] = React.useState<searchCondition>({
-        brand: searchParams.get("brand") || "", 
-        model: searchParams.get("model") || "", 
-        fuel_type: fuel_type, 
+        brand: searchParams.get("brand") || "",
+        model: searchParams.get("model") || "",
+        fuel_type: fuel_type,
         min_year: parseInt(searchParams.get("min_year") || "0"),
-        max_year: parseInt(searchParams.get("max_year") || "0") ,
+        max_year: parseInt(searchParams.get("max_year") || "0"),
         min_price: parseInt(searchParams.get("min_price") || "0"),
         max_price: parseInt(searchParams.get("max_price") || "0"),
         min_km: 0,
@@ -43,7 +44,7 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
         max_doors: 999999,
         min_passengers: 0,
         max_passengers: 999999,
-        wheels: [],gearbox: [], color: [], status: []
+        wheels: [], gearbox: [], color: [], status: []
     });
     const result_per_search = 10;
     /*useEffect(() => {
@@ -64,10 +65,10 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
                 if (Object.values(searchConditions)[i].length != 0) {
                     let value = "";
 
-                    for(var j = 0; j < Object.values(searchConditions)[i].length; j++) {
+                    for (var j = 0; j < Object.values(searchConditions)[i].length; j++) {
 
                         value += Object.values(searchConditions)[i][j];
-                        if(j + 1 !== Object.values(searchConditions)[i].length) {
+                        if (j + 1 !== Object.values(searchConditions)[i].length) {
                             value += ",";
                         }
                     }
@@ -76,17 +77,17 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
 
             } else {
                 console.log(`${Object.keys(searchConditions)[i]} ${Object.values(searchConditions)[i]}`);
-                if(Object.values(searchConditions)[i] !== "") {
+                if (Object.values(searchConditions)[i] !== "") {
                     console.log("swag");
                     url.searchParams.append(Object.keys(searchConditions)[i], Object.values(searchConditions)[i]);
                 }
             }
         }
-        url.searchParams.append("offset", ((page-1)*10).toString());
+        url.searchParams.append("offset", ((page - 1) * 10).toString());
         console.log(url);
         axios.get(url.toString()).then((res) => {
             let cars = [];
-            for(var i = 0; i < res.data["data"].length; i++) {                
+            for (var i = 0; i < res.data["data"].length; i++) {
                 cars.push(parseCarListing(res.data["data"][i]));
             }
             setSearchResult(cars);
@@ -96,32 +97,44 @@ export default function SearchPage({cars}: {cars: ISortedCarSelection[]}) {
     }
     return (
         <div>
-                <div className="">
-                    <div className="mx-5 lg:mx-56 lg:mt-24">
-                        <div className="grid grid-cols-1 lg:grid-cols-4">
-                            <div className="h-auto lg:row-span-11"><CarSearchCard searchConditions={searchConditions} setSearchConditions={setSearchConditions} cars={cars} setSearchResult={setSearchResult} setLoading={setLoading} setResultCount={setResultCount} /></div>
+            <div className="">
+                <div className="mx-5 lg:mx-56 lg:mt-24">
+                    <div className="grid grid-cols-1 lg:grid-cols-4">
+                        <div className="h-auto lg:row-span-11"><CarSearchCard searchConditions={searchConditions} setSearchConditions={setSearchConditions} cars={cars} setSearchResult={setSearchResult} setLoading={setLoading} setResultCount={setResultCount} /></div>
 
-                            <div className="col-span-3 bg-blue-200 rounded-lg border-2 border-blue-400">
-                                <h5 className="-mt-[33px]">{resultCount == -1 ? "" : `Találatok száma : ${resultCount} db`}</h5>
-                                <hr className="w-full  mb-2  h-px mx-auto bg-slate-400 border-0" />
-                                {
-                                    // ha még nincs kész a request, addig a logónkat mutatjuk
-                                    loading ? 
-                                        <img src="logo.png" className="size-72 animate-spin align-self-center justify-self-center flex my-20"/>
+                        <div className="col-span-3 bg-blue-200 rounded-lg border-2 border-blue-400">
+                            <h5 className="-mt-[33px]">{resultCount == -1 ? "" : `Találatok száma : ${resultCount} db`}</h5>
+                            <hr className="w-full  mb-2  h-px mx-auto bg-slate-400 border-0" />
+                            {
+                                // ha még nincs kész a request, addig a logónkat mutatjuk
+                                loading ?
+                                    <img src="logo.png" className="size-72 animate-spin align-self-center justify-self-center flex my-20" />
                                     :
                                     searchResult.map((car) => (
-                                        <div key={car.id} className="w-full h-fit my-5 hvr-icon-forward"> {car.featured==0 && <RowCard car={car}  />}{car.featured==1 && <RowCardHL  car={car}  />} </div>
+                                        <div key={car.id} className="w-full h-fit my-5 hvr-icon-forward"> {car.featured == 0 && <RowCard car={car} />}{car.featured == 1 && <RowCardHL car={car} />} </div>
                                     ))
-                                }   
-                                <button onClick={async () =>  {setPage(page-1);console.log(page);await search(page-1);}}>Vissza</button>
-                                <button onClick={async () =>  {setPage(page+1);console.log(page);await search(page+1);}}>Kövi</button>
-                                <input onChange={(e) => {setPage(parseInt(e.target.value) | 1)}} type="number" name="" id="" min={1} value={page} />
-                                <button onClick={async () => {await search(page)}}>Ugrás</button>
+                            }
+                            <div className="place-self-center bg-slate-900 bg-opacity-20 w-72 h-20  rounded-lg mb-3">
+                                
+                                <div className=" grid grid-rows-2   gap-3 gap-y-0 mt-2 py-2">
+
+                                    <button onClick={async () => { setPage(page - 1); console.log(page); await search(page - 1); }} className="h-full   place-self-end      row-start-1    border-2  border-blue-400 rounded-lg bg-blue-300"> <ArrowLeft /> </button>
+
+                                    <input onChange={(e) => { setPage(parseInt(e.target.value) | 1) }} type="text" name="" id="" min={1} value={page} className="w-20      place-self-center   row-start-1    border-2  border-blue-400 rounded-lg bg-blue-100 text-center" />
+
+                                    <button onClick={async () => { setPage(page + 1); console.log(page); await search(page + 1); }} className="h-full   place-self-start    row-start-1    border-2  border-blue-400 rounded-lg bg-blue-300"> <ArrowRight /> </button>
+
+
+
+                                    <button onClick={async () => { await search(page) }} className="row-start-2 col-span-3  text-center bg-blue-300 rounded-xl border-blue-400 border-2 my-1 mx-2">Ugrás</button>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
     )
 }
