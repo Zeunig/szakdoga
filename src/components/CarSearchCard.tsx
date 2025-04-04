@@ -226,11 +226,6 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="minprice" name="min_price" className="border w-[180px] lg:w-[120px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxprice" name="max_price" className="border w-[180px] lg:w-[120px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     </div>
-                                    <div className="ml-2 mt-3">
-                                        <label htmlFor="">Állapot </label><br></br>
-                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="minprice" name="min_price" className="border w-[180px] lg:w-[120px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
-                                        <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxprice" name="max_price" className="border w-[180px] lg:w-[120px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
-                                    </div>
 
                                     <div className="ml-2 mt-3">
                                         <label htmlFor="">Kilométer (-tól, -ig)</label><br></br>
@@ -252,7 +247,7 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
                                     </div>
 
                                     <div className="ml-2 mt-3">
-                                        <label htmlFor="">Szálítható utasok száma</label><br></br>
+                                        <label htmlFor="">Szállítható utasok száma</label><br></br>
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="minpassengers" name="min_passengers" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-tól" />
                                         <input type="number" onChange={(e) => { handleInputChange(e) }} id="maxpassengers" name="max_passengers" className="border w-[180px] lg:w-[90px] py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-sm inline-block" placeholder="-ig" />
                                     </div>
@@ -295,8 +290,51 @@ export function CarSearchCard({cars, setSearchResult, setLoading, setResultCount
 
                                     <div className="ml-2 mt-3">
                                         <label htmlFor="">Gearbox</label><br></br>
-                                        <input type="checkbox" name="gearbox.manual" id="gearbox.manual" onChange={(e) => { handleCheckbox(e) }}></input>
-                                        <input type="checkbox" name="gearbox.automatic" id="gearbox.automatic" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="gearbox.automata" id="gearbox.1" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="gearbox.félautomata" id="gearbox.2" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="gearbox.fokozatmentes automata" id="gearbox.3" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="gearbox.manuális" id="gearbox.4" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="gearbox.tiptronic" id="gearbox.5" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        
+                                    </div>
+
+                                    <div className="ml-2 mt-3">
+                                        <label htmlFor="">Állapot</label><br></br>
+                                        <input type="checkbox" name="status.új" id="status.1" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="status.újszerű" id="status.2" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="status.használt" id="status.3" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="status.megviselt" id="status.4" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="status.hibás" id="status.5" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="status.hiányos" id="status.6" onChange={(e) => { handleCheckbox(e) }}></input>
+                                    </div>
+                                    <div className="ml-2 mt-3">
+                                        <label htmlFor="">Szín</label><br></br>
+                                        <input type="checkbox" name="color.fehér" id="color.1" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.kék" id="color.2" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.piros" id="color.3" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.ezüst" id="color.4" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.zöld" id="color.5" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.sárga" id="color.6" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.vörös" id="color.7" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.lila" id="color.8" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.barna" id="color.9" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.rózsaszín" id="color.10" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.narancs" id="color.11" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.szürke" id="color.12" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.fekete" id="color.13" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.bordó" id="color.14" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.türkíz" id="color.15" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.arany" id="color.16" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="color.egyedi" id="color.17" onChange={(e) => { handleCheckbox(e) }}></input>
+                                    </div>
+                                    <div className="ml-2 mt-3">
+                                        <label htmlFor="">Üzemanyag</label><br></br>
+                                        <input type="checkbox" name="fuel_type.benzin" id="fuel_type.1" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="fuel_type.dízel" id="fuel_type.2" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="fuel_type.hibrid" id="fuel_type.3" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="fuel_type.elektromos" id="fuel_type.4" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="fuel_type.biodízel" id="fuel_type.5" onChange={(e) => { handleCheckbox(e) }}></input>
+                                        <input type="checkbox" name="fuel_type.gáz" id="fuel_type.6" onChange={(e) => { handleCheckbox(e) }}></input>
                                     </div>
 
                                     <div className="ml-2 mt-3">

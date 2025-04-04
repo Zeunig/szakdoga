@@ -71,10 +71,15 @@ export async function GET(req: NextRequest) {
     let resp = NextResponse.json({}, {"status": 400});
     return resp;*/
     let split_wheels = (req.nextUrl.searchParams.get("wheels") as string)?.split(",");
+    if(req.nextUrl.searchParams.get("fuel_type") as string == "") {
+        var fuel_type = ["Benzin", "Dízel", "Hibrid", "Elektromos", "Etanol", "Biodízel", "Gáz"];
+    }else {
+        var fuel_type = (req.nextUrl.searchParams.get("fuel_type") as string)?.split(",");
+    }
     let query = {
         brand: (req.nextUrl.searchParams.get("brand") as string),
         model: (req.nextUrl.searchParams.get("model") as string),
-        fuel_type: (req.nextUrl.searchParams.get("fuel_type") as string)?.split(","),
+        fuel_type,
         price: [
             parseInt(req.nextUrl.searchParams.get("min_price") as string) | 0,
             parseInt(req.nextUrl.searchParams.get("max_price") as string) | 99999999999

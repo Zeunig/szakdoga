@@ -20,7 +20,7 @@ export default function SearchPage({ cars }: { cars: ISortedCarSelection[] }) {
     var fuel_type: string[] = [];
     const searchParams = useSearchParams();
     if (searchParams.get("fuel") === undefined || searchParams.get("fuel") === null || searchParams.get("fuel") === "") {
-        fuel_type = ["Benzin", "Dízel", "Hibrid", "Elektromos", "Etanol", "Biodízel", "Gáz"];
+        fuel_type = [];
     } else {
         fuel_type = [searchParams.get("fuel") || ""];
     }

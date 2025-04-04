@@ -142,8 +142,6 @@ export async function POST(req: NextRequest) {
                 description: json.description,
             },
         });
-        for
-        console.log(car);
         let resp = NextResponse.json({"success":true, "car_id": car.id}, {"status": 200});
         return resp;
     }else {
