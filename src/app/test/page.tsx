@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import SUC from "@/components/SUC";
-import { AdsGrid } from "@/components/ADS/AdsGrid";
+import { AdsGrid } from "@/components/0A_unused/ADS/AdsGrid";
 import { ImageViewer } from "@/components/ImageViewer";
 import Image from "next/image";
 import { ScrollArea } from "@/components/ui/scroll-area";
