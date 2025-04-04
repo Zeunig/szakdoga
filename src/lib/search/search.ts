@@ -210,6 +210,7 @@ export async function Search(search: ISearch) {
   ${Array.isArray(search.status) && search.status.length > 0 
     ? Prisma.sql`AND design IN (${Prisma.join(search.status)})` 
     : Prisma.empty}
+    ${Prisma.sql`ORDER BY featured DESC`}
     ${!(Number.isNaN(search.limit))
     ? Prisma.sql`LIMIT ${search.limit}`
     : Prisma.sql`LIMIT 10`}

@@ -11,7 +11,8 @@ export interface IExtendedProfile {
     avatar_url: string | null,
     join_date: Date,
     permissions: number,
-    car: ICarListing[]
+    car: ICarListing[],
+    favorites: ICarListing[]
 }
 
 declare global {
@@ -69,7 +70,7 @@ export async function get_my_profile(user_id: number, include_unlisted_cars: boo
         }
     });
     
-    return query;
+    return query as unknown as IExtendedProfile;
 }
 
 export async function GET(req: NextRequest) {
