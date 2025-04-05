@@ -45,9 +45,9 @@ export default function MainCarsHL({ car }: { car: ICarListing }) {
 
 
 
-                        <div className="row-span-1 row-start-1  grid grid-flow-col gap-2">
+                        <div className="row-span-1 row-start-1  grid grid-cols-3 gap-2">
 
-                            <div>| {car.mileage.toLocaleString()} km |</div> <div>| {car.gearbox} |</div> <div>| {car.cc.toLocaleString()} cc  |</div>
+                            <div>| {car.mileage.toLocaleString()} km |</div> <div className="text-sm">| {car.gearbox} |</div> <div>| {car.cc.toLocaleString()} cc  |</div>
 
                         </div>
 
