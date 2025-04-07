@@ -74,7 +74,7 @@ export async function SearchAmountOfResults(search: ISearch) {
     ? Prisma.sql`AND color IN (${Prisma.join(search.color)})` 
     : Prisma.empty}
   ${Array.isArray(search.status) && search.status.length > 0 
-    ? Prisma.sql`AND design IN (${Prisma.join(search.status)})` 
+    ? Prisma.sql`AND \`condition\` IN (${Prisma.join(search.status)})` 
     : Prisma.empty}
     ${!(Number.isNaN(search.limit))
     ? Prisma.sql`LIMIT ${search.limit}`
@@ -208,7 +208,7 @@ export async function Search(search: ISearch) {
     ? Prisma.sql`AND color IN (${Prisma.join(search.color)})` 
     : Prisma.empty}
   ${Array.isArray(search.status) && search.status.length > 0 
-    ? Prisma.sql`AND design IN (${Prisma.join(search.status)})` 
+    ? Prisma.sql`AND \`condition\` IN (${Prisma.join(search.status)})` 
     : Prisma.empty}
     ${Prisma.sql`ORDER BY featured DESC`}
     ${!(Number.isNaN(search.limit))

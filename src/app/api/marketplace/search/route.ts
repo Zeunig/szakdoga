@@ -121,6 +121,7 @@ export async function GET(req: NextRequest) {
         offset: parseInt(req.nextUrl.searchParams.get("offset") as string),
         featured_only: parseInt(req.nextUrl.searchParams.get("offset") as string) == 1
     };
+    console.log(query);
     const result = await Search(
         query
     );
