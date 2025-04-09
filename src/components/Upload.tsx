@@ -17,14 +17,38 @@ import axios from "axios";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger, } from "@/components/ui/collapsible"
 import UploadLG from "./UploadLG";
 import UploadSM from "./UploadSM";
+import { PublishInterface } from "@/app/api/marketplace/publish/route";
 
 
 function Unlocked(cars: ISortedCarSelection[]) {
     const [selectedBrand, setSelectedBrand] = React.useState("");
+    const [images, setImages] = React.useState([new File([], ""), new File([], ""), new File([], ""), new File([], ""), new File([], ""), new File([], "")]);
+    const [carDetails, setCarDetails] = React.useState<PublishInterface>({
+        brand: "",
+        model: "",
+        price: 0,
+        year: 0,
+        mileage: 0,
+        weight: 0,
+        horsepower: 0,
+        cc: 0,
+        fuel_type: "",
+        gearbox: "",
+        drive_type: "",
+        condition: "",
+        doors: 0,
+        passengers: 0,
+        color: "",
+        features: 0,
+        vin: "",
+        design: "",
+        description: "",
+        images: []
+    });
     return (
         <div>
-                <UploadLG/>
-                <UploadSM/>      
+                <UploadLG carDetails={carDetails} setCarDetails={setCarDetails} images={images} setImages={setImages}/>
+                <UploadSM carDetails={carDetails} setCarDetails={setCarDetails} images={images} setImages={setImages}/>      
         </div>
     )
 }

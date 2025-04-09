@@ -18,33 +18,21 @@ import { PublishInterface } from "@/app/api/marketplace/publish/route";
 import { Card } from "./ui/card";
 import axios from "axios";
 
-export default function UploadLG(cars: ISortedCarSelection[]) {
-
+export default function UploadLG(
+    {
+        images, 
+        setImages, 
+        carDetails, 
+        setCarDetails
+    } : 
+    {
+        images: File[], 
+        setImages: React.Dispatch<React.SetStateAction<File[]>>,
+        carDetails: PublishInterface,
+        setCarDetails: React.Dispatch<React.SetStateAction<PublishInterface>>
+    }
+) {
     const [selectedBrand, setSelectedBrand] = React.useState("");
-    const [images, setImages] = React.useState([new File([], ""), new File([], ""), new File([], ""), new File([], ""), new File([], ""), new File([], "")]);
-    const [carDetails, setCarDetails] = React.useState<PublishInterface>({
-        brand: "",
-        model: "",
-        price: 0,
-        year: 0,
-        mileage: 0,
-        weight: 0,
-        horsepower: 0,
-        cc: 0,
-        fuel_type: "",
-        gearbox: "",
-        drive_type: "",
-        condition: "",
-        doors: 0,
-        passengers: 0,
-        color: "",
-        features: 0,
-        vin: "",
-        design: "",
-        description: "",
-        images: []
-    });
-
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         const { name, value, type } = e.target;
         const parsedValue = type === 'number' ? parseFloat(value) : value;
@@ -164,7 +152,7 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                                 <input onChange={(e) => { handleInputChange(e) }} type="text" name="brand" id="brand" className="bg-blue-100 mt-2 w-full border-2 rounded-lg border-blue-400 " />
                             </div>
                             <div className="col-1  ml-5 mt-1">
-                                Model:
+                                Modell:
                             </div>
                             <div className="col-2  -ml-5">
                                 <input onChange={(e) => { handleInputChange(e) }} type="text" name="model" id="model" className="bg-blue-100 mt-2 w-full border-2 rounded-lg border-blue-400" />
@@ -219,7 +207,7 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
 
                             {/*km*/}
                             <div className="col-2 row-3">
-                                <h1 className="display: inline font-semibold">Kilóméter </h1><h1 className="display: inline">óra állás</h1>
+                                <h1 className="display: inline font-semibold">Kilométer </h1><h1 className="display: inline">óra állás</h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-10">
                                     <input onChange={(e) => { handleInputChange(e) }} type="number" name="mileage" className="mt-1 w-32 border-2 border-gray-400 rounded-lg cursor-pointer dark:text-gray-400" hidden={false/*required*/} />
@@ -241,7 +229,7 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
                         {/*Autó adatok vége*/}
 
                         {/*kép*/}
-                        <h1 className="font-bold mt-5">Kép Feltöltése</h1>
+                        <h1 className="font-bold mt-5">Kép feltöltése</h1>
                         <hr className="w-96 h-px bg-slate-400 border-0" />
                         <div className="w-92 ml-5 mt-3 mr-7 grid gap-1">
                             <input onChange={handleImage} className="block w-full text-sm  border-2 border-blue-300 rounded-lg cursor-pointer bg-blue-50 " id="file0" type="file" />
@@ -305,7 +293,7 @@ export default function UploadLG(cars: ISortedCarSelection[]) {
 
                             {/*gb*/}
                             <div className="col-1 row-6 mb-3">
-                                <h1 className=" inline ">Váltó fajtálya </h1>
+                                <h1 className=" inline ">Váltó fajtája </h1>
                                 <hr className="w-40 h-px bg-slate-400 border-0" />
                                 <div className="w-10">
                                     <div className="w-40 ">
