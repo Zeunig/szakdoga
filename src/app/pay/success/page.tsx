@@ -13,7 +13,7 @@ export default function Page(req: NextRequest) {
         const urlParams = new URLSearchParams(window.location.search);
         const redirect = urlParams.get('redirect_to');
         setTimeout(() => {
-          //       window.location.href = redirect ?? "/";
+            window.location.href = redirect ?? "/";
         }, 3000);
     })
     return (
@@ -32,7 +32,7 @@ export default function Page(req: NextRequest) {
                             Sikeres Fizetés!
                         </CardTitle>
                         <p className="text-base mt-3 mb-3 font-medium">Köszönjuk vásárlásod!</p>
-                        <p className="text-sm font-medium">A tranzakciót feldolgoztuk és hamarosan átiránítjuk a főoldalra.</p>
+                        <p className="text-sm font-medium">A tranzakciót feldolgoztuk és hamarosan átirányítjuk Önt a főoldalra.</p>
                     </CardContent>
                     <div className="flex justify-center">
                         

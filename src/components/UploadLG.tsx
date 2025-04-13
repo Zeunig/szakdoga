@@ -377,7 +377,6 @@ export default function UploadLG(
                         <div className="grid grid-cols-2 gap-3 items-center">
                             <input type="submit" className="hvr-grow border-2 border-blue-600 rounded-xl upload-button" onSubmit={async (e) => { await upload(e) }} value="Hirdetés feladáaasa" />
                             <span className="relative flex hvr-grow">
-                                <button className="border-2 border-blue-600 rounded-xl  w-[160px] h-[52px] upload-button" onClick={buyFeature}>Kiemelés Vásárlása</button>
                                 <span className="absolute inline-flex size-4 animate-ping rounded-full bg-orange-500 opacity-75 right-4 top-1" />
                                 <span className="relative inline-flex size-4 rounded-full bg-orange-500 right-2 -top-5" />
                             </span>

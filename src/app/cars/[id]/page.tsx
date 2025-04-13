@@ -25,6 +25,7 @@ import { headers } from "next/headers"
 export default async function Page(context: { params: Promise<{ id: number }> }) {
     const { id } = await context.params;
     const headersList = await headers();
+    const user_id = parseInt(headersList.get("x-user-id") || "0");
     const isAuthed = headersList.get("cookie")?.toString().includes("auth=") || false;
     let car_data = await get_car_from_db(id) as object;
     console.log(car_data);
@@ -43,7 +44,7 @@ export default async function Page(context: { params: Promise<{ id: number }> })
                         <Header />
                     </div>
                     <div className="justify-items-center">
-                        {car.listed == 1 ? <CarListing car={car} isAuthed={isAuthed}/> : <h1 className="m-32">Ez az autó jelenleg nem elérhető</h1>}
+                        {car.listed == 1 ? <CarListing car={car} userId={user_id} isAuthed={isAuthed} headersList={headersList}/> : <h1 className="m-32">Ez az autó jelenleg nem elérhető</h1>}
                         
                     </div>
                     <div className="">

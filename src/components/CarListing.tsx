@@ -23,11 +23,12 @@ import axios from "axios";
 import Autoplay from "embla-carousel-autoplay";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog"
 import { Textarea } from "./TextArea";
-import { useToast } from "@/hooks/use-toast"
+import { toast, useToast } from "@/hooks/use-toast"
 
 import { ToastAction } from "@/components/ui/toast"
+import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
 
-export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: boolean }) {
+export function CarListing({ car, isAuthed, headersList, userId }: { car: ICarListing, isAuthed: boolean, headersList: ReadonlyHeaders, userId: number }) {
     const { toast } = useToast()
     const [api, setApi] = React.useState<CarouselApi>()
     const [current, setCurrent] = React.useState(0)
@@ -35,6 +36,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
     const [showImageViewer, setShowImageViewer] = React.useState("");
     const [isOpen, setIsOpen] = React.useState(false);
     const router = useRouter();
+    const [isYourCar, setIsYourCar] = React.useState(false);
     React.useEffect(() => {
         if (!api) {
             return
@@ -45,7 +47,10 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
         api.on("select", () => {
             setCurrent(api.selectedScrollSnap() + 1)
         });
-    }, [api])
+        if(car.seller_id == userId) {
+            setIsYourCar(true);
+        }
+    }, [api, setIsYourCar])
     function report() {
         let report_reason = prompt("Írd le a jelentés indokát");
         if (report_reason == null || report_reason == "") {
@@ -54,7 +59,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
             axios.post("/api/report", { "reason": report_reason, "car_id": car.id }).then((res) => console.log(res));
         }
     }
-
+    
     const plugin = React.useRef(
         Autoplay({ delay: 3000, stopOnInteraction: true })
     )
@@ -401,26 +406,10 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
                             <hr className="w-full h-px mx-auto mt-3  mb-2 bg-slate-400 border-0" />
 
                             <div className="grid grid-cols-2 gap-2">
-
+                                
                                 <div className="forced-colors:bg-slate-950">
                                     <div className="col-span-1 w-full ">
-                                        {!isAuthed && <button className="w-full" onClick={() => {
-                                            toast({
-                                                variant: "kpak",
-                                                title: "Jelentkezz be!",
-                                                description: "Ahhoz hogy kedvelni tudd, be kell hogy jelentkezz!",
-                                                action: <ToastAction altText="Katt ide!" className="border-2 border-blue-600 hvr-glow hvr-grow bg-white"><a href="/auth" >Katt ide!</a></ToastAction>,
-                                            });
-                                        }}
-                                        >
-                                            <div className='bg-slate-300 rounded-lg border-2 w-full border-slate-400 h-12  font-semibold'>
-                                                <Heart fill="black" className='inline-block ' /> <p className='inline-block mt-2'>Kedvelés</p>
-                                            </div>
-
-                                        </button>}
-
-                                        {isAuthed && <FavoriteButton car_id={car?.id} />}
-
+                                        <FirstButton isYourCar={isYourCar} isAuthed={isAuthed} car={car}/>
                                     </div>
                                 </div>
                                 <div className="col-span-1">
@@ -429,7 +418,7 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
 
                                             <button className="bg-rose-300 w-full h-full inline-block border-2 rounded-lg font-semibold">
                                                 <AlertTriangleIcon className="inline-block" />
-                                                <p className="inline-block ml-2 aling-center">Jeletés</p>
+                                                <p className="inline-block ml-2 aling-center">Jelentés</p>
                                             </button>
                                         </DialogTrigger>
                                         <DialogContent className="border-red-600 border-4">
@@ -452,4 +441,52 @@ export function CarListing({ car, isAuthed }: { car: ICarListing, isAuthed: bool
 
         </div>
     )
+}
+
+function FirstButton({isYourCar, isAuthed, car}: {isYourCar: boolean, isAuthed: boolean, car: ICarListing}) {
+    async function buyFeature() {
+        fetch(`${location.protocol}//${window.location.host}/api/pay`, {
+            method: "POST",
+            redirect: "follow",
+            body: JSON.stringify(
+                {
+                    "product_id": 1,
+                    "car_id": car.id
+                }
+            )
+        })
+        .then(res => res.json()).then(json => window.location.href = json["redirect"]);
+
+    }
+    if(isYourCar && car.featured == 0) {
+        return (
+            <button className="w-full" onClick={buyFeature}
+            >
+                <div className='bg-blue-200 md:rounded-lg rounded-full border-2 lg:w-full w-20 h-20 lg:h-12 border-blue-600 font-semibold'>
+                    <p className='inline-block'>Kiemelés vásárlása</p>
+                </div>
+
+            </button>
+        );
+    }else {
+        if(!isAuthed) {
+            return (<button className="w-full" onClick={() => {
+                toast({
+                    variant: "kpak",
+                    title: "Jelentkezz be!",
+                    description: "Ahhoz hogy kedvelni tudd, be kell hogy jelentkezz!",
+                    action: <ToastAction altText="Katt ide!" className="border-2 border-blue-600 hvr-glow hvr-grow bg-white"><a href="/auth" >Katt ide!</a></ToastAction>,
+                });
+            }}
+            >
+                <div className='bg-slate-300 rounded-lg border-2 w-full border-slate-400 h-12  font-semibold'>
+                    <Heart fill="black" className='inline-block ' /> <p className='inline-block mt-2'>Kedvelés</p>
+                </div>
+    
+            </button>)
+        }else {
+            return (<FavoriteButton car_id={car?.id} />);
+        }
+    }
+    
 }

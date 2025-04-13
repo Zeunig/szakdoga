@@ -11,7 +11,8 @@ export const config = {
       // Match /profile/ paths
       '/profil/:path*',
       '/feltoltes',
-      '/reports'
+      '/reports',
+      '/cars/:path'
     ]
   }
 
@@ -21,6 +22,19 @@ export const config = {
 // Middleware function that runs before matching routes
 export async function middleware(request: NextRequest) {
     const token = request.cookies.get('auth')?.value;
+    if(request.nextUrl.pathname.startsWith("/cars")) {
+        try {
+            let auth = await authentication(token); // akkor halj éhen a hibáddal
+            if (auth["success"] == true) {
+                const response = NextResponse.next();
+                response.headers.set("x-user-id", auth["payload"]["id"] as string);
+                return response
+            }
+        }catch {
+            const response = NextResponse.next();
+            return response;
+        }
+    }
     if (!token) {
         if (request.nextUrl.pathname.startsWith("/api")) {
             return NextResponse.json({"error":"Unauthorized"},{"status": 401});
