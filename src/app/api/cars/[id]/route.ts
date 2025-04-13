@@ -20,8 +20,6 @@ export async function get_car_from_db(id: number) {
                     include: {
                         password: false,
                         permissions: false,
-                        phone_number: false,
-                        email: false,
                         join_date: false
                     }
                 }

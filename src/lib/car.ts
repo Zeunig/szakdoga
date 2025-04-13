@@ -41,6 +41,14 @@ export interface ICarListing {
     listed: number;
 
     images: string[];
+    user: IUSerPublic;
+}
+export interface IUserPublic {
+    id: number,
+    name: string,
+    phone_number: string,
+    email: string,
+    address: string
 }
 
 
@@ -66,6 +74,7 @@ export function parseCarListing(json: object): ICarListing {
         const doors = Number(json.doors);
         const listed = Number(json.listed);
         const features = getFeatures(Number(json.features));
+        const user = json.user as IUserPublic;
         let images = [];
         for(var i = 0; i < json["car_image_relation"].length; i++) {
             images.push(json["car_image_relation"][i]["image_url"] as string);
@@ -97,7 +106,8 @@ export function parseCarListing(json: object): ICarListing {
             design: json.design as string,
             seller_name: json.seller_name as string,
             listed,
-            images
+            images,
+            user
         };
         return carListing;
     } catch (error) {

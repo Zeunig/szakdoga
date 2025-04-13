@@ -129,7 +129,7 @@ export function CarListing({ car, isAuthed, headersList, userId }: { car: ICarLi
 
                     <div className="row-start-1 grid lg:grid-cols-4 grid-cols-2 text-center" >
                         <div className="place-content-center">
-                            <p className="font-semibold text-blue-600  text-lg">Futott kilóméterek:</p>
+                            <p className="font-semibold text-blue-600  text-lg">Futott kilométerek:</p>
                             <p className="text-base font-semibold">{(car?.mileage).toLocaleString()} km</p>
                         </div>
                         <div className="place-content-center">
@@ -137,11 +137,11 @@ export function CarListing({ car, isAuthed, headersList, userId }: { car: ICarLi
                             <p className="text-base font-semibold">{Math.floor(car?.horsepower * 0.7457)} kW  ({car?.horsepower} le)</p>
                         </div>
                         <div className="place-content-center">
-                            <p className="font-semibold text-blue-600  text-lg">Hajtóanyag fajtálya:</p>
+                            <p className="font-semibold text-blue-600  text-lg">Hajtóanyag fajtája:</p>
                             <p className="text-base font-semibold">{car?.fuel_type}</p>
                         </div>
                         <div className="place-content-center">
-                            <p className="font-semibold text-blue-600  text-lg">Váltó fajtálya:</p>
+                            <p className="font-semibold text-blue-600  text-lg">Váltó fajtája:</p>
                             <p className="text-base font-semibold">{car?.gearbox}</p>
                         </div>
                     </div>
@@ -396,10 +396,10 @@ export function CarListing({ car, isAuthed, headersList, userId }: { car: ICarLi
                                 <CollapsibleTrigger className=""><p className="text-xl inline-block" >Eladó adatai <ChevronDown className="inline-block" /></p></CollapsibleTrigger>
                                 <CollapsibleContent>
                                     <hr className="w-full h-px mx-auto mt-3  mb-2 bg-slate-400 border-0" />
-                                    <p className="font-bold ml-3 text-blue-600 text-lg "> Név:{ } </p>
-                                    <p className="font-bold ml-3"> <Mail className="inline-block text-blue-600" />: { } </p>
-                                    <p className="font-bold ml-3"> <Phone className="inline-block text-blue-600" />: { } </p>
-                                    <p className="font-bold ml-3"> <MapIcon className="inline-block text-blue-600" />: { } </p>
+                                    <p className="font-bold ml-3 text-blue-600 text-lg "> Név: {car.seller_name} </p>
+                                    <p className="font-bold ml-3"> <Mail className="inline-block text-blue-600" />: { car.user.email } </p>
+                                    <p className="font-bold ml-3"> <Phone className="inline-block text-blue-600" />: { car.user.phone_number } </p>
+                                    <p className="font-bold ml-3"> <MapIcon className="inline-block text-blue-600" />: { car.user.address } </p>
 
                                 </CollapsibleContent>
                             </Collapsible>
