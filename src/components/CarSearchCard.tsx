@@ -192,7 +192,7 @@ export function CarSearchCard({ cars, setSearchResult, setLoading, setResultCoun
                         <div className="">
                             <Collapsible className="">
 
-                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg w-full"> Márka, model</CollapsibleTrigger>
+                                <CollapsibleTrigger className="text-blue-600 font-bold text-lg w-full"> Márka, modell</CollapsibleTrigger>
 
                                 <CollapsibleContent className="grid grid-flow-row border-2 border-slate-300 rounded-lg mb-2">
 
@@ -204,7 +204,7 @@ export function CarSearchCard({ cars, setSearchResult, setLoading, setResultCoun
                                     </div>
                                     <div className="ml-2 mb-2">
 
-                                        <label htmlFor="" className="font-semibold">Model <br /> </label>
+                                        <label htmlFor="" className="font-semibold">Modell <br /> </label>
                                         <ModelCB car_selection={cars} selectedBrand={selectedBrand} onInputChange={handleBrandOrModelChange} />
 
                                     </div>

@@ -55,7 +55,7 @@ export default function Profile({profile}: {profile: IExtendedProfile}) {
                                 <div className="text-center">{profile?.name && profile.permissions > 0 && <a href="/reports">
                                     <Badge className="inline-block size-fit  bg-red-600 content-center">
                                         <TriangleAlert className="size-7 inline-block" />
-                                        <p className="inline-block text-base">Jelentett Hírdetések</p>
+                                        <p className="inline-block text-base">Jelentett hirdetések</p>
                                     </Badge>
                                 </a>}
                                         
@@ -85,11 +85,11 @@ export default function Profile({profile}: {profile: IExtendedProfile}) {
                             <hr className="w-80 h-px bg-slate-400 border-0" />
                         </CardHeader>
                         <CardContent className="    ">
-                            <div >Email cím változtatása:</div>
+                            <div >E-mail cím változtatása:</div>
                             <hr className="w-40 h-px bg-slate-400 border-0 mt-1 mb-3" />
-                            <div className="display: inline">Regisztrált email cím:</div> <input type="email" name="" id="" value={profile?.email} disabled className="border-2 border-gray-400 rounded-lg display: inline" />
+                            <div className="display: inline">Regisztrált e-mail cím:</div> <input type="email" name="" id="" value={profile?.email} disabled className="border-2 border-gray-400 rounded-lg display: inline" />
                             <br />
-                            <div className="display: inline">Új email cím:</div>  <input type="email" name="" id=""  onChange={(e) => {setEmail(e.target.value)}} className="border-2 border-gray-400 rounded-lg display: inline" />
+                            <div className="display: inline">Új e-mail cím:</div>  <input type="email" name="" id=""  onChange={(e) => {setEmail(e.target.value)}} className="border-2 border-gray-400 rounded-lg display: inline" />
                             <button onClick={changeEmail}>Mentés</button>
                         </CardContent> {/* TODO : EMAIL MÓDOSÍTÁS */}
                     </Card>
@@ -100,8 +100,8 @@ export default function Profile({profile}: {profile: IExtendedProfile}) {
                 <TabsContent value="cars" className="">
                     <Card className="min-h-[300px] bg-blue-100 border-2 border-blue-400  rounded-lg ">
                         <CardHeader>
-                            <CardTitle className="font-bold text-3xl">Feladott hírdetések</CardTitle>
-                            <CardDescription className="w-fit">Itt látod a feladott hírdetéseidet az oldalunkon
+                            <CardTitle className="font-bold text-3xl">Feladott hirdetések</CardTitle>
+                            <CardDescription className="w-fit">Itt láthatod a feladott hirdetéseidet az oldalunkon
                                 <hr className="w-full h-px bg-slate-400 border-0" />
                             </CardDescription>
 
@@ -127,8 +127,8 @@ export default function Profile({profile}: {profile: IExtendedProfile}) {
                 <TabsContent value="favorites" className="">
                     <Card className="min-h-[300px]  bg-blue-100 border-2 border-blue-400  rounded-lg ">
                         <CardHeader>
-                            <CardTitle className="font-bold text-3xl">Mentet hírdetések ({profile.favorites.length})</CardTitle>
-                            <CardDescription className="w-fit ">Itt látod azokat a herdetéseket amelyeket kedveltél az oldalunkon
+                            <CardTitle className="font-bold text-3xl">Mentett hirdetések ({profile.favorites.length})</CardTitle>
+                            <CardDescription className="w-fit ">Itt láthatod azokat a hirdetéseket amelyeket kedveltél az oldalunkon
                                 <hr className="w-full h-px bg-slate-400 border-0" />
                             </CardDescription>
 

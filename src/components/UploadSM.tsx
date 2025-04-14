@@ -162,7 +162,7 @@ export default function UploadSM(
                                     <input onChange={(e) => { handleInputChange(e) }} type="text" name="brand" id="brand" className="bg-blue-100 mt-2 w-full border-2 rounded-lg border-blue-400 " />
                                 </div>
                                 <div className="col-1 row-2">
-                                    Model:
+                                    Modell:
                                 </div>
                                 <div className="col-2 row-2 -ml-4">
                                     <input onChange={(e) => { handleInputChange(e) }} type="text" name="model" id="model" className="bg-blue-100 mt-2 w-full border-2 rounded-lg border-blue-400" />
@@ -397,7 +397,7 @@ export default function UploadSM(
                                                 <li className="w-full border-2 border-blue-300 hover:border-blue-400 rounded-lg bg-blue-50">
                                                     <div className="flex items-center ps-3 ">
                                                         <input onChange={(e) => { handleCheckbox(e) }} id="feature:DUAL_REAR_WHEELS" type="checkbox" value="16" name="" className="" />
-                                                        <label htmlFor="feature:DUAL_REAR_WHEELS" className="w-full py-3 ms-2 text-xs text-gray-900 ">Duppla házsó kerék</label>
+                                                        <label htmlFor="feature:DUAL_REAR_WHEELS" className="w-full py-3 ms-2 text-xs text-gray-900 ">Dupla hátsó kerék</label>
                                                     </div>
                                                 </li>
                                                 <li className="w-full border-2 border-blue-300 hover:border-blue-400 rounded-lg bg-blue-50">
@@ -478,7 +478,7 @@ export default function UploadSM(
                                                 <li className="w-full border-2 border-blue-300 hover:border-blue-400 rounded-lg bg-blue-50">
                                                     <div className="flex items-center ps-3">
                                                         <input onChange={(e) => { handleCheckbox(e) }} id="feature:WIFI_HOTSPOT" type="checkbox" value="4194304" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                        <label htmlFor="feature:WIFI_HOTSPOT" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">WIFI Hotspot</label>
+                                                        <label htmlFor="feature:WIFI_HOTSPOT" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Wi-Fi Hotspot</label>
                                                     </div>
                                                 </li>
                                                 <li className="w-full border-2 border-blue-300 hover:border-blue-400 rounded-lg bg-blue-50">
@@ -505,13 +505,13 @@ export default function UploadSM(
                                                 <li className="w-full border-2 border-blue-300 hover:border-blue-400 rounded-lg bg-blue-50">
                                                     <div className="flex items-center ps-3">
                                                         <input onChange={(e) => { handleCheckbox(e) }} id="feature:CRUISE_CONTROL" type="checkbox" value="512" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                        <label htmlFor="feature:CRUISE_CONTROL" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Tempómat</label>
+                                                        <label htmlFor="feature:CRUISE_CONTROL" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Tempomat</label>
                                                     </div>
                                                 </li>
                                                 <li className="w-full border-2 border-blue-300 hover:border-blue-400 rounded-lg bg-blue-50">
                                                     <div className="flex items-center ps-3">
                                                         <input onChange={(e) => { handleCheckbox(e) }} id="feature:ADAPTIVE_CRUISE_CONTROL" type="checkbox" value="131072" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                        <label htmlFor="feature:ADAPTIVE_CRUISE_CONTROL" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Adaptív tempómat</label>
+                                                        <label htmlFor="feature:ADAPTIVE_CRUISE_CONTROL" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Adaptív tempomat</label>
                                                     </div>
                                                 </li>
                                                 <li className="w-full border-2 border-blue-300 hover:border-blue-400 rounded-lg bg-blue-50">
@@ -535,7 +535,7 @@ export default function UploadSM(
                                                 <li className="w-full border-2 border-blue-300 hover:border-blue-400 rounded-lg bg-blue-50">
                                                     <div className="flex items-center ps-3">
                                                         <input onChange={(e) => { handleCheckbox(e) }} id="feature:AUTOMATIC_PARKING" type="checkbox" value="2097152" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                                                        <label htmlFor="feature:AUTOMATIC_PARKING" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Autómata parkolás</label>
+                                                        <label htmlFor="feature:AUTOMATIC_PARKING" className="w-full py-3 ms-2 text-xs text-gray-900 dark:text-gray-300">Automata parkolás</label>
                                                     </div>
                                                 </li>
 

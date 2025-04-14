@@ -60,7 +60,7 @@ export default async function Page() {
 
             <div className="mt-20 bg-slate-900 bg-opacity-15 rounded-lg mx-auto w-[1300px]">
                 <div className=" mt-5 mx-5   grid grid-cols-2">
-                    <p className="text-3xl text-start font-semibold text-blue-600">Jelentett Hírdetések </p>
+                    <p className="text-3xl text-start font-semibold text-blue-600">Jelentett hirdetések </p>
                     <div className="content-center">
                         <HoverCard>
                             <HoverCardTrigger className=""> <Info className="place-self-end text-blue-600" /> </HoverCardTrigger>

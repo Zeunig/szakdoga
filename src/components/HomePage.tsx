@@ -139,7 +139,7 @@ export default function HomePage({ cars }: { cars: ISortedCarSelection[] }) {
           </div>
         </div>
 
-        {/*Kiemelt hírdetések*/}
+        {/*Kiemelt hirdetések*/}
         <div className="flex justify-center ">
           <div className=" w-[1200px] mt-20">
             <div className=" text-center text-3xl lg:text-4xl font-bold text-blue-600 mb-4">

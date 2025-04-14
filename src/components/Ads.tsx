@@ -30,7 +30,7 @@ export default function Ads() {
 
                         <div className="content-center col-span-2">
                             <p className="text-3xl text-blue-600 font-semibold">Ez a felület bérelhető</p>
-                            <div className="text-base text-blue-500 font-semibold "> <p className="inline-">További információkért írjon az email címünkre</p> <p className="inline-block">info@korporgo@gmail.com</p></div>
+                            <div className="text-base text-blue-500 font-semibold "> <p className="inline-">További információkért írjon az e-mail címünkre</p> <p className="inline-block">info@korporgo@gmail.com</p></div>
                         </div>
 
                         <div className="content-center">
