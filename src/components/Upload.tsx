@@ -70,10 +70,16 @@ export default function Upload(cars: ISortedCarSelection[]) {
             }
         })
     }, [setLimitReached, setBanned]);
-    return (
-        limitReached
-        ? <div>Túl sok autót töltöttél fel, kérjük vásárolj "Végtelen feltöltés"-t 8000 Ft-ért</div>
-        : (banned ? <div>Ki vagy tiltva az oldalról</div> : <Unlocked {...cars}/>)
-
-    );
+    if(typeof window !== 'undefined') {
+        return (
+            limitReached
+            ? <div>Túl sok autót töltöttél fel, kérjük vásárolj "Végtelen feltöltés"-t 8000 Ft-ért</div>
+            : (banned ? <div>Ki vagy tiltva az oldalról</div> : <Unlocked {...cars}/>)
+    
+        );
+    }else {
+        return (
+            <div>Nincs window</div>
+        )
+    }
 }

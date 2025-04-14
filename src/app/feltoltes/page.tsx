@@ -17,15 +17,11 @@ import Upload from "@/components/Upload";
 
 export default async function Page() {
     let cars = await get_car_selection();
-    const [showUpload, setShowUpload] = React.useState(false);
-    useEffect(() => {
-        setShowUpload(true);
-    }, [setShowUpload])
     return (
         <div className="flex flex-col h-screen">
             <div><Header /></div>
 
-            <div>{showUpload && <Upload {...cars} />} </div>
+            <div><Upload {...cars} /></div>
             
             <div><Footer /></div>
         </div>

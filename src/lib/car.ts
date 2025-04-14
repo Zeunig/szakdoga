@@ -1,4 +1,5 @@
 import { getFeatures, IFeatures } from "@/lib/search/features";
+import { PrismaClient } from "@prisma/client";
 
 // get car details by id and make it json-serializable
 export async function get_car_from_db(id: number) {
@@ -70,7 +71,7 @@ export interface ICarListing {
     listed: number;
 
     images: string[];
-    user: IUSerPublic;
+    user: IUserPublic;
 }
 export interface IUserPublic {
     id: number,
