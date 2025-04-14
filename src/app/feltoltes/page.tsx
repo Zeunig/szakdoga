@@ -9,7 +9,7 @@ import { ConditionCB } from "@/components/ConditionCB";
 import { Bug } from "lucide-react";
 import { Textarea } from "@/components/TextArea";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import React from "react";
+import React, { useEffect } from "react";
 import { get_car_selection } from "../jobs/carCounter/route";
 import Upload from "@/components/Upload";
 
@@ -17,11 +17,15 @@ import Upload from "@/components/Upload";
 
 export default async function Page() {
     let cars = await get_car_selection();
+    const [showUpload, setShowUpload] = React.useState(false);
+    useEffect(() => {
+        setShowUpload(true);
+    }, [setShowUpload])
     return (
         <div className="flex flex-col h-screen">
             <div><Header /></div>
 
-            <div>{typeof window !== 'undefined' && <Upload {...cars} />} </div>
+            <div>{showUpload && <Upload {...cars} />} </div>
             
             <div><Footer /></div>
         </div>

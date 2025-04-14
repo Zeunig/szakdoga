@@ -1,6 +1,35 @@
 import { getFeatures, IFeatures } from "@/lib/search/features";
 
-
+// get car details by id and make it json-serializable
+export async function get_car_from_db(id: number) {
+    const prisma = new PrismaClient({});
+    try {
+        var query = await prisma.car.findFirst({
+            where: {
+                id: {
+                    equals: Number(id) 
+                }
+            },
+            include: {
+                car_image_relation: true,
+                user: {
+                    include: {
+                        password: false,
+                        permissions: false,
+                        join_date: false
+                    }
+                }
+            }
+        });
+        query["id"] = Number(query["id"]);
+        query["features"] = Number(query["features"]);
+        query["creation_date"] = query["creation_date"]?.toISOString();
+        return query;
+    }catch (err) {
+        return {"success": false}
+    }
+    
+}
 
 export interface ICarListing {
     // Identification

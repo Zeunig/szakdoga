@@ -8,7 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger, } from "@/components/ui/tabs"
 import MyCars from "@/components/MyCars";
 import { cookies } from 'next/headers';
 import { authentication } from "@/lib/auth";
-import { get_my_profile } from "../api/my_profile/route";
 import { ICarListing, parseCarListing } from "@/lib/car";
 import RowCard from "@/components/RowCard";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +16,7 @@ import { ArrowUpFromLineIcon, Cog, Heart, MoveDown, TriangleAlert, User, UserCir
 import { Cog6ToothIcon } from "@heroicons/react/24/solid";
 import React from "react";
 import Profile from "@/components/Profile";
+import { get_my_profile } from "@/lib/profile";
 
 
 export default async function Page() {

@@ -1,42 +1,14 @@
 "use server";
 
 import { authentication } from "@/lib/auth";
+import { get_car_from_db } from "@/lib/car";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
-// get car details by id and make it json-serializable
-export async function get_car_from_db(id: number) {
-    const prisma = new PrismaClient({});
-    try {
-        var query = await prisma.car.findFirst({
-            where: {
-                id: {
-                    equals: Number(id) 
-                }
-            },
-            include: {
-                car_image_relation: true,
-                user: {
-                    include: {
-                        password: false,
-                        permissions: false,
-                        join_date: false
-                    }
-                }
-            }
-        });
-        query["id"] = Number(query["id"]);
-        query["features"] = Number(query["features"]);
-        query["creation_date"] = query["creation_date"]?.toISOString();
-        return query;
-    }catch (err) {
-        return {"success": false}
-    }
-    
-}
 
-export async function GET(req: NextRequest, context: {params: {id: number}}) {
-    const { id } = await context.params;
+
+export async function GET(req: NextRequest, context: Promise<{ id: number }>) {
+    const { id } = await context;
     if(Number.isNaN(Number(id))) {
         return NextResponse.json({"success": false,"error":"Invalid ID"},{status: 400});
     }
@@ -46,8 +18,8 @@ export async function GET(req: NextRequest, context: {params: {id: number}}) {
     return resp;
 }
 
-export async function DELETE(req: NextRequest, context: {params: {id: number}}) {
-    const { id } = await context.params;
+export async function DELETE(req: NextRequest, context: Promise<{ id: number }>) {
+    const { id } = await context;
     if(Number.isNaN(Number(id))) {
         return NextResponse.json({"success": false,"error":"Invalid ID"},{status: 400});
     }
@@ -92,9 +64,5 @@ export async function DELETE(req: NextRequest, context: {params: {id: number}}) 
         }
         
     }
-    
-}
-
-export async function PUT(req: NextRequest, context: {params: {id: number}}) {
     
 }

@@ -16,8 +16,7 @@ import { ChevronRight, ChevronsDownUp, ChevronsDownUpIcon, ChevronsUpDown } from
 import { Prisma, PrismaClient } from "@prisma/client"
 import { useRouter } from "next/navigation"
 import { CarListing } from "@/components/CarListing"
-import { ICarListing, parseCarListing } from "@/lib/car"
-import { get_car_from_db } from "@/app/api/cars/[id]/route"
+import { get_car_from_db, ICarListing, parseCarListing } from "@/lib/car"
 import SUC from "@/components/SUC"
 import { headers } from "next/headers"
 

@@ -2,6 +2,11 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import * as jose from 'jose';
 
+const { createSecretKey } = require('crypto');
+export const secretKey = createSecretKey(process.env.JWT_SECRET, 'utf-8');
+
+
+
 export interface AuthResult {
     success: boolean,
     payload: jose.JWTPayload,

@@ -1,9 +1,9 @@
+import { secretKey } from "@/lib/auth";
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 const bcrypt = require('bcrypt');
 const jose = require('jose')
-const { createSecretKey } = require('crypto');
-export const secretKey = createSecretKey(process.env.JWT_SECRET, 'utf-8');
+
 const alg = 'HS256'
 export async function POST(req: Request) {
     // validating the request
