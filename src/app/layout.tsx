@@ -19,7 +19,7 @@ export default function RootLayout({
       </head>
       <body>
       <div className="relative">
-        {children}<Toaster />
+        {children}
         
           {/* Some content */}
           <ToTopBtn minHeight={40} scrollTo={10} className="fixed right-5 bottom-10 bg-blue-600 hover:bg-blue-400 duration-500 border-2 border-blue-600 rounded-full h-12 w-12  hvr-bob text-center hvr-icon-fade">

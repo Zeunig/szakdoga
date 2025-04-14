@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently --kill-others \"stripe listen --forward-to localhost:3000/api/pay/webhook --skip-verify\" \"next dev\"",
+    "dev": "concurrently --kill-others \"stripe listen --forward-to localhost:3000/api/pay/webhook --skip-verify\" \"next dev -p 3000\"",
     "build": "next build",
-    "start": "next start",
+    "start": "concurrently --kill-others \"stripe listen --forward-to localhost:3000/api/pay/webhook --skip-verify\" \"next start -p 3000\"",
     "lint": "next lint"
   },
   "dependencies": {

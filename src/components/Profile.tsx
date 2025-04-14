@@ -113,7 +113,7 @@ export default function Profile({profile}: {profile: IExtendedProfile}) {
                                     <ScrollBar orientation="vertical" />
                                     {
                                         profile.car.map((car) => (
-                                            <div className="mb-3"> <MyCars car={car} /> </div>
+                                            <div key={car.id} className="mb-3"> <MyCars car={car} /> </div>
                                         ))
                                     }
                                 </div>
@@ -140,9 +140,12 @@ export default function Profile({profile}: {profile: IExtendedProfile}) {
                                 <div className="grid grid-flow-row gap-3">
 
 
-                                    {profile.favorites.map((car) => (
-                                        <div className="row-span-1"><RowCard car={parseCarListing(car["car"]!)} /></div>
-                                    ))}
+                                    {profile.favorites.map((car) => {
+                                        let car_car = parseCarListing(car["car" as keyof ICarListing]);
+                                        return (
+                                            <div key={car_car.id} className="row-span-1"><RowCard car={car_car} /></div>
+                                        );
+                                    })}
 
                                 </div>
                             </ScrollArea >

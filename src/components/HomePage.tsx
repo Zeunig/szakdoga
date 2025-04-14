@@ -151,7 +151,7 @@ export default function HomePage({ cars }: { cars: ISortedCarSelection[] }) {
                 {
                   featuredCars.map((car) => (
 
-                    <div>
+                    <div key={car.id}>
                       {car.featured == 0 && <MainCars car={car} />}{car.featured == 1 && <MainCarsHL car={car} />}
                     </div>
                     

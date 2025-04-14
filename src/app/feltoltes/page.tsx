@@ -21,7 +21,7 @@ export default async function Page() {
         <div className="flex flex-col h-screen">
             <div><Header /></div>
 
-            <div><Upload {...cars} /></div>
+            <div>{typeof window !== 'undefined' && <Upload {...cars} />} </div>
             
             <div><Footer /></div>
         </div>

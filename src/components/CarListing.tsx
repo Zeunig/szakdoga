@@ -27,6 +27,7 @@ import { toast, useToast } from "@/hooks/use-toast"
 
 import { ToastAction } from "@/components/ui/toast"
 import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
+import { Toaster } from "./ui/toaster";
 
 export function CarListing({ car, isAuthed, headersList, userId }: { car: ICarListing, isAuthed: boolean, headersList: ReadonlyHeaders, userId: number }) {
     const { toast } = useToast()
@@ -416,12 +417,12 @@ export function CarListing({ car, isAuthed, headersList, userId }: { car: ICarLi
                                     <Dialog>
                                         <DialogTrigger className="w-full h-full">
 
-                                            <button className="bg-rose-300 w-full h-full inline-block border-2 rounded-lg font-semibold">
+                                            <div className="bg-rose-300 w-full h-full inline-block border-2 rounded-lg font-semibold flex items-center justify-center">
                                                 <AlertTriangleIcon className="inline-block" />
                                                 <p className="inline-block ml-2 aling-center">Jelentés</p>
-                                            </button>
+                                            </div>
                                         </DialogTrigger>
-                                        <DialogContent className="border-red-600 border-4">
+                                        <DialogContent suppressHydrationWarning className="border-red-600 border-4">
                                             <DialogHeader>
                                                 <DialogTitle className="text-red-600 text-2xl">Hibajelentés írása</DialogTitle>
                                                 <hr className="w-full h-px mx-auto mt-3  mb-2 bg-red-600 border-0" />
@@ -437,7 +438,7 @@ export function CarListing({ car, isAuthed, headersList, userId }: { car: ICarLi
                 </div>
             </div>
             {/*Price card lg end*/}
-
+            <Toaster/>
 
         </div>
     )

@@ -104,7 +104,7 @@ export default function AuthTabs() {
                     <Card className="border-2 border-blue-300 hover:border-blue-400 duration-500">
                         {
                             loginAlert.map(alert => (
-                                <Alert alert_type={alert.alert_type} title={alert.title} message={alert.message}></Alert>
+                                <Alert key={alert.title} alert_type={alert.alert_type} title={alert.title} message={alert.message}></Alert>
                             ))
                         }
                         <form action={login}>
@@ -145,7 +145,7 @@ export default function AuthTabs() {
                     <Card className="border-2 border-blue-300 hover:border-blue-400 duration-500">
                         {
                             registerAlert.map(alert => (
-                                <Alert alert_type={alert.alert_type} title={alert.title} message={alert.message}></Alert>
+                                <Alert key={alert.title} alert_type={alert.alert_type} title={alert.title} message={alert.message}></Alert>
                             ))
                         }
                         <form action={register}>

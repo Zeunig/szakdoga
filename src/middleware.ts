@@ -21,14 +21,18 @@ export const config = {
 
 // Middleware function that runs before matching routes
 export async function middleware(request: NextRequest) {
+    console.log(request.nextUrl.pathname);
     const token = request.cookies.get('auth')?.value;
-    if(request.nextUrl.pathname.startsWith("/cars")) {
+    if(request.nextUrl.pathname.includes("/cars")) {
         try {
             let auth = await authentication(token); // akkor halj éhen a hibáddal
             if (auth["success"] == true) {
                 const response = NextResponse.next();
                 response.headers.set("x-user-id", auth["payload"]["id"] as string);
                 return response
+            }else {
+                const response = NextResponse.next();
+                return response;
             }
         }catch {
             const response = NextResponse.next();
